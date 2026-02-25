@@ -1,8 +1,8 @@
 package health.kokoro.api.rest.auth
 
-import health.kokoro.application.auth.AuthResponse
-import health.kokoro.application.auth.SignIn
-import health.kokoro.application.auth.SignUp
+import health.kokoro.application.usecase.auth.AuthResponse
+import health.kokoro.application.usecase.auth.SignIn
+import health.kokoro.application.usecase.auth.SignUp
 import org.springframework.stereotype.Component
 
 @Component

@@ -1,7 +1,7 @@
 package health.kokoro.api.rest.auth
 
-import health.kokoro.application.auth.SignIn
-import health.kokoro.application.auth.SignUp
+import health.kokoro.application.usecase.auth.SignIn
+import health.kokoro.application.usecase.auth.SignUp
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated

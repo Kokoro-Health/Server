@@ -5,9 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/diff-generator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpb-settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/bean/SecurityBeans.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/bean/SimpleBeans.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/config/JwtConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/JwtFilter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/JwtUtil.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/UserDetailsServiceImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/api/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/Application.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/Application.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/SignUpRequestDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/SignUpRequestDto.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/application/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/auth/AuthResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/AuthResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/auth/SignIn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignIn.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/auth/SignUp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignUp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/UserRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example.env" beforeDir="false" afterPath="$PROJECT_DIR$/example.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserRepositoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserJpaRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserJpaRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserMapper.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +70,7 @@
       <list>
         <option value="Kotlin Data Class" />
         <option value="Kotlin Interface" />
+        <option value="com.intellij.jpb.FlywayMigrationScript" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -51,6 +78,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "nijasc"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Kokoro-Health/Server.git",
+    "accountId": "5bc00114-bc7a-4a4c-af2e-0191c0cbc30b"
+  }
+}]]></component>
   <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\nils.schlegel\.gradle\wrapper\dists\gradle-8.14-bin\38aieal9i53h9rfe7vjup95b9\gradle-8.14" javaHome="C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot" gradleVersion="8.14" />
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -60,6 +99,9 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="3A9j7UWhVn54F1ovkkeOjYKnsEy" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -75,10 +117,13 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.KokoroRunner.executor": "Debug",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "D:/kokoro/server/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter",
+    "last_opened_file_path": "D:/kokoro/server",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -88,7 +133,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Subversion",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -98,10 +143,16 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\kokoro\server" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\kokoro\server\infrastructure\src\main\resources\db\migration" />
       <recent name="D:\kokoro\server" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="health.kokoro.application.bean" />
+      <recent name="health.kokoro.application.security" />
       <recent name="health.kokoro.infrastructure.jpa.user" />
       <recent name="health.kokoro.rest" />
     </key>
@@ -144,7 +195,8 @@
       <workItem from="1772015578374" duration="893000" />
       <workItem from="1772016494625" duration="328000" />
       <workItem from="1772016839531" duration="5077000" />
-      <workItem from="1772023059266" duration="2791000" />
+      <workItem from="1772023059266" duration="6244000" />
+      <workItem from="1772029382810" duration="1594000" />
     </task>
     <servers />
   </component>
@@ -161,5 +213,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

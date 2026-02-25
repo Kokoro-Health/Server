@@ -17,3 +17,7 @@ springdoc:
     path: /docs
   swagger-ui:
     path: /docs/swagger
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 604800000 # 7 days
+  issuer: kokoro
