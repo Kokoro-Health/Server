@@ -5,6 +5,9 @@ import health.kokoro.domain.port.UserRepository
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
 import health.kokoro.infrastructure.jpa.user.UserMapper
 import org.springframework.stereotype.Repository
+import java.util.UUID
+import kotlin.jvm.optionals.getOrElse
+import kotlin.jvm.optionals.getOrNull
 
 @Repository
 class UserRepositoryAdapter(
@@ -12,6 +15,10 @@ class UserRepositoryAdapter(
 ) : UserRepository {
     override fun findByEmail(mail: String): User? {
         return jpa.findByEmailIgnoreCase(mail)?.let { mapper.toDomain(it) }
+    }
+
+    override fun findById(id: UUID): User? {
+        return jpa.findById(id).getOrNull()?.let { mapper.toDomain(it) }
     }
 
     override fun existsByEmail(email: String): Boolean {

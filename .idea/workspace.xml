@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/config/OpenApiConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/ErrorResponse.kt" afterDir="false" />
+    <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="Refactored a big part of the auth system">
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/profile/ProfileController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/profile/ProfileMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/profile/ProfileResponseDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/profile/GetProfile.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/SignInRequestDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/SignInRequestDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/bean/SecurityBeans.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/bean/SecurityBeans.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/JwtFilter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/JwtFilter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/UserRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserRepositoryAdapter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,12 +176,25 @@
       <workItem from="1772016839531" duration="5077000" />
       <workItem from="1772023059266" duration="6244000" />
       <workItem from="1772029382810" duration="3158000" />
-      <workItem from="1772621540142" duration="8143000" />
+      <workItem from="1772621540142" duration="11837000" />
     </task>
+    <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
+      <option name="closed" value="true" />
+      <created>1772638105279</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1772638105279</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Refactored a big part of the auth system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored a big part of the auth system" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -192,10 +204,14 @@
           <line>13</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/bean/SecurityBeans.kt</url>
-          <line>31</line>
-          <option name="timeStamp" value="2" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://C:/Program Files/Eclipse Adoptium/jdk-21.0.8.9-hotspot/lib/src.zip!/java.base/java/lang/NumberFormatException.java</url>
+          <line>52</line>
+          <properties class="java.lang.NumberFormatException" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
