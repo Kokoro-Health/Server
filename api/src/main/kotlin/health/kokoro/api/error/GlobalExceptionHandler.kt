@@ -16,6 +16,4 @@ class GlobalExceptionHandler {
     fun handleException(e: Exception): ResponseEntity<ErrorResponse> {
         return ResponseEntity.badRequest().body(ErrorResponse(e.message ?: "Internal server error"))
     }
-
-    data class ErrorResponse(val message: String)
 }

@@ -35,7 +35,7 @@ class JwtUtil(
     fun getExpiration(token: String): Long {
         return Jwts.parser()
             .verifyWith(getKey())
-        .build()
+            .build()
             .parseSignedClaims(token)
             .payload
             .expiration

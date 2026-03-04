@@ -2,7 +2,6 @@ package health.kokoro.application.bean
 
 import health.kokoro.application.security.JwtFilter
 import health.kokoro.application.security.UserDetailsServiceImpl
-import health.kokoro.domain.port.UserRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -31,6 +30,7 @@ class SecurityBeans(
             }
             .userDetailsService(userDetailsService)
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)
 

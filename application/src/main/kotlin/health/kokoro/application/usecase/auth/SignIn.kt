@@ -13,9 +13,9 @@ class SignIn(
     private val authenticationManager: AuthenticationManager
 ) {
     fun execute(command: Command): AuthResponse {
-       if (!userRepository.existsByEmail(command.email)) {
-           throw IllegalArgumentException("User not found")
-       }
+        if (!userRepository.existsByEmail(command.email)) {
+            throw IllegalArgumentException("User not found")
+        }
 
         val auth = UsernamePasswordAuthenticationToken(command.email, command.password)
         authenticationManager.authenticate(auth)
