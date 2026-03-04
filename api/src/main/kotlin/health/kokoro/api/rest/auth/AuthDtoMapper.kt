@@ -10,10 +10,19 @@ import org.springframework.stereotype.Component
 class AuthDtoMapper {
     fun toCookie(response: AuthResponse, rememberMe: Boolean): ResponseCookie {
         val age = if (rememberMe) response.expiresIn / 1000 else -1L
-        return ResponseCookie.from("access_token", response.token)
+        return baseCookie(response.token, age)
+    }
+
+    fun toDeletionCookie(): ResponseCookie {
+        return baseCookie("", 0)
+    }
+
+    private fun baseCookie(token: String, age: Long): ResponseCookie {
+        return ResponseCookie.from("access_token", token)
             .path("/")
             .httpOnly(true)
-            .secure(true)
+            .secure(false)
+            .sameSite("Lax")
             .maxAge(age)
             .build()
     }
