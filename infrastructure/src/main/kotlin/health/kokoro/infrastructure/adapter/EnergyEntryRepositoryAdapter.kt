@@ -18,4 +18,12 @@ class EnergyEntryRepositoryAdapter(
         if (!userJpa.existsById(uuid)) throw IllegalArgumentException("Could not find user with id ${uuid.toString()}")
         return jpa.findAllByUserId(uuid).map { mapper.toDomain(it) }
     }
+
+    override fun save(entry: EnergyEntry) {
+       jpa.save(mapper.toEntity(entry))
+    }
+
+    override fun findLatestByUser(uuid: UUID): EnergyEntry? {
+        return jpa.findAllByUserId(uuid).maxByOrNull { it.createdAt }?.let { mapper.toDomain(it) }
+    }
 }

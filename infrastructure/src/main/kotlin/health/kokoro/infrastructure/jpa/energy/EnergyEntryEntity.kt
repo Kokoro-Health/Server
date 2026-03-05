@@ -13,5 +13,5 @@ import jakarta.persistence.Table
 data class EnergyEntryEntity(
     @Column(name = "amount") var amount: Int,
     @JoinColumn(name = "user_id") @ManyToOne var user: UserEntity,
-    @Column(name = "reason") var reason: String
+    @Column(name = "reason") var reason: String?
 ) : BaseEntity()
