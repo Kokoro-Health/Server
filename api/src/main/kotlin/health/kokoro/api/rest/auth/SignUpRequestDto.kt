@@ -13,5 +13,6 @@ data class SignUpRequestDto(
     @field:Email("Invalid email format.")
     val email: String,
     @field:Size(min = 8, max = 100, message = "Password must be between 8 and 100 characters")
-    val password: String
+    val password: String,
+    val tosAccepted: Boolean
 )

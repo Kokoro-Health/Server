@@ -28,7 +28,7 @@ class AuthDtoMapper {
     }
 
     fun toCommand(dto: SignUpRequestDto): SignUp.Command {
-        return SignUp.Command(dto.firstName, dto.middleName, dto.lastName, dto.email, dto.password)
+        return SignUp.Command(dto.firstName, dto.middleName, dto.lastName, dto.email, dto.password, dto.tosAccepted)
     }
 
     fun toCommand(dto: SignInRequestDto): SignIn.Command {

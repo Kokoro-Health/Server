@@ -16,6 +16,7 @@ class SignUp(
     private val clock: Clock
 ) {
     fun execute(command: Command): AuthResponse {
+        if (!command.tosAccepted) throw IllegalArgumentException("You must accept the Terms of Service.")
         if (userRepository.existsByEmail(command.email)) throw IllegalArgumentException("This email is already in use.")
         val hashedPassword = passwordEncoder.encode(command.password)
 
@@ -39,6 +40,6 @@ class SignUp(
     }
 
     data class Command(
-        val firstName: String, val middleName: String?, val lastName: String, val email: String, val password: String
+        val firstName: String, val middleName: String?, val lastName: String, val email: String, val password: String, val tosAccepted: Boolean
     )
 }

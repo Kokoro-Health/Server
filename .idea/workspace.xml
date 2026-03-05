@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="Refactored a big part of the auth system">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyInfoDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/energy/GetEnergyPercentage.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/EnergyEntry.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/EnergyEntryRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/EnergyEntryRepositoryAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/energy/EnergyEntryEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/energy/EnergyEntryJpaRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/energy/EnergyEntryMapper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/SignUpRequestDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/SignUpRequestDto.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignUp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignUp.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +53,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Interface" />
         <option value="com.intellij.jpb.FlywayMigrationScript" />
+        <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -177,7 +184,7 @@
       <workItem from="1772023059266" duration="6244000" />
       <workItem from="1772029382810" duration="3158000" />
       <workItem from="1772621540142" duration="11837000" />
-      <workItem from="1772656497623" duration="2353000" />
+      <workItem from="1772656497623" duration="6193000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />
@@ -213,15 +220,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-function">
-          <url>file://$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt</url>
-          <line>48</line>
-          <properties class="health.kokoro.api.rest.auth.AuthController" method="logout">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
