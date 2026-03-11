@@ -2,17 +2,13 @@ package health.kokoro.infrastructure.jpa.user.settings
 
 import health.kokoro.domain.model.user.settings.NotificationSettings
 import health.kokoro.domain.model.user.settings.Settings
-import health.kokoro.infrastructure.jpa.user.UserJpaRepository
 import org.springframework.stereotype.Component
 
 @Component
-class SettingsMapper(
-    private val userJpaRepository: UserJpaRepository,
-    private val settingsJpaRepository: SettingsJpaRepository,
-) {
+class SettingsMapper {
     fun toDomain(entity: SettingsEntity): Settings {
         return Settings(
-            userId = entity.user.id!!,
+            id = entity.id,
             theme = entity.theme,
             language = entity.language,
             notificationSettings = toDomain(entity.notificationSettings),
@@ -21,32 +17,29 @@ class SettingsMapper(
     }
 
     fun toEntity(domain: Settings): SettingsEntity {
-        val user = userJpaRepository.findById(domain.userId).get()
-        val existingSettings = settingsJpaRepository.findByUserId(domain.userId)
-        
-        return existingSettings?.apply {
-            theme = domain.theme
-            language = domain.language
-            updatedAt = domain.updatedAt
-        }
-            ?: SettingsEntity(
-                user = user,
-                theme = domain.theme,
-                language = domain.language,
-                notificationSettings = toEntity(domain.notificationSettings)
-            )
+        val entity = SettingsEntity(
+            theme = domain.theme,
+            language = domain.language,
+            notificationSettings = toEntity(domain.notificationSettings)
+        )
+        entity.id = domain.id
+        entity.updatedAt = domain.updatedAt
+        return entity
     }
 
     fun toEntity(domain: NotificationSettings): NotificationSettingsEntity {
-        return NotificationSettingsEntity(
+        val entity = NotificationSettingsEntity(
             marketingEmails = domain.marketingEmails,
             securityAlerts = domain.securityAlerts,
             reminderEmails = domain.reminderEmails
         )
+        entity.id = domain.id
+        return entity
     }
 
     private fun toDomain(entity: NotificationSettingsEntity): NotificationSettings {
         return NotificationSettings(
+            id = entity.id,
             marketingEmails = entity.marketingEmails,
             securityAlerts = entity.securityAlerts,
             reminderEmails = entity.reminderEmails

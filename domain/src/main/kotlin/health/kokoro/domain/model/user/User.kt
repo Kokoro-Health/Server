@@ -1,5 +1,7 @@
 package health.kokoro.domain.model.user
 
+import health.kokoro.domain.model.user.security.UserSecurity
+import health.kokoro.domain.model.user.settings.Settings
 import java.time.Instant
 import java.util.*
 
@@ -10,7 +12,8 @@ data class User(
     val lastName: String,
     val email: String,
     val profilePictureUrl: String?,
-    val passwordHash: String,
+    val security: UserSecurity,
+    val settings: Settings,
     val createdAt: Instant,
     val updatedAt: Instant
 )

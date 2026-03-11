@@ -10,21 +10,45 @@ import org.springframework.stereotype.Service
 class SignIn(
     private val userRepository: UserRepository,
     private val jwtUtil: JwtUtil,
-    private val authenticationManager: AuthenticationManager
+    private val authenticationManager: AuthenticationManager,
+    private val verifyMfaTotp: VerifyMfaTotp
 ) {
-    fun execute(command: Command): AuthResponse {
-        if (!userRepository.existsByEmail(command.email)) {
-            throw IllegalArgumentException("User not found")
-        }
+    fun execute(command: Command): Response {
+        val user = userRepository.findByEmail(command.email)
+            ?: throw IllegalArgumentException("Invalid credentials")
 
         val auth = UsernamePasswordAuthenticationToken(command.email, command.password)
         authenticationManager.authenticate(auth)
 
+        if (user.security.mfaEnabled) {
+            if (command.mfaCode == null || command.mfaCode.isBlank()) {
+                return Response(mfaRequired = true)
+            }
+
+            if (!verifyMfaTotp.execute(user, command.mfaCode)) {
+                throw IllegalArgumentException("Invalid MFA code")
+            }
+        }
+
         val token = jwtUtil.generateToken(command.email)
         val expiresIn = jwtUtil.getExpiration(token)
 
-        return AuthResponse(token, expiresIn)
+        return Response(
+            mfaRequired = false,
+            token = token,
+            expiresIn = expiresIn
+        )
     }
 
-    data class Command(val email: String, val password: String)
+    data class Command(
+        val email: String,
+        val password: String,
+        val mfaCode: String? = null
+    )
+
+    data class Response(
+        val mfaRequired: Boolean,
+        val token: String? = null,
+        val expiresIn: Long? = null
+    )
 }

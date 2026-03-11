@@ -1,6 +1,6 @@
 package health.kokoro.api.rest.auth
 
-
+import health.kokoro.application.usecase.auth.AuthResponse
 import health.kokoro.application.usecase.auth.SignIn
 import health.kokoro.application.usecase.auth.SignUp
 import jakarta.validation.Valid
@@ -31,13 +31,21 @@ class AuthController(
     }
 
     @PostMapping("/signin")
-    fun signIn(@RequestBody @Valid req: SignInRequestDto): ResponseEntity<Unit> {
+    fun signIn(@RequestBody @Valid req: SignInRequestDto): ResponseEntity<SignInResponseDto> {
         val result = signIn.execute(mapper.toCommand(req))
-        val cookie = mapper.toCookie(result, req.rememberMe)
+
+        if (result.mfaRequired) {
+            return ResponseEntity.ok(SignInResponseDto(mfaRequired = true))
+        }
+
+        val cookie = mapper.toCookie(
+            AuthResponse(result.token!!, result.expiresIn!!),
+            req.rememberMe
+        )
 
         return ResponseEntity.ok()
             .header(HttpHeaders.SET_COOKIE, cookie.toString())
-            .build()
+            .body(SignInResponseDto(mfaRequired = false))
     }
 
     @PostMapping("/logout")

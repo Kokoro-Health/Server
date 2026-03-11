@@ -7,4 +7,5 @@ interface SettingsRepository {
     fun findByUser(user: User): Settings?
     fun save(settings: Settings): Settings
     fun existsByUser(user: User): Boolean
+    fun update(user: User, settings: Settings)
 }

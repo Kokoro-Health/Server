@@ -2,6 +2,11 @@ package health.kokoro.application.usecase.auth
 
 import health.kokoro.application.security.JwtUtil
 import health.kokoro.domain.model.user.User
+import health.kokoro.domain.model.user.security.UserSecurity
+import health.kokoro.domain.model.user.settings.LanguageSetting
+import health.kokoro.domain.model.user.settings.NotificationSettings
+import health.kokoro.domain.model.user.settings.Settings
+import health.kokoro.domain.model.user.settings.ThemeSetting
 import health.kokoro.domain.port.user.UserRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -20,13 +25,29 @@ class SignUp(
         if (userRepository.existsByEmail(command.email)) throw IllegalArgumentException("This email is already in use.")
         val hashedPassword = passwordEncoder.encode(command.password)
 
+        val security = UserSecurity(
+            passwordHash = hashedPassword,
+            mfaSecret = null,
+            mfaEnabled = false
+        )
+        val settings = Settings(
+            theme = ThemeSetting.LIGHT,
+            language = LanguageSetting.ENGLISH,
+            notificationSettings = NotificationSettings(
+                marketingEmails = true,
+                securityAlerts = true,
+                reminderEmails = true
+            ),
+            updatedAt = Instant.now(clock),
+        )
         var user = User(
             id = null,
             firstName = command.firstName,
             middleName = command.middleName,
             lastName = command.lastName,
             email = command.email,
-            passwordHash = hashedPassword,
+            security = security,
+            settings = settings,
             profilePictureUrl = null,
             createdAt = Instant.now(clock),
             updatedAt = Instant.now(clock)

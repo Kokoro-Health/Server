@@ -32,6 +32,6 @@ class AuthDtoMapper {
     }
 
     fun toCommand(dto: SignInRequestDto): SignIn.Command {
-        return SignIn.Command(dto.email, dto.password)
+        return SignIn.Command(dto.email, dto.password, dto.mfaCode)
     }
 }

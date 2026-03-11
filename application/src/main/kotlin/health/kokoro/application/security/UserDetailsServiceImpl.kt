@@ -13,7 +13,7 @@ class UserDetailsServiceImpl(private val userRepository: UserRepository) : UserD
         val user = userRepository.findByEmail(email)!!
 
         return User(
-            user.email, user.passwordHash,
+            user.email, user.security.passwordHash,
             emptyList()
         )
     }

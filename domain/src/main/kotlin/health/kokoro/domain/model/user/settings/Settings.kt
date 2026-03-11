@@ -4,7 +4,7 @@ import java.time.Instant
 import java.util.*
 
 data class Settings(
-    var userId: UUID,
+    val id: UUID? = null,
     var theme: ThemeSetting,
     var language: LanguageSetting,
     var notificationSettings: NotificationSettings,

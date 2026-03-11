@@ -6,6 +6,6 @@ import java.util.*
 
 @Repository
 interface SettingsJpaRepository : JpaRepository<SettingsEntity, UUID> {
-    fun findByUserId(uuid: UUID): SettingsEntity?
-    fun existsByUserId(uuid: UUID): Boolean
+    fun findByUser_Id(uuid: UUID): SettingsEntity?
+    fun existsByUser_Id(uuid: UUID): Boolean
 }

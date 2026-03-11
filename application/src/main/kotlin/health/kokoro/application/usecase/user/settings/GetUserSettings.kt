@@ -16,19 +16,18 @@ class GetUserSettings(
     private val clock: Clock
 ) {
     fun execute(user: User): Settings {
-    return repo.findByUser(user) ?: run {
-        val newSettings = Settings(
-            userId = user.id!!,
-            theme = ThemeSetting.LIGHT,
-            language = LanguageSetting.ENGLISH,
-            notificationSettings = NotificationSettings(
-                marketingEmails = true,
-                securityAlerts = true,
-                reminderEmails = true
-            ),
-            updatedAt = Instant.now(clock)
-        )
-        repo.save(newSettings)
+        return repo.findByUser(user) ?: run {
+            val newSettings = Settings(
+                theme = ThemeSetting.LIGHT,
+                language = LanguageSetting.ENGLISH,
+                notificationSettings = NotificationSettings(
+                    marketingEmails = true,
+                    securityAlerts = true,
+                    reminderEmails = true
+                ),
+                updatedAt = Instant.now(clock)
+            )
+            repo.save(newSettings)
+        }
     }
-}
 }

@@ -1,16 +1,12 @@
 package health.kokoro.api.rest.user.settings
 
-import health.kokoro.domain.model.user.User
 import health.kokoro.domain.model.user.settings.NotificationSettings
 import health.kokoro.domain.model.user.settings.Settings
 import org.springframework.stereotype.Component
-import java.time.Clock
 import java.time.Instant
 
 @Component
-class SettingsDtoMapper(
-    private val clock: Clock
-) {
+class SettingsDtoMapper {
     fun toDto(settings: Settings): SettingsResponseDto {
         return SettingsResponseDto(
             theme = settings.theme,
@@ -22,9 +18,8 @@ class SettingsDtoMapper(
         )
     }
 
-    fun toDomain(dto: SettingsRequestDto, user: User): Settings {
+    fun toDomain(dto: SettingsRequestDto): Settings {
         return Settings(
-            userId = user.id!!,
             theme = dto.theme,
             language = dto.language,
             notificationSettings = NotificationSettings(
@@ -32,7 +27,7 @@ class SettingsDtoMapper(
                 securityAlerts = dto.securityAlerts,
                 reminderEmails = dto.reminderEmails
             ),
-            updatedAt = Instant.now(clock)
+            updatedAt = Instant.EPOCH
         )
     }
 }
