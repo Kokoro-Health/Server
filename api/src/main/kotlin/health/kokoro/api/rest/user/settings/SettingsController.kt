@@ -27,9 +27,9 @@ class SettingsController(
     @PutMapping
     fun updateSettings(
         @RequestBody @Valid body: SettingsRequestDto
-    ): ResponseEntity<Unit> {
+    ): ResponseEntity<SettingsResponseDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
-        updateUserSettings.execute(mapper.toDomain(body, user))
-        return ResponseEntity.ok().build()
+        val updated = updateUserSettings.execute(mapper.toDomain(body, user))
+        return ResponseEntity.ok(mapper.toDto(updated))
     }
 }

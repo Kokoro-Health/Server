@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component
 
 @Component
 class SettingsMapper(
-    private val userJpaRepository: UserJpaRepository
+    private val userJpaRepository: UserJpaRepository,
+    private val settingsJpaRepository: SettingsJpaRepository,
 ) {
     fun toDomain(entity: SettingsEntity): Settings {
         return Settings(
@@ -21,12 +22,19 @@ class SettingsMapper(
 
     fun toEntity(domain: Settings): SettingsEntity {
         val user = userJpaRepository.findById(domain.userId).get()
-        return SettingsEntity(
-            user = user,
-            theme = domain.theme,
-            language = domain.language,
-            notificationSettings = toEntity(domain.notificationSettings)
-        )
+        val existingSettings = settingsJpaRepository.findByUserId(domain.userId)
+        
+        return existingSettings?.apply {
+            theme = domain.theme
+            language = domain.language
+            updatedAt = domain.updatedAt
+        }
+            ?: SettingsEntity(
+                user = user,
+                theme = domain.theme,
+                language = domain.language,
+                notificationSettings = toEntity(domain.notificationSettings)
+            )
     }
 
     fun toEntity(domain: NotificationSettings): NotificationSettingsEntity {

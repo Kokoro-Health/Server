@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 class UpdateUserSettings(
     private val repo: SettingsRepository
 ) {
-    fun execute(settings: Settings) {
-
+    fun execute(settings: Settings): Settings {
+        return repo.save(settings)
     }
 }
