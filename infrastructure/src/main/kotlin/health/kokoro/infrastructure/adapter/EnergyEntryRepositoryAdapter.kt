@@ -1,7 +1,7 @@
 package health.kokoro.infrastructure.adapter
 
-import health.kokoro.domain.model.EnergyEntry
-import health.kokoro.domain.port.EnergyEntryRepository
+import health.kokoro.domain.model.energy.EnergyEntry
+import health.kokoro.domain.port.energy.EnergyEntryRepository
 import health.kokoro.infrastructure.jpa.energy.EnergyEntryJpaRepository
 import health.kokoro.infrastructure.jpa.energy.EnergyEntryMapper
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository

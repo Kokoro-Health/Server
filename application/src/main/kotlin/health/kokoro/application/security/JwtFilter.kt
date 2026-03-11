@@ -1,6 +1,6 @@
 package health.kokoro.application.security
 
-import health.kokoro.domain.port.UserRepository
+import health.kokoro.domain.port.user.UserRepository
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -30,8 +30,10 @@ class JwtFilter(private val jwtUtil: JwtUtil, private val userRepo: UserReposito
             val token = authHeader.substring(7).trim()
             val email = jwtUtil.extractEmail(token)
             val user = userRepo.findByEmail(email)
-            val auth = UsernamePasswordAuthenticationToken(user, null, emptyList())
-            SecurityContextHolder.getContext().authentication = auth
+            if (user != null) {
+                val auth = UsernamePasswordAuthenticationToken(user, null, emptyList())
+                SecurityContextHolder.getContext().authentication = auth
+            }
         }
 
         filterChain.doFilter(request, response)

@@ -1,6 +1,6 @@
 package health.kokoro.application.security
 
-import health.kokoro.domain.port.UserRepository
+import health.kokoro.domain.port.user.UserRepository
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService

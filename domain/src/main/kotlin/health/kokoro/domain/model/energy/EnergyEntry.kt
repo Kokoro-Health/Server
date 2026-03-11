@@ -1,4 +1,4 @@
-package health.kokoro.domain.model
+package health.kokoro.domain.model.energy
 
 import java.time.Instant
 import java.util.UUID

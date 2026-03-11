@@ -9,6 +9,29 @@ CREATE TABLE energy_entry
     CONSTRAINT pk_energy_entry PRIMARY KEY (id)
 );
 
+CREATE TABLE notification_settings
+(
+    id               UUID NOT NULL,
+    updated_at       TIMESTAMP WITHOUT TIME ZONE,
+    created_at       TIMESTAMP WITHOUT TIME ZONE,
+    marketing_emails BOOLEAN,
+    security_alerts  BOOLEAN,
+    reminder_emails  BOOLEAN,
+    CONSTRAINT pk_notification_settings PRIMARY KEY (id)
+);
+
+CREATE TABLE settings
+(
+    id                       UUID NOT NULL,
+    updated_at               TIMESTAMP WITHOUT TIME ZONE,
+    created_at               TIMESTAMP WITHOUT TIME ZONE,
+    user_id                  UUID,
+    language                 VARCHAR(255),
+    theme                    VARCHAR(255),
+    notification_settings_id UUID,
+    CONSTRAINT pk_settings PRIMARY KEY (id)
+);
+
 CREATE TABLE users
 (
     id                  UUID         NOT NULL,
@@ -23,8 +46,20 @@ CREATE TABLE users
     CONSTRAINT pk_users PRIMARY KEY (id)
 );
 
+ALTER TABLE settings
+    ADD CONSTRAINT uc_settings_notification_settings UNIQUE (notification_settings_id);
+
+ALTER TABLE settings
+    ADD CONSTRAINT uc_settings_user UNIQUE (user_id);
+
 ALTER TABLE users
     ADD CONSTRAINT uc_users_email UNIQUE (email);
 
 ALTER TABLE energy_entry
     ADD CONSTRAINT FK_ENERGY_ENTRY_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
+
+ALTER TABLE settings
+    ADD CONSTRAINT FK_SETTINGS_ON_NOTIFICATION_SETTINGS FOREIGN KEY (notification_settings_id) REFERENCES notification_settings (id);
+
+ALTER TABLE settings
+    ADD CONSTRAINT FK_SETTINGS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);

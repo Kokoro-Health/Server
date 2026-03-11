@@ -1,7 +1,7 @@
-package health.kokoro.domain.model
+package health.kokoro.domain.model.user
 
 import java.time.Instant
-import java.util.*
+import java.util.UUID
 
 data class User(
     val id: UUID?,

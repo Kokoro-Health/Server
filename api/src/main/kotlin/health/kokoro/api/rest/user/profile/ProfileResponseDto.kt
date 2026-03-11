@@ -1,4 +1,4 @@
-package health.kokoro.api.rest.profile
+package health.kokoro.api.rest.user.profile
 
 data class ProfileResponseDto(
     val id: String,

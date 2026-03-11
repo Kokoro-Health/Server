@@ -1,8 +1,8 @@
 package health.kokoro.application.usecase.energy
 
-import health.kokoro.domain.model.EnergyEntry
-import health.kokoro.domain.model.User
-import health.kokoro.domain.port.EnergyEntryRepository
+import health.kokoro.domain.model.energy.EnergyEntry
+import health.kokoro.domain.model.user.User
+import health.kokoro.domain.port.energy.EnergyEntryRepository
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException

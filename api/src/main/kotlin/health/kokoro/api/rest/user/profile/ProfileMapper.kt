@@ -1,6 +1,6 @@
-package health.kokoro.api.rest.profile
+package health.kokoro.api.rest.user.profile
 
-import health.kokoro.application.usecase.profile.GetProfile
+import health.kokoro.application.usecase.user.GetProfile
 import org.springframework.stereotype.Component
 
 @Component

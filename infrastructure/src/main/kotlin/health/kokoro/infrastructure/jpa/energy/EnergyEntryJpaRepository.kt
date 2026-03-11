@@ -1,6 +1,6 @@
 package health.kokoro.infrastructure.jpa.energy
 
-import health.kokoro.domain.model.EnergyEntry
+import health.kokoro.domain.model.energy.EnergyEntry
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import java.util.UUID

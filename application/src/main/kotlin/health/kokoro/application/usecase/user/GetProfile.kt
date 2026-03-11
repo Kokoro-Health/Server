@@ -1,6 +1,6 @@
-package health.kokoro.application.usecase.profile
+package health.kokoro.application.usecase.user
 
-import health.kokoro.domain.port.UserRepository
+import health.kokoro.domain.port.user.UserRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
 import java.util.UUID

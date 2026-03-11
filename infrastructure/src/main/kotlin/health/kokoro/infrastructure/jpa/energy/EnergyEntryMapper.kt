@@ -1,6 +1,6 @@
 package health.kokoro.infrastructure.jpa.energy
 
-import health.kokoro.domain.model.EnergyEntry
+import health.kokoro.domain.model.energy.EnergyEntry
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
 import org.springframework.stereotype.Component
 

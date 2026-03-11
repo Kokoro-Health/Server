@@ -1,7 +1,7 @@
 package health.kokoro.application.usecase.auth
 
 import health.kokoro.application.security.JwtUtil
-import health.kokoro.domain.port.UserRepository
+import health.kokoro.domain.port.user.UserRepository
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.stereotype.Service

@@ -1,12 +1,11 @@
 package health.kokoro.infrastructure.adapter
 
-import health.kokoro.domain.model.User
-import health.kokoro.domain.port.UserRepository
+import health.kokoro.domain.model.user.User
+import health.kokoro.domain.port.user.UserRepository
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
 import health.kokoro.infrastructure.jpa.user.UserMapper
 import org.springframework.stereotype.Repository
 import java.util.UUID
-import kotlin.jvm.optionals.getOrElse
 import kotlin.jvm.optionals.getOrNull
 
 @Repository

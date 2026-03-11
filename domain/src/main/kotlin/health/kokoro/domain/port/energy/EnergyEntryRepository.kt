@@ -1,6 +1,6 @@
-package health.kokoro.domain.port
+package health.kokoro.domain.port.energy
 
-import health.kokoro.domain.model.EnergyEntry
+import health.kokoro.domain.model.energy.EnergyEntry
 import java.util.UUID
 
 interface EnergyEntryRepository {

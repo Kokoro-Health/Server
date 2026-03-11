@@ -1,6 +1,6 @@
 package health.kokoro.infrastructure.jpa.user
 
-import health.kokoro.domain.model.User
+import health.kokoro.domain.model.user.User
 import org.springframework.stereotype.Component
 
 @Component

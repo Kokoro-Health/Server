@@ -3,7 +3,7 @@ package health.kokoro.api.rest.energy
 import health.kokoro.application.usecase.energy.AddEnergyEntry
 import health.kokoro.application.usecase.energy.GetEnergyPercentage
 import health.kokoro.application.usecase.energy.GetNextEntryAllowedDate
-import health.kokoro.domain.model.User
+import health.kokoro.domain.model.user.User
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder

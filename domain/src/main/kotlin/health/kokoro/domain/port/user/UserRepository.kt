@@ -1,6 +1,6 @@
-package health.kokoro.domain.port
+package health.kokoro.domain.port.user
 
-import health.kokoro.domain.model.User
+import health.kokoro.domain.model.user.User
 import java.util.UUID
 
 interface UserRepository {
