@@ -6,7 +6,7 @@ import health.kokoro.infrastructure.jpa.energy.EnergyEntryJpaRepository
 import health.kokoro.infrastructure.jpa.energy.EnergyEntryMapper
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
 import org.springframework.stereotype.Repository
-import java.util.UUID
+import java.util.*
 
 @Repository
 class EnergyEntryRepositoryAdapter(
@@ -20,7 +20,7 @@ class EnergyEntryRepositoryAdapter(
     }
 
     override fun save(entry: EnergyEntry) {
-       jpa.save(mapper.toEntity(entry))
+        jpa.save(mapper.toEntity(entry))
     }
 
     override fun findLatestByUser(uuid: UUID): EnergyEntry? {

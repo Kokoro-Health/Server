@@ -1,9 +1,8 @@
 package health.kokoro.infrastructure.jpa.energy
 
-import health.kokoro.domain.model.energy.EnergyEntry
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
-import java.util.UUID
+import java.util.*
 
 @Repository
 interface EnergyEntryJpaRepository : JpaRepository<EnergyEntryEntity, UUID> {

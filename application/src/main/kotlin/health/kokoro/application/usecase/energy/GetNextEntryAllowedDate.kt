@@ -3,7 +3,7 @@ package health.kokoro.application.usecase.energy
 import health.kokoro.domain.port.energy.EnergyEntryRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 @Service
 class GetNextEntryAllowedDate(

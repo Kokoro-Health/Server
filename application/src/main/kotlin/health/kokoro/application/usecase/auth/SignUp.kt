@@ -40,6 +40,11 @@ class SignUp(
     }
 
     data class Command(
-        val firstName: String, val middleName: String?, val lastName: String, val email: String, val password: String, val tosAccepted: Boolean
+        val firstName: String,
+        val middleName: String?,
+        val lastName: String,
+        val email: String,
+        val password: String,
+        val tosAccepted: Boolean
     )
 }

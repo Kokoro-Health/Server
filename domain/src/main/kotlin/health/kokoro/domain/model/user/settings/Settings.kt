@@ -1,7 +1,7 @@
 package health.kokoro.domain.model.user.settings
 
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 data class Settings(
     var userId: UUID,

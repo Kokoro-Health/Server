@@ -1,7 +1,7 @@
 package health.kokoro.domain.port.user
 
 import health.kokoro.domain.model.user.User
-import java.util.UUID
+import java.util.*
 
 interface UserRepository {
     fun findByEmail(mail: String): User?

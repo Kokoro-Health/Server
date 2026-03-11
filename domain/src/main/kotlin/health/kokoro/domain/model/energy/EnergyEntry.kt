@@ -1,7 +1,7 @@
 package health.kokoro.domain.model.energy
 
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 data class EnergyEntry(
     val id: UUID?,

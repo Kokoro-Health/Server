@@ -3,7 +3,7 @@ package health.kokoro.application.usecase.user
 import health.kokoro.domain.port.user.UserRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 @Service
 class GetProfile(

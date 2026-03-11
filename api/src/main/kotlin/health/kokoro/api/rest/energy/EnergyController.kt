@@ -8,11 +8,7 @@ import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @Validated
@@ -21,13 +17,16 @@ class EnergyController(
     private val getEnergyAmount: GetEnergyPercentage,
     private val addEnergyEntry: AddEnergyEntry,
     private val nextEntryAllowedDate: GetNextEntryAllowedDate
-){
+) {
     @GetMapping
     fun getEnergyInfo(): ResponseEntity<EnergyInfoDto> {
-       val user = SecurityContextHolder.getContext().authentication.principal as User
-       return ResponseEntity.ok(
-           EnergyInfoDto(getEnergyAmount.execute(user.id!!), nextEntryAllowedDate.execute(user.id!!).nextEntryAllowedAt)
-       )
+        val user = SecurityContextHolder.getContext().authentication.principal as User
+        return ResponseEntity.ok(
+            EnergyInfoDto(
+                getEnergyAmount.execute(user.id!!),
+                nextEntryAllowedDate.execute(user.id!!).nextEntryAllowedAt
+            )
+        )
     }
 
     @PostMapping("/add")

@@ -5,7 +5,7 @@ import health.kokoro.domain.port.user.UserRepository
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
 import health.kokoro.infrastructure.jpa.user.UserMapper
 import org.springframework.stereotype.Repository
-import java.util.UUID
+import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
 @Repository

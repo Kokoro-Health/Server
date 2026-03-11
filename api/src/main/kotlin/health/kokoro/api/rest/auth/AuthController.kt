@@ -1,15 +1,10 @@
 package health.kokoro.api.rest.auth
 
 
-import health.kokoro.application.usecase.auth.AuthResponse
 import health.kokoro.application.usecase.auth.SignIn
 import health.kokoro.application.usecase.auth.SignUp
-import jakarta.servlet.http.Cookie
-import jakarta.servlet.http.HttpServletRequest
-import jakarta.servlet.http.HttpServletResponse
 import jakarta.validation.Valid
 import org.springframework.http.HttpHeaders
-import org.springframework.http.ResponseCookie
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping

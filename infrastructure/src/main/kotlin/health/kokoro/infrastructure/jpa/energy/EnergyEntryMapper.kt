@@ -17,6 +17,7 @@ class EnergyEntryMapper(
             reason = entity.reason
         )
     }
+
     fun toEntity(domain: EnergyEntry): EnergyEntryEntity {
         return EnergyEntryEntity(
             amount = domain.amount,

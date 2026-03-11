@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository
 class UserSettingsRepositoryAdapter(
     private val jpa: SettingsJpaRepository,
     private val mapper: SettingsMapper
-): SettingsRepository {
+) : SettingsRepository {
     override fun findByUser(user: User): Settings? {
-       return jpa.findByUserId(user.id!!)?.let { mapper.toDomain(it)}
+        return jpa.findByUserId(user.id!!)?.let { mapper.toDomain(it) }
     }
 
     override fun save(settings: Settings): Settings {

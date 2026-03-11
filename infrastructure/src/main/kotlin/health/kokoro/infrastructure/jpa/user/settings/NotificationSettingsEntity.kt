@@ -11,4 +11,4 @@ data class NotificationSettingsEntity(
     @Column("marketing_emails") var marketingEmails: Boolean,
     @Column("security_alerts") var securityAlerts: Boolean,
     @Column("reminder_emails") var reminderEmails: Boolean
-): BaseEntity()
+) : BaseEntity()

@@ -4,7 +4,7 @@ import health.kokoro.domain.port.energy.EnergyEntryRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
 import java.time.ZoneId
-import java.util.UUID
+import java.util.*
 
 @Service
 class GetEnergyPercentage(
