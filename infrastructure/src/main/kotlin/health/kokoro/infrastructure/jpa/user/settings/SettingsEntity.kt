@@ -8,7 +8,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "settings")
-data class SettingsEntity(
+class SettingsEntity(
     @JoinColumn(name = "user_id") @OneToOne var user: UserEntity,
     @Enumerated(EnumType.STRING) @Column("language") var language: LanguageSetting,
     @Enumerated(EnumType.STRING) @Column("theme") var theme: ThemeSetting,
