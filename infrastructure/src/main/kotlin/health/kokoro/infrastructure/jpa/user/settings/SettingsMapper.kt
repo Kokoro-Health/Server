@@ -29,7 +29,7 @@ class SettingsMapper(
         )
     }
 
-    private fun toEntity(domain: NotificationSettings): NotificationSettingsEntity {
+    fun toEntity(domain: NotificationSettings): NotificationSettingsEntity {
         return NotificationSettingsEntity(
             marketingEmails = domain.marketingEmails,
             securityAlerts = domain.securityAlerts,

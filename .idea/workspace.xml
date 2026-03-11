@@ -5,53 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="Refactored a big part of the auth system">
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsDtoMapper.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsRequestDto.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsResponseDto.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/settings/GetUserSettings.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/settings/UpdateUserSettings.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/energy/EnergyEntry.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/user/User.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/user/settings/LanguageSetting.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/user/settings/NotificationSettings.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/user/settings/Settings.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/user/settings/ThemeSetting.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/energy/EnergyEntryRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/user/SettingsRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserSettingsRepositoryAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/settings/NotificationSettingsEntity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/settings/NotificationSettingsJpaRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/settings/SettingsEntity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/settings/SettingsJpaRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/settings/SettingsMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383/storage_v2/_src_/database/kokoro_db.-Ohb4w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383/storage_v2/_src_/database/kokoro_db.-Ohb4w/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/profile/ProfileController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/profile/ProfileMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/profile/ProfileResponseDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileResponseDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/JwtFilter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/JwtFilter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/UserDetailsServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/UserDetailsServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignIn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignIn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignUp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignUp.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/energy/AddEnergyEntry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/energy/AddEnergyEntry.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/energy/GetEnergyPercentage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/energy/GetEnergyPercentage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/energy/GetNextEntryAllowedDate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/energy/GetNextEntryAllowedDate.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/profile/GetProfile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/GetProfile.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/EnergyEntry.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/User.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/EnergyEntryRepository.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/UserRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/user/UserRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/EnergyEntryRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/EnergyEntryRepositoryAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserRepositoryAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/energy/EnergyEntryJpaRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/energy/EnergyEntryJpaRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/energy/EnergyEntryMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/energy/EnergyEntryMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserSettingsRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserSettingsRepositoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/settings/SettingsMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/settings/SettingsMapper.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,8 +49,8 @@
         <option value="Kotlin Enum" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Class" />
         <option value="com.intellij.jpb.FlywayMigrationScript" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -119,8 +75,24 @@
   &quot;isMigrated&quot;: true
 }</component>
   <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" />
+      <option name="programPath" />
+      <option name="arguments" />
+      <option name="workingDirectory" />
+      <envs />
+    </McpServerCommand>
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" />
+      <option name="programPath" />
+      <option name="arguments" />
+      <option name="workingDirectory" />
+      <envs />
+    </McpServerCommand>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -221,7 +193,7 @@
       <workItem from="1772621540142" duration="11837000" />
       <workItem from="1772656497623" duration="6955000" />
       <workItem from="1772710221639" duration="5079000" />
-      <workItem from="1773214279961" duration="3547000" />
+      <workItem from="1773214279961" duration="4677000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />
@@ -257,6 +229,16 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/6.2.2/6f28cf11b7889cc8d884e419e1329b392182b071/spring-tx-6.2.2-sources.jar!/org/springframework/dao/InvalidDataAccessApiUsageException.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/6.2.2/6f28cf11b7889cc8d884e419e1329b392182b071/spring-tx-6.2.2-sources.jar!/org/springframework/dao/InvalidDataAccessApiUsageException.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -5,10 +5,10 @@ import health.kokoro.domain.model.user.settings.ThemeSetting
 import java.time.Instant
 
 class SettingsResponseDto(
-    private val theme: ThemeSetting,
-    private val language: LanguageSetting,
-    private val marketingEmails: Boolean,
-    private val securityAlerts: Boolean,
-    private val reminderEmails: Boolean,
-    private val updatedAt: Instant
+    val theme: ThemeSetting,
+    val language: LanguageSetting,
+    val marketingEmails: Boolean,
+    val securityAlerts: Boolean,
+    val reminderEmails: Boolean,
+    val updatedAt: Instant
 )
