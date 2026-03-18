@@ -7,7 +7,7 @@ import health.kokoro.infrastructure.jpa.energy.EnergyEntryMapper
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
 import org.springframework.stereotype.Repository
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 @Repository
 class EnergyEntryRepositoryAdapter(

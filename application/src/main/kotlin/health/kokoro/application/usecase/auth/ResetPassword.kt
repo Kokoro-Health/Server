@@ -29,10 +29,12 @@ class ResetPassword(
             to = user.email,
             template = "reset-password",
             subject = "Reset your password",
-            model = mapOf("code" to code,
-                 "expirationMinutes" to EXPIRATION_MINUTES,
+            model = mapOf(
+                "code" to code,
+                "expirationMinutes" to EXPIRATION_MINUTES,
                 "year" to 2026,
-                "email" to user.email)
+                "email" to user.email
+            )
         )
 
         val newSecurity = security.copy(passwordResetCode = code, passwordResetCodeRequestedAt = Instant.now(clock))
@@ -60,7 +62,7 @@ class ResetPassword(
     }
 
     fun validateCode(code: String) {
-         userSecurityRepository.findByPasswordResetCode(code) ?: throw IllegalArgumentException("Invalid code")
+        userSecurityRepository.findByPasswordResetCode(code) ?: throw IllegalArgumentException("Invalid code")
     }
 
     private fun generateCode(): String {
