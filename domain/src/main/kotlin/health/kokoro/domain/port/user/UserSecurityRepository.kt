@@ -8,4 +8,5 @@ interface UserSecurityRepository {
     fun update(user: User, secret: String)
     fun enableMfa(user: User)
     fun disableMfa(user: User)
+    fun findByPasswordResetCode(code: String): UserSecurity?
 }

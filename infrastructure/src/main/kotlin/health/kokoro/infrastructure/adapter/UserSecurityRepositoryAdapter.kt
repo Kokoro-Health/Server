@@ -37,4 +37,8 @@ class UserSecurityRepositoryAdapter(
         securityEntity.mfaSecret = null
         jpa.save(securityEntity)
     }
+
+    override fun findByPasswordResetCode(code: String): UserSecurity? {
+        return jpa.findByPasswordResetCode(code)?.let { mapper.toDomain(it) }
+    }
 }

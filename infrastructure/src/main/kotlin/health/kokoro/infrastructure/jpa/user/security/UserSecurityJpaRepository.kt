@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface UserSecurityJpaRepository : JpaRepository<UserSecurityEntity, UUID>
+interface UserSecurityJpaRepository : JpaRepository<UserSecurityEntity, UUID> {
+    fun findByPasswordResetCode(code: String): UserSecurityEntity?
+}

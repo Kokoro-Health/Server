@@ -14,5 +14,7 @@ class UserSecurityEntity(
     @Column("mfa_secret") var mfaSecret: String?,
     @Column("verified") var verified: Boolean,
     @Column("verification_code") var verificationCode: String?,
-    @Column("verification_code_requested_at") var verificationCodeRequestedAt: Instant?
+    @Column("verification_code_requested_at") var verificationCodeRequestedAt: Instant?,
+    @Column("password_reset_code") var passwordResetCode: String? = null,
+    @Column("password_reset_code_requested_at") var passwordResetCodeRequestedAt: Instant? = null
 ) : BaseEntity()

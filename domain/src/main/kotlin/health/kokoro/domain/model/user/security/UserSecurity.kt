@@ -5,10 +5,12 @@ import java.util.*
 
 data class UserSecurity(
     val id: UUID? = null,
-    val passwordHash: String,
-    val mfaEnabled: Boolean,
-    val mfaSecret: String?,
-    val verified: Boolean,
-    val verificationCode: String?,
-    val verificationCodeRequestedAt: Instant?
+    var passwordHash: String,
+    var mfaEnabled: Boolean,
+    var mfaSecret: String?,
+    var verified: Boolean,
+    var verificationCode: String?,
+    var verificationCodeRequestedAt: Instant?,
+    var passwordResetCode: String? = null,
+    var passwordResetCodeRequestedAt: Instant? = null
 )

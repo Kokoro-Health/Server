@@ -1,15 +1,20 @@
 package health.kokoro.api.rest.auth
 
 import health.kokoro.application.usecase.auth.AuthResponse
+import health.kokoro.application.usecase.auth.ResetPassword
 import health.kokoro.application.usecase.auth.SignIn
 import health.kokoro.application.usecase.auth.SignUp
 import jakarta.validation.Valid
+import jakarta.validation.constraints.Email
 import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -18,7 +23,8 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController(
     private val signUp: SignUp,
     private val signIn: SignIn,
-    private val mapper: AuthDtoMapper
+    private val mapper: AuthDtoMapper,
+    private val resetPassword: ResetPassword
 ) {
     @PostMapping("/signup")
     fun signUp(@RequestBody @Valid req: SignUpRequestDto): ResponseEntity<Unit> {
@@ -55,5 +61,27 @@ class AuthController(
         return ResponseEntity.ok()
             .header(HttpHeaders.SET_COOKIE, cookie.toString())
             .build()
+    }
+
+
+    @PostMapping("/reset-password")
+    fun requestPasswordReset(@RequestParam @Email @Valid email: String): ResponseEntity<Any> {
+        resetPassword.execute(email)
+        return ResponseEntity.ok().build()
+    }
+
+    @PostMapping("/reset-password/confirm")
+    fun resetPassword(
+    @RequestBody req: PasswordResetRequestDto,
+    ): ResponseEntity<Any> {
+        resetPassword.execute(req.code, req.password)
+        return ResponseEntity.ok().build()
+    }
+
+
+    @GetMapping("/validate-code")
+    fun validatePasswordResetCode(@RequestParam code: String): ResponseEntity<Any> {
+        resetPassword.validateCode(code)
+        return ResponseEntity.ok().build()
     }
 }

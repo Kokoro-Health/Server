@@ -12,7 +12,9 @@ class UserSecurityMapper {
             mfaSecret = domain.mfaSecret,
             verified = domain.verified,
             verificationCode = domain.verificationCode,
-            verificationCodeRequestedAt = domain.verificationCodeRequestedAt
+            verificationCodeRequestedAt = domain.verificationCodeRequestedAt,
+            passwordResetCode = domain.passwordResetCode,
+            passwordResetCodeRequestedAt = domain.passwordResetCodeRequestedAt
         )
         entity.id = domain.id
         return entity
@@ -26,7 +28,9 @@ class UserSecurityMapper {
             mfaSecret = entity.mfaSecret,
             verified = entity.verified,
             verificationCode = entity.verificationCode,
-            verificationCodeRequestedAt = entity.verificationCodeRequestedAt
+            verificationCodeRequestedAt = entity.verificationCodeRequestedAt,
+            passwordResetCode = entity.passwordResetCode,
+            passwordResetCodeRequestedAt = entity.passwordResetCodeRequestedAt
         )
     }
 }
