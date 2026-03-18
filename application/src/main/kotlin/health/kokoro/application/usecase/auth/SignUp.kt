@@ -20,7 +20,7 @@ class SignUp(
     private val passwordEncoder: PasswordEncoder,
     private val clock: Clock
 ) {
-    fun execute(command: Command): AuthResponse {
+    fun execute(command: Command): Response {
         if (!command.tosAccepted) throw IllegalArgumentException("You must accept the Terms of Service.")
         if (userRepository.existsByEmail(command.email)) throw IllegalArgumentException("This email is already in use.")
         val hashedPassword = passwordEncoder.encode(command.password)
@@ -60,7 +60,7 @@ class SignUp(
         val token = jwtUtil.generateToken(user.email)
         val expiresIn = jwtUtil.getExpiration(token)
 
-        return AuthResponse(token, expiresIn)
+        return Response(token, expiresIn)
     }
 
     data class Command(
@@ -70,5 +70,9 @@ class SignUp(
         val email: String,
         val password: String,
         val tosAccepted: Boolean
+    )
+
+    data class Response(
+        val token: String, val expiresIn: Long
     )
 }
