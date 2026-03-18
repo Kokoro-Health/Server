@@ -1,4 +1,4 @@
-package health.kokoro.infrastructure.adapter
+package health.kokoro.infrastructure.adapter.user
 
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.model.user.security.UserSecurity

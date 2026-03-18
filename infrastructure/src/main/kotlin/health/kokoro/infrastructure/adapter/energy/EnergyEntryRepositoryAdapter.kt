@@ -1,4 +1,4 @@
-package health.kokoro.infrastructure.adapter
+package health.kokoro.infrastructure.adapter.energy
 
 import health.kokoro.domain.model.energy.EnergyEntry
 import health.kokoro.domain.port.energy.EnergyEntryRepository
@@ -7,7 +7,7 @@ import health.kokoro.infrastructure.jpa.energy.EnergyEntryMapper
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
 import org.springframework.stereotype.Repository
 import java.time.Instant
-import java.util.*
+import java.util.UUID
 
 @Repository
 class EnergyEntryRepositoryAdapter(

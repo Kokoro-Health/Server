@@ -1,4 +1,4 @@
-package health.kokoro.infrastructure.adapter
+package health.kokoro.infrastructure.adapter.mail
 
 import health.kokoro.domain.port.mail.MailSenderRepository
 import health.kokoro.infrastructure.config.MailConfig
