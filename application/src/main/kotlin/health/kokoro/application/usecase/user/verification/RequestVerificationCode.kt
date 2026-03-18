@@ -1,6 +1,7 @@
 package health.kokoro.application.usecase.user.verification
 
 import health.kokoro.domain.model.user.User
+import health.kokoro.domain.port.mail.MailSenderRepository
 import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.stereotype.Service
 import java.security.SecureRandom
@@ -12,7 +13,8 @@ import java.time.Instant
 class RequestVerificationCode(
     private val secureRandom: SecureRandom,
     private val clock: Clock,
-    private val userSecurityRepository: UserSecurityRepository
+    private val userSecurityRepository: UserSecurityRepository,
+    private val emailRepository: MailSenderRepository
 ) {
     fun execute(user: User): Response {
         require(!user.security.verified) { "User already verified" }
@@ -36,6 +38,14 @@ class RequestVerificationCode(
             )
         )
 
+        val model = mapOf(
+            "email" to user.email,
+            "code" to newCode,
+            "expirationMinutes" to 15,
+            "year" to 2026
+        )
+
+        emailRepository.sendTemplate(user.email, "Verify your account.", "verification-email", model)
         return Response(now)
     }
 
