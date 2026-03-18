@@ -10,5 +10,6 @@ data class ProfileResponseDto(
     val email: String,
     val profilePictureUrl: String,
     val theme: ThemeSetting,
-    val createdAt: Long
+    val createdAt: Long,
+    val verified: Boolean
 )

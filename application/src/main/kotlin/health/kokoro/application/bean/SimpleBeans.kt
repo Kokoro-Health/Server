@@ -12,6 +12,7 @@ import dev.samstevens.totp.secret.SecretGenerator
 import dev.samstevens.totp.time.SystemTimeProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import java.security.SecureRandom
 import java.time.Clock
 
 @Configuration
@@ -37,4 +38,7 @@ class SimpleBeans {
         DefaultCodeGenerator(HashingAlgorithm.SHA1),
         SystemTimeProvider()
     )
+
+    @Bean
+    fun secureRandom() = SecureRandom()
 }

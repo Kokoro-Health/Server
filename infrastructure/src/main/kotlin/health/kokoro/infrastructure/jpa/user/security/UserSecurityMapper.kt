@@ -9,7 +9,10 @@ class UserSecurityMapper {
         val entity = UserSecurityEntity(
             passwordHash = domain.passwordHash,
             mfaEnabled = domain.mfaEnabled,
-            mfaSecret = domain.mfaSecret
+            mfaSecret = domain.mfaSecret,
+            verified = domain.verified,
+            verificationCode = domain.verificationCode,
+            verificationCodeRequestedAt = domain.verificationCodeRequestedAt
         )
         entity.id = domain.id
         return entity
@@ -20,7 +23,10 @@ class UserSecurityMapper {
             id = entity.id,
             passwordHash = entity.passwordHash,
             mfaEnabled = entity.mfaEnabled,
-            mfaSecret = entity.mfaSecret
+            mfaSecret = entity.mfaSecret,
+            verified = entity.verified,
+            verificationCode = entity.verificationCode,
+            verificationCodeRequestedAt = entity.verificationCodeRequestedAt
         )
     }
 }

@@ -1,3 +1,7 @@
 package health.kokoro.api.rest.user.profile
 
-data class VerificationRequestResponseDto()
+import java.time.Instant
+
+data class VerificationRequestResponseDto(
+    val nextCodeAllowedAt: Instant
+)

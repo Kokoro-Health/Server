@@ -28,7 +28,10 @@ class SignUp(
         val security = UserSecurity(
             passwordHash = hashedPassword,
             mfaSecret = null,
-            mfaEnabled = false
+            mfaEnabled = false,
+            verified = false,
+            verificationCode = null,
+            verificationCodeRequestedAt = null
         )
         val settings = Settings(
             theme = ThemeSetting.LIGHT,

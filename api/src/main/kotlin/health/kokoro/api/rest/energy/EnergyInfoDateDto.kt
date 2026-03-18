@@ -1,4 +1,8 @@
 package health.kokoro.api.rest.energy
 
-class EnergyInfoDateDto {
-}
+import java.time.LocalDate
+
+data class EnergyInfoDateDto(
+    val date: LocalDate,
+    val amount: Int
+)

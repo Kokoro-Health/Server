@@ -20,6 +20,7 @@ class AddEnergyEntry(
         if (latest != null && nextEntry.execute(userId).nextEntryAllowedAt.isAfter(now)) {
             throw ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS)
         }
+
         repo.save(
             EnergyEntry(
                 id = null, amount = amount, createdAt = now, reason = null, userId = userId

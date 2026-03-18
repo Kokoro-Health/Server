@@ -18,6 +18,11 @@ class GlobalExceptionHandler {
         return ResponseEntity.notFound().build()
     }
 
+    @ExceptionHandler(IllegalArgumentException::class)
+    fun handleIllegalArgumentException(e: IllegalArgumentException): ResponseEntity<ErrorResponse> {
+        return ResponseEntity.badRequest().body(ErrorResponse(e.message ?: "Bad request"))
+    }
+
     @ExceptionHandler(Exception::class)
     fun handleException(e: Exception): ResponseEntity<ErrorResponse> {
         return ResponseEntity.badRequest().body(ErrorResponse(e.message ?: "Internal server error"))

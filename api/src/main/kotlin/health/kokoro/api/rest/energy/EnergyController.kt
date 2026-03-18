@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
+import java.time.Instant
 
 @RestController
 @Validated
@@ -27,6 +28,17 @@ class EnergyController(
                 nextEntryAllowedDate.execute(user.id!!).nextEntryAllowedAt
             )
         )
+    }
+
+    @GetMapping("/recent")
+    fun getEnergyForDateRange(
+        @RequestParam("from") from: Instant,
+        @RequestParam("to") to: Instant,
+    ): ResponseEntity<List<EnergyInfoDateDto>> {
+        val user = SecurityContextHolder.getContext().authentication.principal as User
+        val entries = getEnergyAmount.executeInDateRange(user.id!!, from, to)
+            .map { EnergyInfoDateDto(amount = it.amount, date = it.date) }
+        return ResponseEntity.ok(entries)
     }
 
     @PostMapping("/add")

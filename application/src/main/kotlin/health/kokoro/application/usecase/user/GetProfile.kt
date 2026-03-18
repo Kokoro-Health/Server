@@ -21,7 +21,8 @@ class GetProfile(
             profilePictureUrl = user.profilePictureUrl,
             createdAt = user.createdAt,
             updatedAt = user.updatedAt,
-            theme = user.settings.theme
+            theme = user.settings.theme,
+            verified = user.security.verified
         )
     }
 
@@ -33,6 +34,7 @@ class GetProfile(
         val email: String,
         val profilePictureUrl: String?,
         val theme: ThemeSetting,
+        val verified: Boolean,
         val createdAt: Instant,
         val updatedAt: Instant
     )
