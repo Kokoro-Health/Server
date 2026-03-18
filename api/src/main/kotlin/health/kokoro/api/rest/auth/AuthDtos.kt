@@ -3,6 +3,23 @@ package health.kokoro.api.rest.auth
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Size
 
+data class PasswordResetRequestDto(
+    val code: String,
+    val password: String,
+)
+
+data class SignInRequestDto(
+    @param:Email val email: String,
+    val password: String,
+    val rememberMe: Boolean,
+    @field:Size
+    val mfaCode: String? = null
+)
+
+data class SignInResponseDto(
+    val mfaRequired: Boolean
+)
+
 data class SignUpRequestDto(
     @field:Size(min = 2, max = 20)
     val firstName: String,

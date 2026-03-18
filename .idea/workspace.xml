@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/PasswordResetRequestDto.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/ResetPassword.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/resources/templates/mail/reset-password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V3__password_reset.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/user/security/UserSecurity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/user/security/UserSecurity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/user/UserSecurityRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/user/UserSecurityRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserSecurityRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/UserSecurityRepositoryAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityJpaRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityJpaRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityMapper.kt" afterDir="false" />
-    </list>
+    <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -206,7 +193,7 @@
       <workItem from="1773822107541" duration="6466000" />
       <workItem from="1773833595356" duration="2759000" />
       <workItem from="1773837581446" duration="51000" />
-      <workItem from="1773837712086" duration="10015000" />
+      <workItem from="1773837712086" duration="10227000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />
@@ -234,6 +221,11 @@
           <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt</url>
+          <line>75</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>jar://C:/Program Files/Eclipse Adoptium/jdk-21.0.8.9-hotspot/lib/src.zip!/java.base/java/lang/NumberFormatException.java</url>

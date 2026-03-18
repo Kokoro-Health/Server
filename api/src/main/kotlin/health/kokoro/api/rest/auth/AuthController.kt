@@ -9,13 +9,7 @@ import jakarta.validation.constraints.Email
 import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PatchMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/auth")
@@ -72,7 +66,7 @@ class AuthController(
 
     @PostMapping("/reset-password/confirm")
     fun resetPassword(
-    @RequestBody req: PasswordResetRequestDto,
+        @RequestBody req: PasswordResetRequestDto,
     ): ResponseEntity<Any> {
         resetPassword.execute(req.code, req.password)
         return ResponseEntity.ok().build()

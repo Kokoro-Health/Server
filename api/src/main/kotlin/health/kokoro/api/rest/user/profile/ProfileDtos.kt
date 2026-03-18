@@ -1,6 +1,7 @@
 package health.kokoro.api.rest.user.profile
 
 import health.kokoro.domain.model.user.settings.ThemeSetting
+import java.time.Instant
 
 data class ProfileResponseDto(
     val id: String,
@@ -12,4 +13,8 @@ data class ProfileResponseDto(
     val theme: ThemeSetting,
     val createdAt: Long,
     val verified: Boolean
+)
+
+data class VerificationRequestResponseDto(
+    val nextCodeAllowedAt: Instant
 )
