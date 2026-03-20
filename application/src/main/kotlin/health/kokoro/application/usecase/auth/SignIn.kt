@@ -21,7 +21,7 @@ class SignIn(
         authenticationManager.authenticate(auth)
 
         if (user.security.mfaEnabled) {
-            if (command.mfaCode == null || command.mfaCode.isBlank()) {
+            if (command.mfaCode.isNullOrBlank()) {
                 return Response(mfaRequired = true)
             }
 

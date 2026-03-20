@@ -1,6 +1,5 @@
 package health.kokoro.api.rest.auth
 
-import health.kokoro.application.usecase.auth.AuthResponse
 import health.kokoro.application.usecase.auth.ResetPassword
 import health.kokoro.application.usecase.auth.SignIn
 import health.kokoro.application.usecase.auth.SignUp
@@ -23,7 +22,7 @@ class AuthController(
     @PostMapping("/signup")
     fun signUp(@RequestBody @Valid req: SignUpRequestDto): ResponseEntity<Unit> {
         val result = signUp.execute(mapper.toCommand(req))
-        val cookie = mapper.toCookie(result, false)
+        val cookie = mapper.toCookie(AuthTokenResponseDto(result.token, result.expiresIngit), false)
 
         return ResponseEntity.ok()
             .header(HttpHeaders.SET_COOKIE, cookie.toString())
@@ -39,7 +38,7 @@ class AuthController(
         }
 
         val cookie = mapper.toCookie(
-            AuthResponse(result.token!!, result.expiresIn!!),
+            AuthTokenResponseDto(result.token!!, result.expiresIn!!),
             req.rememberMe
         )
 

@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/AuthResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/AuthResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignUp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignUp.kt" afterDir="false" />
-    </list>
+    <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,11 +143,11 @@
       <recent name="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="health.kokoro.infrastructure.adapter.user" />
+      <recent name="health.kokoro.infrastructure.adapter.energy" />
+      <recent name="health.kokoro.infrastructure.adapter.mail" />
       <recent name="health.kokoro.infrastructure.adapter" />
       <recent name="health.kokoro.domain.port.energy" />
-      <recent name="health.kokoro.domain.port.user" />
-      <recent name="health.kokoro.infrastructure.jpa.user.settings" />
-      <recent name="health.kokoro.domain.model.user" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -197,7 +194,7 @@
       <workItem from="1773833595356" duration="2759000" />
       <workItem from="1773837581446" duration="51000" />
       <workItem from="1773837712086" duration="10227000" />
-      <workItem from="1773856881410" duration="831000" />
+      <workItem from="1773856881410" duration="1630000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />

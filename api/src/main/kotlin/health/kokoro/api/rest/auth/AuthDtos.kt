@@ -20,6 +20,11 @@ data class SignInResponseDto(
     val mfaRequired: Boolean
 )
 
+data class AuthTokenResponseDto(
+    val token: String,
+    val expiresIn: Long
+)
+
 data class SignUpRequestDto(
     @field:Size(min = 2, max = 20)
     val firstName: String,

@@ -1,6 +1,5 @@
 package health.kokoro.api.rest.auth
 
-import health.kokoro.application.usecase.auth.AuthResponse
 import health.kokoro.application.usecase.auth.SignIn
 import health.kokoro.application.usecase.auth.SignUp
 import org.springframework.http.ResponseCookie
@@ -8,7 +7,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class AuthDtoMapper {
-    fun toCookie(response: AuthResponse, rememberMe: Boolean): ResponseCookie {
+    fun toCookie(response: AuthTokenResponseDto, rememberMe: Boolean): ResponseCookie {
         val age = if (rememberMe) response.expiresIn / 1000 else -1L
         return baseCookie(response.token, age)
     }
