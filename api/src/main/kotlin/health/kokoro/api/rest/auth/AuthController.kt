@@ -22,7 +22,7 @@ class AuthController(
     @PostMapping("/signup")
     fun signUp(@RequestBody @Valid req: SignUpRequestDto): ResponseEntity<Unit> {
         val result = signUp.execute(mapper.toCommand(req))
-        val cookie = mapper.toCookie(AuthTokenResponseDto(result.token, result.expiresIngit), false)
+        val cookie = mapper.toCookie(AuthTokenResponseDto(result.token, result.expiresIn), false)
 
         return ResponseEntity.ok()
             .header(HttpHeaders.SET_COOKIE, cookie.toString())
