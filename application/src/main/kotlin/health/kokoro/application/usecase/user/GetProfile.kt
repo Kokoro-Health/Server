@@ -22,7 +22,9 @@ class GetProfile(
             createdAt = user.createdAt,
             updatedAt = user.updatedAt,
             theme = user.settings.theme,
-            verified = user.security.verified
+            verified = user.security.verified,
+            timezone = user.settings.timeZone.id,
+            dateFormat = user.settings.dateFormat,
         )
     }
 
@@ -35,6 +37,8 @@ class GetProfile(
         val profilePictureUrl: String?,
         val theme: ThemeSetting,
         val verified: Boolean,
+        val timezone: String,
+        val dateFormat: String,
         val createdAt: Instant,
         val updatedAt: Instant
     )

@@ -9,23 +9,26 @@ import health.kokoro.domain.port.user.SettingsRepository
 import org.springframework.stereotype.Service
 import java.time.Clock
 import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 @Service
 class GetUserSettings(
     private val repo: SettingsRepository,
-    private val clock: Clock
 ) {
     fun execute(user: User): Settings {
         return repo.findByUser(user) ?: run {
             val newSettings = Settings(
                 theme = ThemeSetting.LIGHT,
                 language = LanguageSetting.ENGLISH,
+                dateFormat = "dd-MM-yyyy",
+                timeZone = ZoneId.systemDefault(),
                 notificationSettings = NotificationSettings(
                     marketingEmails = true,
                     securityAlerts = true,
                     reminderEmails = true
                 ),
-                updatedAt = Instant.now(clock)
+                updatedAt = Instant.now()
             )
             repo.save(newSettings)
         }

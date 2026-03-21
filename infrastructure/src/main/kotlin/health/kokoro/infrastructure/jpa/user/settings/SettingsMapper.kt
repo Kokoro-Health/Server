@@ -3,6 +3,7 @@ package health.kokoro.infrastructure.jpa.user.settings
 import health.kokoro.domain.model.user.settings.NotificationSettings
 import health.kokoro.domain.model.user.settings.Settings
 import org.springframework.stereotype.Component
+import java.time.format.DateTimeFormatter
 
 @Component
 class SettingsMapper {
@@ -11,6 +12,8 @@ class SettingsMapper {
             id = entity.id,
             theme = entity.theme,
             language = entity.language,
+            timeZone = entity.timezone,
+            dateFormat = entity.dateFormat,
             notificationSettings = toDomain(entity.notificationSettings),
             updatedAt = entity.updatedAt
         )
@@ -20,7 +23,9 @@ class SettingsMapper {
         val entity = SettingsEntity(
             theme = domain.theme,
             language = domain.language,
-            notificationSettings = toEntity(domain.notificationSettings)
+            notificationSettings = toEntity(domain.notificationSettings),
+            timezone = domain.timeZone,
+            dateFormat = domain.dateFormat
         )
         entity.id = domain.id
         entity.updatedAt = domain.updatedAt

@@ -1,8 +1,11 @@
 package health.kokoro.application.security
 
 import health.kokoro.application.config.JwtConfig
+import health.kokoro.domain.port.user.UserRepository
+import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import java.time.Clock
 import java.time.Instant
@@ -11,25 +14,28 @@ import javax.crypto.SecretKey
 
 @Component
 class JwtUtil(
-    private val config: JwtConfig,
-    private val clock: Clock
+    private val config: JwtConfig
 ) {
     fun generateToken(email: String): String {
         return Jwts.builder()
             .subject(email)
-            .issuedAt(Date.from(Instant.now(clock)))
-            .expiration(Date.from(Instant.now(clock).plusMillis(config.expiration)))
+            .issuedAt(Date.from(Instant.now()))
+            .expiration(Date.from(Instant.now().plusMillis(config.expiration)))
             .signWith(getKey())
             .compact()
     }
 
-    fun extractEmail(token: String): String {
-        return Jwts.parser()
-            .verifyWith(getKey())
-            .build()
-            .parseSignedClaims(token)
-            .payload
-            .subject
+    fun extractEmail(token: String): String? {
+        return try {
+            Jwts.parser()
+                .verifyWith(getKey())
+                .build()
+                .parseSignedClaims(token)
+                .payload
+                .subject
+        }  catch (_: Exception) {
+            null
+        }
     }
 
     fun getExpiration(token: String): Long {

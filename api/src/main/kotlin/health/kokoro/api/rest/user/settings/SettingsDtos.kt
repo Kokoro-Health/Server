@@ -10,6 +10,8 @@ data class SettingsRequestDto(
     val marketingEmails: Boolean,
     val securityAlerts: Boolean,
     val reminderEmails: Boolean,
+    val timezone: String,
+    val dateFormat: String
 )
 
 class SettingsResponseDto(
@@ -18,5 +20,7 @@ class SettingsResponseDto(
     val marketingEmails: Boolean,
     val securityAlerts: Boolean,
     val reminderEmails: Boolean,
+    val timezone: String,
+    val dateFormat: String,
     val updatedAt: Instant
 )

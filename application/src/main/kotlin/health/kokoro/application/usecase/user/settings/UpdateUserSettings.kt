@@ -10,10 +10,9 @@ import java.time.Instant
 @Service
 class UpdateUserSettings(
     private val repo: SettingsRepository,
-    private val clock: Clock
 ) {
     fun execute(user: User, settings: Settings) {
-        val updatedSettings = settings.copy(updatedAt = Instant.now(clock))
+        val updatedSettings = settings.copy(updatedAt = Instant.now())
         repo.update(user, updatedSettings)
     }
 }

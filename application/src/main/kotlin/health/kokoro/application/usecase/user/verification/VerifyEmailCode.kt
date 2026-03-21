@@ -9,10 +9,9 @@ import java.time.Instant
 @Service
 class VerifyEmailCode(
     private val userSecurityRepository: UserSecurityRepository,
-    private val clock: Clock,
 ) {
     fun execute(user: User, code: String) {
-        val now = Instant.now(clock)
+        val now = Instant.now()
         val userSecurity = user.security
 
         val requestedAt = userSecurity.verificationCodeRequestedAt

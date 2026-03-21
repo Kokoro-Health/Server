@@ -12,14 +12,13 @@ import java.time.Instant
 @Service
 class RequestVerificationCode(
     private val secureRandom: SecureRandom,
-    private val clock: Clock,
     private val userSecurityRepository: UserSecurityRepository,
     private val emailRepository: MailSenderRepository
 ) {
     fun execute(user: User): Response {
         require(!user.security.verified) { "User already verified" }
 
-        val now = Instant.now(clock)
+        val now = Instant.now()
         val lastRequestTime = user.security.verificationCodeRequestedAt
 
         if (lastRequestTime != null) {

@@ -17,7 +17,7 @@ class EnergyEntryRepositoryAdapter(
 ) : EnergyEntryRepository {
     override fun findAllByUser(uuid: UUID): List<EnergyEntry> {
         validateUserExists(uuid)
-        return jpa.findAllByUserId(uuid).map { mapper.toDomain(it) }
+        return jpa.findAllByUserIdOrderByCreatedAtDesc(uuid).map { mapper.toDomain(it) }
     }
 
     override fun save(entry: EnergyEntry) {
@@ -26,7 +26,7 @@ class EnergyEntryRepositoryAdapter(
 
     override fun findAllByUserSince(uuid: UUID, since: Instant): List<EnergyEntry> {
         validateUserExists(uuid)
-        return jpa.findAllByUserIdAndCreatedAtGreaterThanEqual(uuid, since).map { mapper.toDomain(it) }
+        return jpa.findAllByUserIdAndCreatedAtGreaterThanEqualOrderByCreatedAtDesc(uuid, since).map { mapper.toDomain(it) }
     }
 
     override fun findAllByUserInRange(uuid: UUID, from: Instant, to: Instant): List<EnergyEntry> {
@@ -34,8 +34,16 @@ class EnergyEntryRepositoryAdapter(
         return jpa.findAllByUserIdAndCreatedAtBetween(uuid, from, to).map { mapper.toDomain(it) }
     }
 
+    override fun findById(uuid: UUID): EnergyEntry? {
+       return jpa.findById(uuid).map { mapper.toDomain(it) }.orElse(null)
+    }
+
     override fun findLatestByUser(uuid: UUID): EnergyEntry? {
-        return jpa.findAllByUserId(uuid).maxByOrNull { it.createdAt }?.let { mapper.toDomain(it) }
+        return jpa.findAllByUserIdOrderByCreatedAtDesc(uuid).maxByOrNull { it.createdAt }?.let { mapper.toDomain(it) }
+    }
+
+    override fun findReasonsByUserId(uuid: UUID): List<String> {
+        return jpa.findAllByUserIdOrderByCreatedAtDesc(uuid).mapNotNull { it.reason }.filter { it.isNotBlank() }.distinct()
     }
 
     private fun validateUserExists(uuid: UUID) {

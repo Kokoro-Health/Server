@@ -6,7 +6,6 @@ import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.security.SecureRandom
-import java.time.Clock
 import java.time.Duration
 import java.time.Instant
 
@@ -16,7 +15,6 @@ class ResetPassword(
     private val userRepository: UserRepository,
     private val secureRandom: SecureRandom,
     private val passwordEncoder: PasswordEncoder,
-    private val clock: Clock,
     private val mailSender: MailSenderRepository
 ) {
     fun execute(email: String) {
@@ -37,7 +35,7 @@ class ResetPassword(
             )
         )
 
-        val newSecurity = security.copy(passwordResetCode = code, passwordResetCodeRequestedAt = Instant.now(clock))
+        val newSecurity = security.copy(passwordResetCode = code, passwordResetCodeRequestedAt = Instant.now())
         userSecurityRepository.save(newSecurity)
     }
 
@@ -45,7 +43,7 @@ class ResetPassword(
         val security = userSecurityRepository.findByPasswordResetCode(code)
             ?: throw IllegalArgumentException("Invalid code")
 
-        val now = Instant.now(clock)
+        val now = Instant.now()
         val requestedAt = security.passwordResetCodeRequestedAt
             ?: throw IllegalArgumentException("Code expired or invalid")
 

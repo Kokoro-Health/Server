@@ -11,19 +11,19 @@ import java.time.Instant
 
 @Service
 class AddEnergyEntry(
-    private val repo: EnergyEntryRepository, private val clock: Clock, private val nextEntry: GetNextEntryAllowedDate
+    private val repo: EnergyEntryRepository, private val nextEntry: GetNextEntryAllowedDate
 ) {
-    fun execute(amount: Int, user: User) {
+    fun execute(amount: Int, reason: String?, user: User) {
         val userId = user.id ?: throw ResponseStatusException(HttpStatus.UNAUTHORIZED)
         val latest = repo.findLatestByUser(userId)
-        val now = Instant.now(clock)
+        val now = Instant.now()
         if (latest != null && nextEntry.execute(userId).nextEntryAllowedAt.isAfter(now)) {
             throw ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS)
         }
 
         repo.save(
             EnergyEntry(
-                id = null, amount = amount, createdAt = now, reason = null, userId = userId
+                id = null, amount = amount, createdAt = now, reason = reason, userId = userId
             )
         )
     }

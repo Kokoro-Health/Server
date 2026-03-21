@@ -12,13 +12,14 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.time.Clock
 import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 @Service
 class SignUp(
     private val userRepository: UserRepository,
     private val jwtUtil: JwtUtil,
-    private val passwordEncoder: PasswordEncoder,
-    private val clock: Clock
+    private val passwordEncoder: PasswordEncoder
 ) {
     fun execute(command: Command): Response {
         if (!command.tosAccepted) throw IllegalArgumentException("You must accept the Terms of Service.")
@@ -36,12 +37,14 @@ class SignUp(
         val settings = Settings(
             theme = ThemeSetting.LIGHT,
             language = LanguageSetting.ENGLISH,
+            dateFormat = "dd-MM-yyyy",
+            timeZone = ZoneId.systemDefault(),
             notificationSettings = NotificationSettings(
                 marketingEmails = true,
                 securityAlerts = true,
                 reminderEmails = true
             ),
-            updatedAt = Instant.now(clock),
+            updatedAt = Instant.now(),
         )
         var user = User(
             id = null,
@@ -52,8 +55,8 @@ class SignUp(
             security = security,
             settings = settings,
             profilePictureUrl = null,
-            createdAt = Instant.now(clock),
-            updatedAt = Instant.now(clock)
+            createdAt = Instant.now(),
+            updatedAt = Instant.now()
         )
 
         user = userRepository.save(user)

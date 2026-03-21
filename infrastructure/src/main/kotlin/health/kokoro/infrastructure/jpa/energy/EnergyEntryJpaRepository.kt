@@ -7,7 +7,7 @@ import java.util.*
 
 @Repository
 interface EnergyEntryJpaRepository : JpaRepository<EnergyEntryEntity, UUID> {
-    fun findAllByUserId(uuid: UUID): List<EnergyEntryEntity>
-    fun findAllByUserIdAndCreatedAtGreaterThanEqual(uuid: UUID, since: Instant): List<EnergyEntryEntity>
+    fun findAllByUserIdOrderByCreatedAtDesc(uuid: UUID): List<EnergyEntryEntity>
+    fun findAllByUserIdAndCreatedAtGreaterThanEqualOrderByCreatedAtDesc(uuid: UUID, since: Instant): List<EnergyEntryEntity>
     fun findAllByUserIdAndCreatedAtBetween(uuid: UUID, from: Instant, to: Instant): List<EnergyEntryEntity>
 }
