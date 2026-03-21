@@ -7,10 +7,8 @@ import health.kokoro.domain.model.user.settings.Settings
 import health.kokoro.domain.model.user.settings.ThemeSetting
 import health.kokoro.domain.port.user.SettingsRepository
 import org.springframework.stereotype.Service
-import java.time.Clock
 import java.time.Instant
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 @Service
 class GetUserSettings(

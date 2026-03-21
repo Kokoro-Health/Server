@@ -28,16 +28,16 @@ class JwtFilter(private val jwtUtil: JwtUtil, private val userRepo: UserReposito
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             val token = authHeader.substring(7).trim()
-           try {
-               val email = jwtUtil.extractEmail(token) ?: throw IllegalArgumentException()
-               val user = userRepo.findByEmail(email)
-               if (user != null) {
-                   val auth = UsernamePasswordAuthenticationToken(user, null, emptyList())
-                   SecurityContextHolder.getContext().authentication = auth
-               }
-           } catch (_: Exception) {
-               logger.info("Invalid JWT token: $token",)
-           }
+            try {
+                val email = jwtUtil.extractEmail(token) ?: throw IllegalArgumentException()
+                val user = userRepo.findByEmail(email)
+                if (user != null) {
+                    val auth = UsernamePasswordAuthenticationToken(user, null, emptyList())
+                    SecurityContextHolder.getContext().authentication = auth
+                }
+            } catch (_: Exception) {
+                logger.info("Invalid JWT token: $token")
+            }
         }
 
         filterChain.doFilter(request, response)

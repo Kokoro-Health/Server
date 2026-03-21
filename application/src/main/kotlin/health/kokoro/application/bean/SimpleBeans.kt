@@ -10,12 +10,9 @@ import dev.samstevens.totp.qr.ZxingPngQrGenerator
 import dev.samstevens.totp.secret.DefaultSecretGenerator
 import dev.samstevens.totp.secret.SecretGenerator
 import dev.samstevens.totp.time.SystemTimeProvider
-import health.kokoro.domain.model.user.User
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.core.context.SecurityContextHolder
 import java.security.SecureRandom
-import java.time.Clock
 
 @Configuration
 class SimpleBeans {

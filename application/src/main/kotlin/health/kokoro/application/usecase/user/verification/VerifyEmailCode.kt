@@ -3,7 +3,6 @@ package health.kokoro.application.usecase.user.verification
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.stereotype.Service
-import java.time.Clock
 import java.time.Instant
 
 @Service

@@ -5,7 +5,6 @@ import health.kokoro.domain.port.mail.MailSenderRepository
 import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.stereotype.Service
 import java.security.SecureRandom
-import java.time.Clock
 import java.time.Duration
 import java.time.Instant
 

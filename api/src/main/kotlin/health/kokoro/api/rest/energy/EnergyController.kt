@@ -11,7 +11,6 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import java.time.Instant
-import java.util.UUID
 
 @RestController
 @Validated
@@ -22,6 +21,28 @@ class EnergyController(
     private val nextEntryAllowedDate: GetNextEntryAllowedDate,
     private val getReasons: GetReasons
 ) {
+    @GetMapping("/{date}")
+    fun getEnergyEntriesForDay(
+        @PathVariable date: Instant
+    ): ResponseEntity<EnergyDetailsDto> {
+        val user = SecurityContextHolder.getContext().authentication.principal as User
+        val details = getEnergyEntries.getDetails(user, date)
+        return ResponseEntity.ok(
+            EnergyDetailsDto(
+                entries = details.entries.map {
+                    EnergyInfoDateDto(
+                        date = it.date,
+                        amount = it.amount,
+                        reason = it.reason
+                    )
+                },
+                influentialNegative = details.influentialNegative.let { ReasonAmount(it.reason, it.level) },
+                influentialPositive = details.influentialPositive.let { ReasonAmount(it.reason, it.level) },
+                average = details.average
+            )
+        )
+    }
+
     @GetMapping
     fun getEnergyInfoToday(): ResponseEntity<EnergyInfoDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
@@ -41,7 +62,7 @@ class EnergyController(
     ): ResponseEntity<List<EnergyInfoDateDto>> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         val entries = getEnergyEntries.getForDateRange(user, from, to)
-            .map { EnergyInfoDateDto(amount = it.amount, date = it.date) }
+            .map { EnergyInfoDateDto(amount = it.amount, date = it.date, reason = it.reason) }
         return ResponseEntity.ok(entries)
     }
 
@@ -50,19 +71,6 @@ class EnergyController(
         val user = SecurityContextHolder.getContext().authentication.principal as User
         addEnergyEntry.execute(body.amount, body.reason, user)
         return ResponseEntity.ok().build()
-    }
-
-    @GetMapping("/{id}")
-    fun getEnergyEntryById(
-        @PathVariable id: UUID
-    ): ResponseEntity<EnergyInfoDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
-        val entry = getEnergyEntries.getReasonById(user.id!!, id)
-        return ResponseEntity.ok(EnergyInfoDto(
-            energy = entry.amount,
-            reason = entry.reason,
-            nextEntryAllowed = nextEntryAllowedDate.execute(user.id!!).nextEntryAllowedAt
-        ))
     }
 
     @GetMapping("/reasons")

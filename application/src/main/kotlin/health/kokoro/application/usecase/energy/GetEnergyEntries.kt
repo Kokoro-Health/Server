@@ -1,9 +1,9 @@
 package health.kokoro.application.usecase.energy
 
+import health.kokoro.domain.model.energy.EnergyEntry
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.energy.EnergyEntryRepository
 import org.springframework.stereotype.Service
-import java.time.Clock
 import java.time.Instant
 import java.time.ZoneId
 import java.time.temporal.ChronoUnit
@@ -13,10 +13,72 @@ import java.util.*
 class GetEnergyEntries(
     private val energyRepo: EnergyEntryRepository
 ) {
-    fun getReasonById(userId: UUID, entryId: UUID): Response {
-        val entry = energyRepo.findById(entryId) ?: throw IllegalArgumentException("Entry not found")
-        if (entry.userId !== userId) throw IllegalArgumentException("Entry not found")
-        return Response(date = entry.createdAt, reason = entry.reason, amount = entry.amount , id = entry.id)
+    fun getDetails(user: User, date: Instant): DetailResponse {
+        val zone = user.settings.timeZone
+        val startZdt = getStartOfDay(zone, date).atZone(zone)
+        val endZdt = startZdt.plusDays(1).minusNanos(1)
+
+        val start = startZdt.toInstant()
+        val end = endZdt.toInstant()
+
+        val entries = energyRepo.findAllByUserInRange(user.id!!, start, end)
+
+        val responses = mapToResponses(entries)
+
+        val netReasons = calculateNetReasons(entries)
+
+        val influentialPositive = netReasons.maxByOrNull { it.value }?.let { (reason, amount) ->
+            ReasonAmount(reason, amount.toInt())
+        }
+
+        val influentialNegative = netReasons.minByOrNull { it.value }?.let { (reason, amount) ->
+            ReasonAmount(reason, amount.toInt())
+        }
+
+        val average = calculateAverage(entries)
+
+        return DetailResponse(
+            influentialPositive = influentialPositive ?: ReasonAmount("None", 0),
+            influentialNegative = influentialNegative ?: ReasonAmount("None", 0),
+            average = average,
+            entries = responses.sortedByDescending { it.date }
+        )
+    }
+
+    private fun mapToResponses(entries: List<EnergyEntry>): List<Response> {
+        return entries.map {
+            Response(
+                id = it.id,
+                date = it.createdAt,
+                amount = it.amount,
+                reason = it.reason
+            )
+        }
+    }
+
+    private fun calculateNetReasons(entries: List<EnergyEntry>): Map<String, Long> {
+        return entries
+            .filter { it.reason != null }
+            .groupBy { it.reason!! }
+            .mapValues { (_, group) ->
+                group.sumOf { entry ->
+                    val normalizedAmount = normalizeAmount(entry.amount)
+                    normalizedAmount.toLong()
+                }
+            }
+    }
+
+    private fun normalizeAmount(amount: Int): Int {
+        return if (amount > 50) {
+            amount
+        } else {
+            -(50 - amount)
+        }
+    }
+
+    private fun calculateAverage(entries: List<EnergyEntry>): Int {
+        if (entries.isEmpty()) return 0
+        return (entries.sumOf { it.amount.toLong() } / entries.size).toInt()
     }
 
     fun getAverageToday(user: User): Int {
@@ -43,7 +105,7 @@ class GetEnergyEntries(
                 .minusNanos(1)
                 .toInstant()
         }
-        val from = getStartOfDay(zone,from)
+        val from = getStartOfDay(zone, from)
         val to = endOfDay(to)
         validateDateRange(from, to)
 
@@ -68,8 +130,8 @@ class GetEnergyEntries(
             .sortedBy { it.date }
     }
 
-    fun  getStartOfDay(zone: ZoneId, instant: Instant): Instant {
-       return instant.atZone(zone).toLocalDate().atStartOfDay(zone).toInstant()
+    fun getStartOfDay(zone: ZoneId, instant: Instant): Instant {
+        return instant.atZone(zone).toLocalDate().atStartOfDay(zone).toInstant()
     }
 
     private fun validateDateRange(from: Instant, to: Instant) {
@@ -86,5 +148,17 @@ class GetEnergyEntries(
         val date: Instant,
         val reason: String?,
         val amount: Int
+    )
+
+    data class DetailResponse(
+        val influentialPositive: ReasonAmount,
+        val influentialNegative: ReasonAmount,
+        val average: Int,
+        val entries: List<Response>
+    )
+
+    data class ReasonAmount(
+        val reason: String,
+        val level: Int
     )
 }

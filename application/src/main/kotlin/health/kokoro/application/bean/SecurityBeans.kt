@@ -26,7 +26,8 @@ class SecurityBeans(
             .httpBasic { it.disable() }
             .cors { it.disable() }
             .authorizeHttpRequests {
-                it.requestMatchers("/auth/signin", "/auth/signup", "/auth/reset-password*/**", "/docs*/**").permitAll().anyRequest().authenticated()
+                it.requestMatchers("/auth/signin", "/auth/signup", "/auth/reset-password*/**", "/docs*/**").permitAll()
+                    .anyRequest().authenticated()
             }
             .userDetailsService(userDetailsService)
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }

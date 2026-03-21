@@ -3,7 +3,6 @@ package health.kokoro.infrastructure.jpa.user.settings
 import health.kokoro.domain.model.user.settings.NotificationSettings
 import health.kokoro.domain.model.user.settings.Settings
 import org.springframework.stereotype.Component
-import java.time.format.DateTimeFormatter
 
 @Component
 class SettingsMapper {

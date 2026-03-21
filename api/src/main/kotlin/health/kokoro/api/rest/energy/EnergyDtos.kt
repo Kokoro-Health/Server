@@ -8,7 +8,8 @@ import java.time.Instant
 
 data class EnergyInfoDateDto(
     val date: Instant,
-    val amount: Int
+    val amount: Int,
+    val reason: String?
 )
 
 data class EnergyInfoDto(
@@ -19,6 +20,19 @@ data class EnergyInfoDto(
 
 data class EnergyRequestDto(
     @param:Min(0) @param:Max(100) val amount: Int, @param:Size(max = 220) @param:Nullable val reason: String? = null
+)
+
+data class EnergyDetailsDto(
+    val influentialPositive: ReasonAmount,
+    val influentialNegative: ReasonAmount,
+    val average: Int,
+    val entries: List<EnergyInfoDateDto>
+
+)
+
+data class ReasonAmount(
+    val reason: String,
+    val level: Int
 )
 
 data class ReasonsResponseDto(val reasons: List<String>)

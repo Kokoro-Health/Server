@@ -1,13 +1,9 @@
 package health.kokoro.application.security
 
 import health.kokoro.application.config.JwtConfig
-import health.kokoro.domain.port.user.UserRepository
-import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
-import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import java.time.Clock
 import java.time.Instant
 import java.util.*
 import javax.crypto.SecretKey
@@ -33,7 +29,7 @@ class JwtUtil(
                 .parseSignedClaims(token)
                 .payload
                 .subject
-        }  catch (_: Exception) {
+        } catch (_: Exception) {
             null
         }
     }

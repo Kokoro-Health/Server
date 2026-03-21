@@ -4,10 +4,7 @@ import health.kokoro.domain.model.user.settings.NotificationSettings
 import health.kokoro.domain.model.user.settings.Settings
 import health.kokoro.infrastructure.converter.ZoneIdConverter
 import org.springframework.stereotype.Component
-import java.time.Clock
 import java.time.Instant
-import java.time.format.DateTimeFormatter
-import kotlin.concurrent.timer
 
 @Component
 class SettingsDtoMapper(
@@ -26,7 +23,8 @@ class SettingsDtoMapper(
     }
 
     fun toDomain(dto: SettingsRequestDto): Settings {
-        val zoneId = ZoneIdConverter().convertToEntityAttribute(dto.timezone) ?: throw IllegalArgumentException("Invalid timezone")
+        val zoneId = ZoneIdConverter().convertToEntityAttribute(dto.timezone)
+            ?: throw IllegalArgumentException("Invalid timezone")
         return Settings(
             theme = dto.theme,
             language = dto.language,
