@@ -46,7 +46,8 @@ class EnergyEntryRepositoryAdapter(
     }
 
     override fun findReasonsByUserId(uuid: UUID): List<String> {
-        return jpa.findAllByUserIdOrderByCreatedAtDesc(uuid).mapNotNull { it.reason?.let { encryptionPort.decrypt(it) } }.filter { it.isNotBlank() }
+        return jpa.findAllByUserIdOrderByCreatedAtDesc(uuid)
+            .mapNotNull { it.reason?.let { encryptionPort.decrypt(it) } }.filter { it.isNotBlank() }
             .distinct()
     }
 

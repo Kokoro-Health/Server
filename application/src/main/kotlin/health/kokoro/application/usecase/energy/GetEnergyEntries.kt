@@ -27,13 +27,15 @@ class GetEnergyEntries(
 
         val netReasons = calculateNetReasons(entries)
 
-        val influentialPositive = netReasons.maxByOrNull { it.value }?.let { (reason, amount) ->
-            ReasonAmount(reason, amount.toInt())
-        }
+        val influentialPositive =
+            netReasons.filter { it.value <= 50 }.maxByOrNull { it.value }?.let { (reason, amount) ->
+                ReasonAmount(reason, amount.toInt())
+            }
 
-        val influentialNegative = netReasons.minByOrNull { it.value }?.let { (reason, amount) ->
-            ReasonAmount(reason, amount.toInt())
-        }
+        val influentialNegative =
+            netReasons.filter { it.value > 50 }.minByOrNull { it.value }?.let { (reason, amount) ->
+                ReasonAmount(reason, amount.toInt())
+            }
 
         val average = calculateAverage(entries)
 

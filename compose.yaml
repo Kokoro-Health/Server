@@ -1,35 +1,33 @@
+version: '3.9'
+
 services:
   postgres:
+    image: postgres:17
+    container_name: kokoro_db
     env_file: local.env
-    container_name: '${DB_NAME}'
-    image: 'postgres:latest'
     environment:
-      - 'POSTGRES_DB=${DB_NAME}'
-      - 'POSTGRES_PASSWORD=${DB_PASSWORD}'
-      - 'POSTGRES_USER=${DB_USERNAME}'
+      - POSTGRES_DB=kokoro_db
+      - POSTGRES_USER=kokoro
+      - POSTGRES_PASSWORD=kokoroSuperSecurePassword
     ports:
-      - '${DB_PORT}:5432'
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U kokoro" ]
+      interval: 5s
+      retries: 5
 
   maildev:
     image: maildev/maildev
+    container_name: maildev
     ports:
       - "1080:1080"
       - "1025:1025"
-
-  vault:
-    env_file: local.env
-    image: hashicorp/vault:latest
-    ports:
-      - "8200:8200"
-    environment:
-      VAULT_DEV_ROOT_TOKEN_ID: ${VAULT_TOKEN}
-      VAULT_ADDR: ${VAULT_URI}
-    volumes:
-      - vault-data:/vault/file
     healthcheck:
-      test: ["CMD", "vault", "status"]
+      test: [ "CMD-SHELL", "curl -f http://localhost:1080 || exit 1" ]
       interval: 5s
       retries: 5
 
 volumes:
-  vault-data:
+  postgres_data:

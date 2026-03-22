@@ -3,9 +3,8 @@ spring:
     name: Kokoro-API
   datasource:
     username: ${DB_USERNAME}
-    name: ${DB_NAME}
     password: ${DB_PASSWORD}
-    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
   jpa:
     hibernate:
       ddl-auto: none
@@ -31,7 +30,7 @@ spring:
         debug: true
   docker:
     compose:
-      lifecycle-management: start_and_stop
+      enabled: false
 springdoc:
   api-docs:
     path: /docs
@@ -45,6 +44,5 @@ server:
   address: 0.0.0.0
   port: 8080
 kokoro:
-  vault:
-    token: ${VAULT_TOKEN}
-    uri: ${VAULT_URI}
+  encryption:
+    keyStorePath: ${ENCRYPTION_KEY_STORE_PATH:./keys}

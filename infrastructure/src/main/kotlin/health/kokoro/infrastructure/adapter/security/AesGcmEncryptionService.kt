@@ -11,7 +11,7 @@ import javax.crypto.spec.GCMParameterSpec
 @Repository
 class AesGcmEncryptionService(
     private val keyProvider: KeyProvider
-): EncryptionPort {
+) : EncryptionPort {
     override fun encrypt(plainText: String): EncryptedData {
         val keyId = keyProvider.getCurrentKeyId()
         val secretKey = keyProvider.getKey(keyId)

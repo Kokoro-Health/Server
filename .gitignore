@@ -47,3 +47,6 @@ bin/
 ### DotEnv ###
 .env
 local.env
+
+### Encryption Keys ###
+/keys/

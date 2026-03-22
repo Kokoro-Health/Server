@@ -1,15 +1,18 @@
 package health.kokoro.infrastructure.converter
+
 import health.kokoro.domain.model.security.EncryptedData
 import jakarta.persistence.AttributeConverter
 import jakarta.persistence.Converter
-import java.util.Base64
+import java.util.*
 
 @Converter
 class EncryptedDataConverter : AttributeConverter<EncryptedData, String> {
 
     override fun convertToDatabaseColumn(attribute: EncryptedData?): String {
         if (attribute == null) return ""
-        return "${attribute.keyId}:${Base64.getEncoder().encodeToString(attribute.initializationVector)}:${Base64.getEncoder().encodeToString(attribute.cipherText)}"
+        return "${attribute.keyId}:${
+            Base64.getEncoder().encodeToString(attribute.initializationVector)
+        }:${Base64.getEncoder().encodeToString(attribute.cipherText)}"
     }
 
     override fun convertToEntityAttribute(dbData: String?): EncryptedData? {
