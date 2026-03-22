@@ -10,6 +10,10 @@ import org.springframework.web.servlet.resource.NoResourceFoundException
 class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handleValidationExceptions(ex: MethodArgumentNotValidException): ResponseEntity<ErrorResponse> {
+        val fieldErrors = ex.bindingResult.fieldErrors
+        if (fieldErrors.isNotEmpty()) {
+            return ResponseEntity.badRequest().body(ErrorResponse(fieldErrors[0].defaultMessage!!))
+        }
         return ResponseEntity.badRequest().body(ErrorResponse(ex.body.title.toString()))
     }
 

@@ -65,7 +65,7 @@ class AuthController(
 
     @PostMapping("/reset-password/confirm")
     fun resetPassword(
-        @RequestBody req: PasswordResetRequestDto,
+        @RequestBody @Valid req: PasswordResetRequestDto,
     ): ResponseEntity<Any> {
         resetPassword.execute(req.code, req.password)
         return ResponseEntity.ok().build()

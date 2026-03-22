@@ -51,6 +51,11 @@ class ResetPassword(
             throw IllegalArgumentException("Code expired")
         }
 
+        if (passwordEncoder.matches(password, security.passwordHash)) {
+            throw IllegalArgumentException("New password cannot be the same as the old one")
+        }
+
+
         val updatedSecurity = security.copy(
             passwordHash = passwordEncoder.encode(password),
             passwordResetCode = null,

@@ -19,7 +19,7 @@ data class EnergyInfoDto(
 )
 
 data class EnergyRequestDto(
-    @param:Min(0) @param:Max(100) val amount: Int, @param:Size(max = 220) @param:Nullable val reason: String? = null
+    @field:Min(0) @field:Max(100) val amount: Int, @field:Size(max = 220) @field:Nullable val reason: String? = null
 )
 
 data class EnergyDetailsDto(

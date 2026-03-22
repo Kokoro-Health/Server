@@ -1,15 +1,17 @@
 package health.kokoro.api.rest.auth
 
+import health.kokoro.api.validation.Password
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Size
 
 data class PasswordResetRequestDto(
     val code: String,
+    @field:Password
     val password: String,
 )
 
 data class SignInRequestDto(
-    @param:Email val email: String,
+    @field:Email val email: String,
     val password: String,
     val rememberMe: Boolean,
     @field:Size
@@ -32,9 +34,9 @@ data class SignUpRequestDto(
     val middleName: String?,
     @field:Size(min = 2, max = 20)
     val lastName: String,
-    @field:Email("Invalid email format.")
+    @field:Email
     val email: String,
-    @field:Size(min = 8, max = 100, message = "Password must be between 8 and 100 characters")
+    @field:Password
     val password: String,
     val tosAccepted: Boolean
 )
