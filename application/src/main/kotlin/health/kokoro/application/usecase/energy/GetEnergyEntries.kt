@@ -79,17 +79,15 @@ class GetEnergyEntries(
     }
 
     private fun calculateAverage(entries: List<EnergyEntry>): Int {
-        if (entries.isEmpty()) return 0
-        return (entries.sumOf { it.amount.toLong() } / entries.size).toInt()
+        if (entries.isEmpty()) return 50
+        return ((entries.sumOf { it.amount.toLong() } + 50)  / (entries.size + 1)).toInt()
     }
 
     fun getAverageToday(user: User): Int {
         val zone = user.settings.timeZone
         val entries = energyRepo.findAllByUserSince(user.id!!, getStartOfDay(zone, Instant.now()))
 
-        if (entries.isEmpty()) return 0
-
-        return entries.sumOf { it.amount } / entries.size
+        return calculateAverage(entries)
     }
 
     fun getForDateRange(
@@ -117,15 +115,12 @@ class GetEnergyEntries(
         return entries
             .groupBy { getStartOfDay(zone, it.createdAt) }
             .map { (dayStart, dayEntries) ->
-                val sum = dayEntries.sumOf { it.amount.toLong() }
-                val count = dayEntries.size
-
-                val average = sum / count
+               val average = calculateAverage(dayEntries)
 
                 Response(
                     id = null,
                     date = dayStart,
-                    amount = average.toInt(),
+                    amount = average,
                     reason = null
                 )
             }
