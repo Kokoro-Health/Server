@@ -2,6 +2,7 @@ package health.kokoro.infrastructure.adapter.energy
 
 import health.kokoro.domain.model.energy.EnergyEntry
 import health.kokoro.domain.port.energy.EnergyEntryRepository
+import health.kokoro.domain.port.security.EncryptionPort
 import health.kokoro.infrastructure.jpa.energy.EnergyEntryJpaRepository
 import health.kokoro.infrastructure.jpa.energy.EnergyEntryMapper
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
@@ -13,7 +14,8 @@ import java.util.*
 class EnergyEntryRepositoryAdapter(
     private var jpa: EnergyEntryJpaRepository,
     private var mapper: EnergyEntryMapper,
-    private var userJpa: UserJpaRepository
+    private var userJpa: UserJpaRepository,
+    private var encryptionPort: EncryptionPort
 ) : EnergyEntryRepository {
     override fun findAllByUser(uuid: UUID): List<EnergyEntry> {
         validateUserExists(uuid)
@@ -44,7 +46,7 @@ class EnergyEntryRepositoryAdapter(
     }
 
     override fun findReasonsByUserId(uuid: UUID): List<String> {
-        return jpa.findAllByUserIdOrderByCreatedAtDesc(uuid).mapNotNull { it.reason }.filter { it.isNotBlank() }
+        return jpa.findAllByUserIdOrderByCreatedAtDesc(uuid).mapNotNull { it.reason?.let { encryptionPort.decrypt(it) } }.filter { it.isNotBlank() }
             .distinct()
     }
 

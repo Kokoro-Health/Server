@@ -29,6 +29,9 @@ spring:
           starttls:
             enable: ${MAIL_STARTTLS_ENABLE}
         debug: true
+  docker:
+    compose:
+      lifecycle-management: start_and_stop
 springdoc:
   api-docs:
     path: /docs
@@ -41,3 +44,7 @@ jwt:
 server:
   address: 0.0.0.0
   port: 8080
+kokoro:
+  vault:
+    token: ${VAULT_TOKEN}
+    uri: ${VAULT_URI}

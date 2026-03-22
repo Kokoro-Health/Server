@@ -27,18 +27,25 @@ CREATE TABLE settings
     created_at               TIMESTAMP WITHOUT TIME ZONE,
     language                 VARCHAR(255),
     theme                    VARCHAR(255),
+    timezone                 VARCHAR(255),
+    date_format              VARCHAR(255),
     notification_settings_id UUID,
     CONSTRAINT pk_settings PRIMARY KEY (id)
 );
 
 CREATE TABLE user_security
 (
-    id            UUID NOT NULL,
-    updated_at    TIMESTAMP WITHOUT TIME ZONE,
-    created_at    TIMESTAMP WITHOUT TIME ZONE,
-    password_hash VARCHAR(255),
-    mfa_enabled   BOOLEAN,
-    mfa_secret    VARCHAR(255),
+    id                               UUID NOT NULL,
+    updated_at                       TIMESTAMP WITHOUT TIME ZONE,
+    created_at                       TIMESTAMP WITHOUT TIME ZONE,
+    password_hash                    VARCHAR(255),
+    mfa_enabled                      BOOLEAN,
+    mfa_secret                       VARCHAR(255),
+    verified                         BOOLEAN,
+    verification_code                VARCHAR(255),
+    verification_code_requested_at   TIMESTAMP WITHOUT TIME ZONE,
+    password_reset_code              VARCHAR(255),
+    password_reset_code_requested_at TIMESTAMP WITHOUT TIME ZONE,
     CONSTRAINT pk_user_security PRIMARY KEY (id)
 );
 

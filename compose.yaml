@@ -9,8 +9,27 @@ services:
       - 'POSTGRES_USER=${DB_USERNAME}'
     ports:
       - '${DB_PORT}:5432'
+
   maildev:
     image: maildev/maildev
     ports:
-      - "1080:1080"  # Web UI
-      - "1025:1025"  # SMTP
+      - "1080:1080"
+      - "1025:1025"
+
+  vault:
+    env_file: local.env
+    image: hashicorp/vault:latest
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: ${VAULT_TOKEN}
+      VAULT_ADDR: ${VAULT_URI}
+    volumes:
+      - vault-data:/vault/file
+    healthcheck:
+      test: ["CMD", "vault", "status"]
+      interval: 5s
+      retries: 5
+
+volumes:
+  vault-data:
