@@ -80,7 +80,7 @@ class GetEnergyEntries(
 
     private fun calculateAverage(entries: List<EnergyEntry>): Int {
         if (entries.isEmpty()) return 50
-        return ((entries.sumOf { it.amount.toLong() } + 50)  / (entries.size + 1)).toInt()
+        return ((entries.sumOf { it.amount.toLong() } + 50) / (entries.size + 1)).toInt()
     }
 
     fun getAverageToday(user: User): Int {
@@ -115,7 +115,7 @@ class GetEnergyEntries(
         return entries
             .groupBy { getStartOfDay(zone, it.createdAt) }
             .map { (dayStart, dayEntries) ->
-               val average = calculateAverage(dayEntries)
+                val average = calculateAverage(dayEntries)
 
                 Response(
                     id = null,
