@@ -14,7 +14,7 @@ CREATE TABLE journal_entry
     id         UUID NOT NULL,
     updated_at TIMESTAMP WITHOUT TIME ZONE,
     created_at TIMESTAMP WITHOUT TIME ZONE,
-    content    VARCHAR(255),
+    content    VARCHAR(1028),
     user_id    UUID,
     CONSTRAINT pk_journal_entry PRIMARY KEY (id)
 );

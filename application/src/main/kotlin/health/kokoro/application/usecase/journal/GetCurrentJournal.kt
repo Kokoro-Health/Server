@@ -15,7 +15,7 @@ class GetCurrentJournal(
         if (current?.content.isNullOrBlank()) {
             return Response(content = "", availableUntil = null, id = null)
         }
-        return current.let { Response(content = it.content, availableUntil = it.availableUntil, id = it.id) }
+        return current.let { Response(content = it.content, availableUntil = it.lockedAt, id = it.id) }
     }
 
     data class Response(

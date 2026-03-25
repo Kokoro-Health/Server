@@ -11,7 +11,7 @@ class UpdateCurrentJournal(
     private val repo: JournalRepository,
 ) {
     fun execute(user: User, id: UUID?, content: String): Response {
-        return repo.save(user.id!!, id, content).let { Response(id = it.id, it.content, it.availableUntil) }
+        return repo.save(user.id!!, id, content).let { Response(id = it.id, it.content, it.lockedAt) }
     }
 
     data class Response(val id: UUID?, val content: String, val availableUntil: Instant?)

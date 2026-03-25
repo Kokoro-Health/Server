@@ -6,4 +6,6 @@ import java.util.*
 interface JournalRepository {
     fun getCurrentJournal(userId: UUID): JournalEntry?
     fun save(userId: UUID, id: UUID?, content: String): JournalEntry
+    fun getById(uuid: UUID): JournalEntry?
+    fun getAllByUserId(userId: UUID): List<JournalEntry>
 }

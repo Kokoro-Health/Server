@@ -9,6 +9,6 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "journal_entry")
 data class JournalEntryEntity(
-    @Convert(converter = EncryptedDataConverter::class) @Column("content") var content: EncryptedData,
+    @Convert(converter = EncryptedDataConverter::class) @Column("content", length = 1028) var content: EncryptedData,
     @JoinColumn(name = "user_id") @ManyToOne val user: UserEntity
 ) : BaseEntity()

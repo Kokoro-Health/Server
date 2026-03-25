@@ -1,20 +1,21 @@
 package health.kokoro.api.rest.journal
 
 import health.kokoro.application.usecase.journal.GetCurrentJournal
+import health.kokoro.application.usecase.journal.GetJournals
 import health.kokoro.application.usecase.journal.UpdateCurrentJournal
 import health.kokoro.domain.model.user.User
 import io.swagger.v3.oas.annotations.media.Schema
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
-import java.time.Instant
 import java.util.*
 
 @RestController
 @RequestMapping("/journal")
 class JournalController(
     private val getCurrentJournal: GetCurrentJournal,
-    private val updateCurrentJournal: UpdateCurrentJournal
+    private val updateCurrentJournal: UpdateCurrentJournal,
+    private val getJournals: GetJournals
 ) {
     @GetMapping
     fun getCurrentJournal(): ResponseEntity<JournalEntryDto> {
@@ -50,13 +51,32 @@ class JournalController(
         )
     }
 
+    @GetMapping("/{id}")
+    fun getJournalById(
+        @PathVariable id: UUID
+    ): ResponseEntity<JournalEntryDto> {
+        val user = SecurityContextHolder.getContext().authentication.principal as User
+        val journal = getJournals.getById(id, user.id!!)
+        return ResponseEntity.ok(
+            JournalEntryDto(
+                id = journal.id,
+                content = journal.content,
+                availableUntil = journal.lockedAt
+            )
+        )
+    }
+
     @GetMapping("/recent")
     fun getRecentJournalsShort(): ResponseEntity<List<ShortJournalResponseDto>> {
-        val recents = listOf(
-            ShortJournalResponseDto(UUID.randomUUID(), "Test", Instant.now().minusSeconds(10)),
-            ShortJournalResponseDto(UUID.randomUUID(), "Test2", Instant.now().minusSeconds(20))
-        )
+        val user = SecurityContextHolder.getContext().authentication.principal as User
+        val recents = getJournals.getAll(user.id!!)
 
-        return ResponseEntity.ok(recents)
+        return ResponseEntity.ok(recents.map {
+            ShortJournalResponseDto(
+                it.id,
+                content = it.shortContent,
+                lockedSince = it.lockedAt
+            )
+        })
     }
 }

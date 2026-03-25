@@ -6,17 +6,19 @@ import java.util.*
 data class JournalEntry(
     val id: UUID?,
     val content: String,
-    val availableUntil: Instant?,
+    val lockedAt: Instant,
     val createdAt: Instant,
+    val updatedAt: Instant,
     val userId: UUID
 ) {
     companion object {
         val EMPTY = JournalEntry(
             id = null,
             content = "",
-            availableUntil = null,
+            lockedAt = Instant.now(),
             createdAt = Instant.now(),
-            userId = UUID.randomUUID()
+            userId = UUID.randomUUID(),
+            updatedAt = Instant.now()
         )
     }
 }

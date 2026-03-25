@@ -17,7 +17,8 @@ class JournalEntryMapper(
             content = encryptionPort.decrypt(entity.content),
             createdAt = entity.createdAt,
             userId = entity.user.id!!,
-            availableUntil = availableUntil
+            lockedAt = availableUntil,
+            updatedAt = entity.updatedAt
         )
     }
 

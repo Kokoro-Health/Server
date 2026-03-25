@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 import java.time.Instant
 import java.util.*
+import kotlin.jvm.optionals.getOrNull
 
 @Repository
 @Transactional
@@ -65,5 +66,13 @@ class JournalRepositoryAdapter(
             content = encryptionPort.encrypt(content),
         )
         return jpa.save(entity).let { mapper.toDomain(it) }
+    }
+
+    override fun getById(uuid: UUID): JournalEntry? {
+        return jpa.findById(uuid).getOrNull()?.let { mapper.toDomain(it) }
+    }
+
+    override fun getAllByUserId(userId: UUID): List<JournalEntry> {
+        return jpa.findAllByUserId(userId).map { mapper.toDomain(it) }
     }
 }

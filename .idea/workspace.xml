@@ -5,32 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="Fixed key reset on restart">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383/storage_v2/_src_/database/kokoro_db.-Ohb4w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383/storage_v2/_src_/database/kokoro_db.-Ohb4w/schema/public.abK9xQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/journal/GetJournals.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V2__longer_entries.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/config/OpenApiConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/config/OpenApiConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtos.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtos.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyDtos.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyDtos.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/journal/JournalController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/journal/JournalController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/journal/JournalDtos.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/journal/JournalDtos.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/journal/GetCurrentJournal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/journal/GetCurrentJournal.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/journal/UpdateCurrentJournal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/journal/UpdateCurrentJournal.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/journal/JournalEntry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/journal/JournalEntry.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/journal/JournalRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/journal/JournalRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/journal/JournalRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/journal/JournalRepositoryAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/user/UserRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/user/UserRepositoryAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/user/UserSecurityRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/user/UserSecurityRepositoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/journal/JournalEntryEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/journal/JournalEntryEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/journal/JournalEntryJpaRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/journal/JournalEntryJpaRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/journal/JournalEntryMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/journal/JournalEntryMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/security/UserSecurityMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V2__journal.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/KokoroRunner.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project/KokoroRunner.run.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +216,7 @@
       <workItem from="1774123829988" duration="36282000" />
       <workItem from="1774353375929" duration="1218000" />
       <workItem from="1774422989730" duration="600000" />
-      <workItem from="1774423599676" duration="8525000" />
+      <workItem from="1774423599676" duration="11894000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />
