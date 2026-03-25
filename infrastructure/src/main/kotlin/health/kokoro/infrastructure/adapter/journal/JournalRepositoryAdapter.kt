@@ -3,7 +3,6 @@ package health.kokoro.infrastructure.adapter.journal
 import health.kokoro.domain.model.journal.JournalEntry
 import health.kokoro.domain.port.journal.JournalRepository
 import health.kokoro.domain.port.security.EncryptionPort
-import health.kokoro.infrastructure.jpa.journal.JournalEntryEntity
 import health.kokoro.infrastructure.jpa.journal.JournalEntryJpaRepository
 import health.kokoro.infrastructure.jpa.journal.JournalEntryMapper
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
@@ -61,11 +60,15 @@ class JournalRepositoryAdapter(
         }
 
         val user = userJpaRepository.findById(userId).orElseThrow()
-        val entity = JournalEntryEntity(
-            user = user,
-            content = encryptionPort.encrypt(content),
+        val entity = JournalEntry(
+            id = null,
+            content = content,
+            userId = user.id!!,
+            lockedAt = Instant.now(),
+            createdAt = Instant.now(),
+            updatedAt = Instant.now()
         )
-        return jpa.save(entity).let { mapper.toDomain(it) }
+        return jpa.save(mapper.toEntity(entity)).let { mapper.toDomain(it) }
     }
 
     override fun getById(uuid: UUID): JournalEntry? {

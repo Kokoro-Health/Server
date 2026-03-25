@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component
 import java.time.Instant
 
 @Component
-class SettingsDtoMapper(
-) {
+class SettingsDtoMapper {
     fun toDto(settings: Settings): SettingsResponseDto {
         return SettingsResponseDto(
             theme = settings.theme,

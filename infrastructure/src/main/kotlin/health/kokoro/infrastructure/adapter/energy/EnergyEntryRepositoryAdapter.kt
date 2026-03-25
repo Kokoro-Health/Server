@@ -47,13 +47,13 @@ class EnergyEntryRepositoryAdapter(
 
     override fun findReasonsByUserId(uuid: UUID): List<String> {
         return jpa.findAllByUserIdOrderByCreatedAtDesc(uuid)
-            .mapNotNull { it.reason?.let { encryptionPort.decrypt(it) } }.filter { it.isNotBlank() }
+            .mapNotNull { it -> it.reason?.let { encryptionPort.decrypt(it) } }.filter { it.isNotBlank() }
             .distinct()
     }
 
     private fun validateUserExists(uuid: UUID) {
         if (!userJpa.existsById(uuid)) {
-            throw IllegalArgumentException("Could not find user with id ${uuid.toString()}")
+            throw IllegalArgumentException("Could not find user with id $uuid")
         }
     }
 }

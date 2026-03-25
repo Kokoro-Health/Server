@@ -16,7 +16,7 @@ class UserSecurityMapper(
             verified = domain.verified,
             verificationCode = domain.verificationCode?.let { encryptionPort.encrypt(it) },
             verificationCodeRequestedAt = domain.verificationCodeRequestedAt,
-            passwordResetCode = domain.passwordResetCode?.let { encryptionPort.encrypt(it) },
+            passwordResetCode = domain.passwordResetCode,
             passwordResetCodeRequestedAt = domain.passwordResetCodeRequestedAt
         )
         entity.id = domain.id
@@ -32,7 +32,7 @@ class UserSecurityMapper(
             verified = entity.verified,
             verificationCode = entity.verificationCode?.let { encryptionPort.decrypt(it) },
             verificationCodeRequestedAt = entity.verificationCodeRequestedAt,
-            passwordResetCode = entity.passwordResetCode?.let { encryptionPort.decrypt(it) },
+            passwordResetCode = entity.passwordResetCode,
             passwordResetCodeRequestedAt = entity.passwordResetCodeRequestedAt
         )
     }

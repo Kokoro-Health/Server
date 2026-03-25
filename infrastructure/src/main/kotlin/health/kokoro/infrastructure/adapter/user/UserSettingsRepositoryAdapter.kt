@@ -13,7 +13,7 @@ class UserSettingsRepositoryAdapter(
     private val mapper: SettingsMapper
 ) : SettingsRepository {
     override fun findByUser(user: User): Settings? {
-        return jpa.findByUser_Id(user.id!!)?.let { mapper.toDomain(it) }
+        return jpa.findByUserId(user.id!!)?.let { mapper.toDomain(it) }
     }
 
     override fun save(settings: Settings): Settings {
@@ -25,11 +25,11 @@ class UserSettingsRepositoryAdapter(
     }
 
     override fun existsByUser(user: User): Boolean {
-        return jpa.existsByUser_Id(user.id!!)
+        return jpa.existsByUserId(user.id!!)
     }
 
     override fun update(user: User, settings: Settings) {
-        val existingSettings = jpa.findByUser_Id(user.id!!)
+        val existingSettings = jpa.findByUserId(user.id!!)
             ?: throw IllegalStateException("Settings not found for user")
 
         existingSettings.theme = settings.theme

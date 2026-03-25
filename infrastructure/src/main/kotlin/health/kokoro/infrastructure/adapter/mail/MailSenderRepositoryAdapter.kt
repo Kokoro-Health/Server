@@ -19,7 +19,7 @@ class MailSenderRepositoryAdapter(
         subject: String,
         template: String,
         model: Map<String, Any>
-    ): String? {
+    ) {
         val context = Context().apply {
             setVariables(model)
         }
@@ -35,7 +35,5 @@ class MailSenderRepositoryAdapter(
         helper.setText(htmlContent, true)
 
         mailSender.send(mimeMessage)
-
-        return null
     }
 }

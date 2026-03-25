@@ -18,6 +18,6 @@ class UserSecurityEntity(
     @Column("verified") var verified: Boolean,
     @Column("verification_code") @Convert(converter = EncryptedDataConverter::class) var verificationCode: EncryptedData?,
     @Column("verification_code_requested_at") var verificationCodeRequestedAt: Instant?,
-    @Column("password_reset_code") @Convert(converter = EncryptedDataConverter::class) var passwordResetCode: EncryptedData?,
+    @Column("password_reset_code") @Convert(converter = EncryptedDataConverter::class) var passwordResetCode: String?,
     @Column("password_reset_code_requested_at") var passwordResetCodeRequestedAt: Instant?
 ) : BaseEntity()

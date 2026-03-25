@@ -29,7 +29,7 @@ class SecurityBeans(
                 cors.configurationSource { request ->
                     val corsConfig = CorsConfiguration()
                     corsConfig.allowedOrigins = listOf(
-                        "http://192.168.1.162:5173",
+                        "http://10.238.100.100:5173",
                         "capacitor://localhost",
                         "http://localhost:5173"
                     )

@@ -4,6 +4,7 @@ import health.kokoro.domain.model.user.settings.LanguageSetting
 import health.kokoro.domain.model.user.settings.ThemeSetting
 import java.time.Instant
 
+
 data class SettingsRequestDto(
     val theme: ThemeSetting,
     val language: LanguageSetting,
@@ -14,6 +15,7 @@ data class SettingsRequestDto(
     val dateFormat: String
 )
 
+@Suppress("unused")
 class SettingsResponseDto(
     val theme: ThemeSetting,
     val language: LanguageSetting,

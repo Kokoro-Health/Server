@@ -18,7 +18,7 @@ class GetJournals(
     }
 
     fun getAll(userId: UUID): List<Response> {
-        return repo.getAllByUserId(userId).map { toResponse(it) }
+        return repo.getAllByUserId(userId).filter { it.lockedAt.isBefore(Instant.now()) }.map { toResponse(it) }
     }
 
     private fun validateOwner(id: UUID, userID: UUID) {
@@ -29,10 +29,10 @@ class GetJournals(
     }
 
     private fun toResponse(entry: JournalEntry): Response {
-        val shortenContent = entry.content.length > 32
+        val shortenContent = entry.content.length >64
         var shortContent = entry.content
         if (shortenContent) {
-            shortContent = entry.content.substring(0, 32)
+            shortContent = entry.content.substring(0, 64)
         }
         return Response(
             id = entry.id!!,
