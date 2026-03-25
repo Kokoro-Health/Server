@@ -2,6 +2,7 @@ package health.kokoro.infrastructure.adapter.user
 
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.model.user.security.UserSecurity
+import health.kokoro.domain.port.security.EncryptionPort
 import health.kokoro.domain.port.user.UserSecurityRepository
 import health.kokoro.infrastructure.jpa.user.security.UserSecurityJpaRepository
 import health.kokoro.infrastructure.jpa.user.security.UserSecurityMapper
@@ -10,7 +11,8 @@ import org.springframework.stereotype.Repository
 @Repository
 class UserSecurityRepositoryAdapter(
     private val jpa: UserSecurityJpaRepository,
-    private val mapper: UserSecurityMapper
+    private val mapper: UserSecurityMapper,
+    private val encryptionPort: EncryptionPort
 ) : UserSecurityRepository {
     override fun save(security: UserSecurity): UserSecurity {
         return jpa.save(mapper.toEntity(security)).let { mapper.toDomain(it) }
@@ -19,7 +21,7 @@ class UserSecurityRepositoryAdapter(
     override fun update(user: User, secret: String) {
         val securityEntity = jpa.findById(user.security.id!!)
             .orElseThrow { IllegalStateException("Security not found for user") }
-        securityEntity.mfaSecret = secret
+        securityEntity.mfaSecret = encryptionPort.encrypt(secret)
         jpa.save(securityEntity)
     }
 

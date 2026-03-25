@@ -20,36 +20,50 @@ class JournalRepositoryAdapter(
     private val mapper: JournalEntryMapper,
     private val userJpaRepository: UserJpaRepository
 ) : JournalRepository {
-
     private val availabilityWindowMinutes = 30L
 
-    override fun getCurrentJournal(userId: UUID): JournalEntry? {
+    override fun getCurrentJournal(userId: UUID): JournalEntry {
         val threshold = Instant.now().minusSeconds(availabilityWindowMinutes * 60)
         val journal = jpa.findFirstByUserIdAndUpdatedAtAfterOrderByCreatedAtDesc(userId, threshold)
             ?.let(mapper::toDomain)
-        return journal
+
+        return journal ?: JournalEntry.EMPTY
     }
 
-    override fun save(userId: UUID, content: String): JournalEntry {
+    override fun save(userId: UUID, id: UUID?, content: String): JournalEntry {
+        val now = Instant.now()
+        val threshold = now.minusSeconds(availabilityWindowMinutes * 60)
+        val existing = jpa.findFirstByUserIdAndUpdatedAtAfterOrderByCreatedAtDesc(userId, threshold)
+
+        if (existing != null) {
+            val availableUntil = existing.updatedAt.plusSeconds(availabilityWindowMinutes * 60)
+            if (availableUntil.isBefore(now)) {
+                return mapper.toDomain(existing)
+            }
+            if (id != existing.id && id != null) {
+                return JournalEntry.EMPTY
+            }
+            if (content.isBlank()) {
+                jpa.delete(existing)
+                return JournalEntry.EMPTY
+            }
+            existing.content = encryptionPort.encrypt(content)
+            return jpa.save(existing).let { mapper.toDomain(it) }
+        }
+
         if (content.isBlank()) {
-            getCurrentJournal(userId)?.let(mapper::toEntity)?.let(jpa::delete)
-            return JournalEntry(content = "", id = UUID.randomUUID(), userId = userId, createdAt = Instant.now())
+            return JournalEntry.EMPTY
+        }
+
+        if (id != null) {
+            throw IllegalArgumentException("This journal entry has been locked.")
         }
 
         val user = userJpaRepository.findById(userId).orElseThrow()
-        val threshold = Instant.now().minusSeconds(availabilityWindowMinutes * 60)
-        val existing = jpa.findFirstByUserIdAndUpdatedAtAfterOrderByCreatedAtDesc(userId, threshold)
-
-        val entity = if (existing != null) {
-            existing.content = encryptionPort.encrypt(content)
-            existing
-        } else {
-            JournalEntryEntity(
-                user = user,
-                content = encryptionPort.encrypt(content),
-            )
-        }
-
+        val entity = JournalEntryEntity(
+            user = user,
+            content = encryptionPort.encrypt(content),
+        )
         return jpa.save(entity).let { mapper.toDomain(it) }
     }
 }

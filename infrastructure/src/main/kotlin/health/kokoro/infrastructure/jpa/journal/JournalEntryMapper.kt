@@ -11,11 +11,13 @@ class JournalEntryMapper(
     private val userJpaRepository: UserJpaRepository
 ) {
     fun toDomain(entity: JournalEntryEntity): JournalEntry {
+        val availableUntil = entity.updatedAt.plusSeconds(30 * 60)
         return JournalEntry(
             id = entity.id!!,
             content = encryptionPort.decrypt(entity.content),
             createdAt = entity.createdAt,
             userId = entity.user.id!!,
+            availableUntil = availableUntil
         )
     }
 

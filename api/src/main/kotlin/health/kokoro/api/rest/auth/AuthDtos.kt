@@ -1,6 +1,7 @@
 package health.kokoro.api.rest.auth
 
 import health.kokoro.api.validation.Password
+import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Size
 
@@ -14,7 +15,7 @@ data class SignInRequestDto(
     @field:Email val email: String,
     val password: String,
     val rememberMe: Boolean,
-    @field:Size
+    @field:Size @field:Schema(nullable = true)
     val mfaCode: String? = null
 )
 

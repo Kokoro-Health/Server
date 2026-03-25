@@ -1,5 +1,7 @@
 package health.kokoro.infrastructure.jpa.user
 
+import health.kokoro.domain.model.security.EncryptedData
+import health.kokoro.infrastructure.converter.EncryptedDataConverter
 import health.kokoro.infrastructure.jpa.BaseEntity
 import health.kokoro.infrastructure.jpa.user.security.UserSecurityEntity
 import health.kokoro.infrastructure.jpa.user.settings.SettingsEntity
@@ -8,9 +10,15 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "users")
 class UserEntity(
-    @Column(name = "first_name", nullable = false) var firstName: String,
-    @Column(name = "middle_name") var middleName: String?,
-    @Column(name = "last_name", nullable = false) var lastName: String,
+    @Column(
+        name = "first_name",
+        nullable = false
+    ) @Convert(converter = EncryptedDataConverter::class) var firstName: EncryptedData,
+    @Column(name = "middle_name") @Convert(converter = EncryptedDataConverter::class) var middleName: EncryptedData?,
+    @Column(
+        name = "last_name",
+        nullable = false
+    ) @Convert(converter = EncryptedDataConverter::class) var lastName: EncryptedData,
     @Column(name = "email", nullable = false, unique = true) var email: String,
     @Column(name = "profile_picture_url") var profilePictureUrl: String?,
     @JoinColumn(

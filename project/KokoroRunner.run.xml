@@ -9,6 +9,7 @@
             <option name="environmentVariables"/>
         </selectedOptions>
         <option name="SPRING_BOOT_MAIN_CLASS" value="health.kokoro.api.KokoroRunner"/>
+        <option name="VM_PARAMETERS" value="-Djava.net.preferIPv4Stack=true "/>
         <method v="2">
             <option name="Make" enabled="true"/>
         </method>

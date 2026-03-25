@@ -1,6 +1,6 @@
 package health.kokoro.api.rest.energy
 
-import jakarta.annotation.Nullable
+import io.swagger.v3.oas.annotations.media.Schema
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Size
@@ -19,7 +19,8 @@ data class EnergyInfoDto(
 )
 
 data class EnergyRequestDto(
-    @field:Min(0) @field:Max(100) val amount: Int, @field:Size(max = 220) @field:Nullable val reason: String? = null
+    @field:Min(0) @field:Max(100) val amount: Int,
+    @field:Size(max = 220) @field:Schema(nullable = true) val reason: String? = null
 )
 
 data class EnergyDetailsDto(

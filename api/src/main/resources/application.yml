@@ -30,7 +30,9 @@ spring:
         debug: true
   docker:
     compose:
-      enabled: false
+      enabled: true
+      lifecycle-management: start_and_stop
+      file: compose.yaml
 springdoc:
   api-docs:
     path: /docs

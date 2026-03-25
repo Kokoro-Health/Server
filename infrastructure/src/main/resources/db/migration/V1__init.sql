@@ -9,6 +9,16 @@ CREATE TABLE energy_entry
     CONSTRAINT pk_energy_entry PRIMARY KEY (id)
 );
 
+CREATE TABLE journal_entry
+(
+    id         UUID NOT NULL,
+    updated_at TIMESTAMP WITHOUT TIME ZONE,
+    created_at TIMESTAMP WITHOUT TIME ZONE,
+    content    VARCHAR(255),
+    user_id    UUID,
+    CONSTRAINT pk_journal_entry PRIMARY KEY (id)
+);
+
 CREATE TABLE notification_settings
 (
     id               UUID NOT NULL,
@@ -78,6 +88,9 @@ ALTER TABLE users
 
 ALTER TABLE energy_entry
     ADD CONSTRAINT FK_ENERGY_ENTRY_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
+
+ALTER TABLE journal_entry
+    ADD CONSTRAINT FK_JOURNAL_ENTRY_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE settings
     ADD CONSTRAINT FK_SETTINGS_ON_NOTIFICATION_SETTINGS FOREIGN KEY (notification_settings_id) REFERENCES notification_settings (id);

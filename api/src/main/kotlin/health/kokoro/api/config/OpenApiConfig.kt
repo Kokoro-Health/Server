@@ -9,6 +9,7 @@ import io.swagger.v3.oas.models.media.Content
 import io.swagger.v3.oas.models.media.MediaType
 import io.swagger.v3.oas.models.media.Schema
 import io.swagger.v3.oas.models.responses.ApiResponse
+import io.swagger.v3.oas.models.responses.ApiResponses
 import org.springdoc.core.customizers.OpenApiCustomizer
 import org.springdoc.core.customizers.OperationCustomizer
 import org.springframework.context.annotation.Bean
@@ -32,7 +33,7 @@ class OpenApiConfig {
     @Bean
     fun globalErrorResponses(): OperationCustomizer {
         return OperationCustomizer { operation: Operation, _: HandlerMethod ->
-            val apiResponses = operation.responses ?: io.swagger.v3.oas.models.responses.ApiResponses()
+            val apiResponses = operation.responses ?: ApiResponses()
 
             if (!apiResponses.containsKey("400")) {
                 val schema = Schema<Any>().apply {

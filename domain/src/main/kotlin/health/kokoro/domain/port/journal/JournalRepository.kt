@@ -5,5 +5,5 @@ import java.util.*
 
 interface JournalRepository {
     fun getCurrentJournal(userId: UUID): JournalEntry?
-    fun save(userId: UUID, content: String): JournalEntry
+    fun save(userId: UUID, id: UUID?, content: String): JournalEntry
 }
