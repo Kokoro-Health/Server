@@ -1,5 +1,8 @@
 package health.kokoro.api.rest.auth.passkey
 
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.Size
 import java.time.Instant
 import java.util.*
 
@@ -8,7 +11,9 @@ data class RegisterPasskeyStartResponse(
 )
 
 data class RegisterPasskeyFinishRequest(
+    @field:NotBlank
     val credential: String,
+    @field:Size(max = 100)
     val deviceName: String
 )
 
@@ -19,6 +24,8 @@ data class RegisterPasskeyFinishResponse(
 )
 
 data class AuthPasskeyStartRequest(
+    @field:NotBlank
+    @field:Email
     val email: String
 )
 
@@ -27,7 +34,11 @@ data class AuthPasskeyStartResponse(
 )
 
 data class AuthPasskeyFinishRequest(
+    @field:NotBlank
+    @field:Email
     val email: String,
+
+    @field:NotBlank
     val credential: String
 )
 
