@@ -16,6 +16,7 @@ class JwtUtil(
         return Jwts.builder()
             .subject(email)
             .issuedAt(Date.from(Instant.now()))
+            .issuer(config.issuer)
             .expiration(Date.from(Instant.now().plusMillis(config.expiration)))
             .signWith(getKey())
             .compact()

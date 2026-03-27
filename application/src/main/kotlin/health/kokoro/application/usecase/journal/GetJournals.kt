@@ -29,7 +29,7 @@ class GetJournals(
     }
 
     private fun toResponse(entry: JournalEntry): Response {
-        val shortenContent = entry.content.length >64
+        val shortenContent = entry.content.length > 64
         var shortContent = entry.content
         if (shortenContent) {
             shortContent = entry.content.substring(0, 64)

@@ -1,5 +1,6 @@
 package health.kokoro.application.bean
 
+import health.kokoro.application.config.CorsConfig
 import health.kokoro.application.security.JwtFilter
 import health.kokoro.application.security.UserDetailsServiceImpl
 import org.springframework.context.annotation.Bean
@@ -19,7 +20,8 @@ import org.springframework.web.cors.CorsConfiguration
 @EnableWebSecurity
 class SecurityBeans(
     private val jwtFilter: JwtFilter,
-    private val userDetailsService: UserDetailsServiceImpl
+    private val userDetailsService: UserDetailsServiceImpl,
+    private val config: CorsConfig
 ) {
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
@@ -28,11 +30,7 @@ class SecurityBeans(
             .cors { cors ->
                 cors.configurationSource { request ->
                     val corsConfig = CorsConfiguration()
-                    corsConfig.allowedOrigins = listOf(
-                        "http://10.238.100.100:5173",
-                        "capacitor://localhost",
-                        "http://localhost:5173"
-                    )
+                    corsConfig.allowedOrigins = config.allowOrigin
                     corsConfig.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     corsConfig.allowedHeaders = listOf("*")
                     corsConfig.allowCredentials = true
