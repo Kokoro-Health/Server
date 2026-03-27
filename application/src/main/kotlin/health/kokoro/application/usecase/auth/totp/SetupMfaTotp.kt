@@ -1,4 +1,4 @@
-package health.kokoro.application.usecase.auth
+package health.kokoro.application.usecase.auth.totp
 
 import dev.samstevens.totp.qr.QrDataFactory
 import dev.samstevens.totp.qr.QrGenerator
@@ -6,7 +6,7 @@ import dev.samstevens.totp.secret.SecretGenerator
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.stereotype.Service
-import java.util.*
+import java.util.Base64
 
 @Service
 class SetupMfaTotp(

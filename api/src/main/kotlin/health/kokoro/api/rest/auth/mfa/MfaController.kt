@@ -1,9 +1,9 @@
 package health.kokoro.api.rest.auth.mfa
 
-import health.kokoro.application.usecase.auth.DisableMfaTotp
+import health.kokoro.application.usecase.auth.totp.DisableMfaTotp
 import health.kokoro.application.usecase.auth.GetMfaEnabled
-import health.kokoro.application.usecase.auth.SetupMfaTotp
-import health.kokoro.application.usecase.auth.VerifyMfaTotp
+import health.kokoro.application.usecase.auth.totp.SetupMfaTotp
+import health.kokoro.application.usecase.auth.totp.VerifyMfaTotp
 import health.kokoro.domain.model.user.User
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity

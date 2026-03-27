@@ -1,4 +1,4 @@
-package health.kokoro.application.usecase.auth
+package health.kokoro.application.usecase.auth.totp
 
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.user.UserSecurityRepository

@@ -28,7 +28,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("dev.samstevens.totp:totp-spring-boot-starter:1.7.1")
     implementation("com.google.zxing:javase:3.5.4")
-
+    implementation("com.yubico:webauthn-server-core:2.8.1")
+    
+    runtimeOnly("tools.jackson.module:jackson-module-kotlin:3.1.0")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.13.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")

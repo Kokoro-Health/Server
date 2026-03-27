@@ -1,5 +1,8 @@
 package health.kokoro.application.bean
 
+import com.yubico.webauthn.CredentialRepository
+import com.yubico.webauthn.RelyingParty
+import com.yubico.webauthn.data.RelyingPartyIdentity
 import health.kokoro.application.config.CorsConfig
 import health.kokoro.application.security.JwtFilter
 import health.kokoro.application.security.UserDetailsServiceImpl
@@ -61,4 +64,18 @@ class SecurityBeans(
 
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
+
+        @Bean
+    fun relyingParty(credentialRepository: CredentialRepository): RelyingParty {
+        return RelyingParty.builder()
+            .identity(
+                RelyingPartyIdentity.builder()
+                    .id("kokoro.health")
+                    .name("Kokoro")
+                    .build()
+            )
+            .credentialRepository(credentialRepository)
+            .origins(setOf("https://kokoro.health"))
+            .build()
+    }
 }

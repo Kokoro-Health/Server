@@ -7,6 +7,7 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.scheduling.annotation.EnableScheduling
 
 @SpringBootApplication
 @ComponentScan(basePackages = ["health.kokoro"])
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableJpaRepositories(basePackages = ["health.kokoro.infrastructure.jpa"])
 @EntityScan(basePackages = ["health.kokoro.infrastructure.jpa"])
 @EnableJpaAuditing
+@EnableScheduling
 class KokoroRunner
 
 fun main(args: Array<String>) {

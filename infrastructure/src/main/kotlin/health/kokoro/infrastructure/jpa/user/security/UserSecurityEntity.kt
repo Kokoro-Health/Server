@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 import java.time.Instant
 
 @Entity
-@Table(name = "user_security")
+@Table(name = "security_users")
 class UserSecurityEntity(
     @Column("password_hash") @Convert(converter = EncryptedDataConverter::class) var passwordHash: EncryptedData,
     @Column("mfa_enabled") var mfaEnabled: Boolean,

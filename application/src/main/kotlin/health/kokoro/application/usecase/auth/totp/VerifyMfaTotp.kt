@@ -1,4 +1,4 @@
-package health.kokoro.application.usecase.auth
+package health.kokoro.application.usecase.auth.totp
 
 import dev.samstevens.totp.code.CodeVerifier
 import health.kokoro.domain.model.user.User
