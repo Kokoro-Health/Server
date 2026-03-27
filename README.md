@@ -74,7 +74,7 @@ The project uses a layered hexagonal architecture, dividing responsibilities acr
 ### Setup
 
 1. Copy `example.env` to `local.env` and configure your environment variables
-2. Start the database: `docker-compose up -d`
+2. Start the database: `docker-compose --env-file=local.env up -d`
 3. Run the application: `./gradlew :api:bootRun`
 
 ## Project Structure
