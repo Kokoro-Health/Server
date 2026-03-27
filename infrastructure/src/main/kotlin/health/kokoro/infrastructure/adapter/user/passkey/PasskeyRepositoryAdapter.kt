@@ -24,12 +24,12 @@ class PasskeyRepositoryAdapter(
     }
 
     override fun findByEmail(email: String): List<Passkey> {
-     val user = userJpa.findByEmailIgnoreCase(email) ?: throw IllegalArgumentException("Could not find user $email")
+        val user = userJpa.findByEmailIgnoreCase(email) ?: throw IllegalArgumentException("Could not find user $email")
         return jpa.findByUserId(user.id!!).map { mapper.toDomain(it) }
     }
 
     override fun save(dto: Passkey): Passkey {
-       return jpa.save(mapper.toEntity(dto)).let { mapper.toDomain(it) }
+        return jpa.save(mapper.toEntity(dto)).let { mapper.toDomain(it) }
     }
 
     override fun findById(id: UUID): Passkey? {
@@ -37,6 +37,6 @@ class PasskeyRepositoryAdapter(
     }
 
     override fun delete(dto: Passkey) {
-       jpa.delete(mapper.toEntity(dto))
+        jpa.delete(mapper.toEntity(dto))
     }
 }

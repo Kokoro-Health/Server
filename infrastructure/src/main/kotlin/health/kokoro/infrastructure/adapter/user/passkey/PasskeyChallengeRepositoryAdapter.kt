@@ -41,10 +41,10 @@ class PasskeyChallengeRepositoryAdapter(
     }
 
     override fun save(dto: PasskeyChallenge): PasskeyChallenge {
-       return jpa.save(mapper.toEntity(dto)).let { mapper.toDomain(it) }
+        return jpa.save(mapper.toEntity(dto)).let { mapper.toDomain(it) }
     }
 
     override fun delete(dto: PasskeyChallenge) {
-       jpa.delete(mapper.toEntity(dto))
+        jpa.delete(mapper.toEntity(dto))
     }
 }

@@ -11,7 +11,7 @@ import health.kokoro.domain.port.user.passkey.PasskeyChallengeRepository
 import health.kokoro.domain.port.user.passkey.PasskeyRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 @Service
 class RegisterPasskeyFinish(

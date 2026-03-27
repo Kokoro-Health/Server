@@ -1,14 +1,13 @@
 package health.kokoro.application.usecase.auth.passkey
 
+import com.yubico.webauthn.AssertionRequest
 import com.yubico.webauthn.FinishAssertionOptions
 import com.yubico.webauthn.RelyingParty
-import com.yubico.webauthn.AssertionRequest
 import com.yubico.webauthn.data.PublicKeyCredential
 import health.kokoro.application.security.JwtUtil
 import health.kokoro.domain.model.user.security.passkey.ChallengeType
 import health.kokoro.domain.port.user.passkey.PasskeyChallengeRepository
 import health.kokoro.domain.port.user.passkey.PasskeyRepository
-import health.kokoro.domain.port.user.UserRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
 

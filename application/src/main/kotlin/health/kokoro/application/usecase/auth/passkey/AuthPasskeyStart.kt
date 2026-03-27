@@ -2,13 +2,12 @@ package health.kokoro.application.usecase.auth.passkey
 
 import com.yubico.webauthn.RelyingParty
 import com.yubico.webauthn.StartAssertionOptions
-import com.yubico.webauthn.AssertionRequest
 import health.kokoro.domain.model.user.security.passkey.ChallengeType
 import health.kokoro.domain.model.user.security.passkey.PasskeyChallenge
 import health.kokoro.domain.port.user.passkey.PasskeyChallengeRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 @Service
 class AuthPasskeyStart(

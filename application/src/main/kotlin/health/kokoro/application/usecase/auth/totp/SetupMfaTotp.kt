@@ -6,7 +6,7 @@ import dev.samstevens.totp.secret.SecretGenerator
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.stereotype.Service
-import java.util.Base64
+import java.util.*
 
 @Service
 class SetupMfaTotp(

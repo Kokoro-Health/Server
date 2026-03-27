@@ -3,7 +3,7 @@ package health.kokoro.application.usecase.auth.passkey
 import health.kokoro.domain.port.user.passkey.PasskeyRepository
 import org.springframework.security.access.AccessDeniedException
 import org.springframework.stereotype.Service
-import java.util.UUID
+import java.util.*
 
 @Service
 class DeletePasskey(

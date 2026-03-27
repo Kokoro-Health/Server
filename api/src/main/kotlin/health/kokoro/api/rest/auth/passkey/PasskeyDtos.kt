@@ -1,7 +1,7 @@
 package health.kokoro.api.rest.auth.passkey
 
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 data class RegisterPasskeyStartResponse(
     val options: String

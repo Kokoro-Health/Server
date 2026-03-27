@@ -1,6 +1,5 @@
 package health.kokoro.application.security.passkey
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.yubico.webauthn.AssertionRequest
 import com.yubico.webauthn.data.PublicKeyCredentialCreationOptions
 import health.kokoro.domain.model.user.security.passkey.ChallengeType
@@ -9,7 +8,7 @@ import health.kokoro.domain.port.user.passkey.PasskeyChallengeRepository
 import org.springframework.stereotype.Component
 import java.time.Instant
 import java.time.temporal.ChronoUnit
-import java.util.UUID
+import java.util.*
 
 @Component
 class PasskeyChallengeStore(
@@ -41,15 +40,17 @@ class PasskeyChallengeStore(
 
     fun storeAssertion(email: String, options: AssertionRequest) {
         repository.deleteByEmail(email)
-        repository.save(PasskeyChallenge(
-            email = email,
-            type = ChallengeType.AUTHENTICATION,
-            data = options.toCredentialsGetJson(),
-            expiresAt = Instant.now().plus(5, ChronoUnit.MINUTES),
-            id = UUID.randomUUID(),
-            userId = null,
-            createdAt = Instant.now()
-        ))
+        repository.save(
+            PasskeyChallenge(
+                email = email,
+                type = ChallengeType.AUTHENTICATION,
+                data = options.toCredentialsGetJson(),
+                expiresAt = Instant.now().plus(5, ChronoUnit.MINUTES),
+                id = UUID.randomUUID(),
+                userId = null,
+                createdAt = Instant.now()
+            )
+        )
     }
 
     fun getAssertion(email: String): AssertionRequest? {

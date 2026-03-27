@@ -10,19 +10,19 @@ import health.kokoro.domain.model.user.security.passkey.PasskeyChallenge
 import health.kokoro.domain.port.user.passkey.PasskeyChallengeRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 @Service
 class RegisterPasskeyStart(
     private val relyingParty: RelyingParty,
     private val challengeRepository: PasskeyChallengeRepository,
 ) {
-        fun executeToJson(user: User): String {
+    fun executeToJson(user: User): String {
         var displayName = user.firstName + " "
-            if (user.middleName != null) {
-                displayName += user.middleName + " "
-            }
-            displayName += user.lastName
+        if (user.middleName != null) {
+            displayName += user.middleName + " "
+        }
+        displayName += user.lastName
         val options = relyingParty.startRegistration(
             StartRegistrationOptions.builder()
                 .user(

@@ -65,7 +65,7 @@ class SecurityBeans(
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
 
-        @Bean
+    @Bean
     fun relyingParty(credentialRepository: CredentialRepository): RelyingParty {
         return RelyingParty.builder()
             .identity(

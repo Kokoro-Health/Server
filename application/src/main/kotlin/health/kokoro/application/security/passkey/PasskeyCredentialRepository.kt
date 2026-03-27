@@ -7,16 +7,15 @@ import com.yubico.webauthn.data.PublicKeyCredentialDescriptor
 import health.kokoro.domain.port.user.UserRepository
 import health.kokoro.domain.port.user.passkey.PasskeyRepository
 import org.springframework.stereotype.Component
-import java.util.Optional
-import java.util.UUID
+import java.util.*
 
 @Component
 class PasskeyCredentialRepository(
     private val repo: PasskeyRepository,
     private val userRepo: UserRepository
-): CredentialRepository {
+) : CredentialRepository {
     override fun getCredentialIdsForUsername(username: String): Set<PublicKeyCredentialDescriptor?> {
-               return repo.findByEmail(username).map {
+        return repo.findByEmail(username).map {
             PublicKeyCredentialDescriptor.builder()
                 .id(ByteArray.fromBase64Url(it.credentialId))
                 .build()
@@ -24,12 +23,12 @@ class PasskeyCredentialRepository(
     }
 
     override fun getUserHandleForUsername(username: String): Optional<ByteArray> {
-                val user = userRepo.findByEmail(username) ?: return Optional.empty()
+        val user = userRepo.findByEmail(username) ?: return Optional.empty()
         return Optional.of(ByteArray.fromBase64Url(user.id.toString()))
     }
 
     override fun getUsernameForUserHandle(userHandle: ByteArray): Optional<String> {
-                val user = userRepo.findById(UUID.fromString(userHandle.base64Url)) ?: return Optional.empty()
+        val user = userRepo.findById(UUID.fromString(userHandle.base64Url)) ?: return Optional.empty()
         return Optional.of(user.email)
     }
 
@@ -37,7 +36,7 @@ class PasskeyCredentialRepository(
         credentialId: ByteArray,
         userHandle: ByteArray
     ): Optional<RegisteredCredential> {
-                val passkey = repo.findByCredentialId(credentialId.base64Url) ?: return Optional.empty()
+        val passkey = repo.findByCredentialId(credentialId.base64Url) ?: return Optional.empty()
         return Optional.of(
             RegisteredCredential.builder()
                 .credentialId(credentialId)
@@ -49,7 +48,7 @@ class PasskeyCredentialRepository(
     }
 
     override fun lookupAll(credentialId: ByteArray): Set<RegisteredCredential> {
-                val passkey = repo.findByCredentialId(credentialId.base64Url) ?: return emptySet()
+        val passkey = repo.findByCredentialId(credentialId.base64Url) ?: return emptySet()
         return setOf(
             RegisteredCredential.builder()
                 .credentialId(credentialId)
