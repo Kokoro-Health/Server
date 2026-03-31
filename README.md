@@ -25,28 +25,29 @@ end
 
 ```mermaid 
 mindmap
-root((Kokoro Server))
-API
-REST endpoints
-Requestgresponse DTOs
-Validation
-API contracts mapping
-Application
-Use case implementation
-Business orchestration
-Transaction management
-Workflow coordination
-Domain
-Business entities
-Core domain models
-Port interfaces
-Framework-agnostic
-Infrastructure
-Port implementations
-JPA entities
-Database mappers
-External API clients
-Technical concerns
+  root((Kokoro Server))
+    API
+      REST endpoints
+      Request/response DTOs
+      Validation
+      API contracts mapping
+    Application
+      Use case implementation
+      Business orchestration
+      Transaction management
+      Workflow coordination
+    Domain
+      Business entities
+      Core domain models
+      Port interfaces
+      Framework-agnostic
+    Infrastructure
+      Port implementations
+      JPA entities
+      Database mappers
+      External API clients
+      Technical concerns
+
 ```
 
 **Domain** - The heart of the application
