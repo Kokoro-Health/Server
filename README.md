@@ -23,7 +23,8 @@ end
 
 ### Module Responsibilities
 
-```mermaid mindmap
+```mermaid 
+mindmap
 root((Kokoro Server))
 API
 REST endpoints
