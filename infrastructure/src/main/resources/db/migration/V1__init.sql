@@ -9,6 +9,18 @@ CREATE TABLE energy_entries
     CONSTRAINT pk_energy_entries PRIMARY KEY (id)
 );
 
+CREATE TABLE file_upload
+(
+    id         UUID NOT NULL,
+    updated_at TIMESTAMP WITHOUT TIME ZONE,
+    created_at TIMESTAMP WITHOUT TIME ZONE,
+    name       VARCHAR(255),
+    type       VARCHAR(255),
+    user_id    UUID,
+    uri        VARCHAR(255),
+    CONSTRAINT pk_file_upload PRIMARY KEY (id)
+);
+
 CREATE TABLE journal_entries
 (
     id         UUID NOT NULL,
@@ -88,16 +100,16 @@ CREATE TABLE settings
 
 CREATE TABLE users
 (
-    id                  UUID         NOT NULL,
-    updated_at          TIMESTAMP WITHOUT TIME ZONE,
-    created_at          TIMESTAMP WITHOUT TIME ZONE,
-    first_name          VARCHAR(255) NOT NULL,
-    middle_name         VARCHAR(255),
-    last_name           VARCHAR(255) NOT NULL,
-    email               VARCHAR(255) NOT NULL,
-    profile_picture_url VARCHAR(255),
-    security_id         UUID         NOT NULL,
-    settings_id         UUID,
+    id                 UUID         NOT NULL,
+    updated_at         TIMESTAMP WITHOUT TIME ZONE,
+    created_at         TIMESTAMP WITHOUT TIME ZONE,
+    first_name         VARCHAR(255) NOT NULL,
+    middle_name        VARCHAR(255),
+    last_name          VARCHAR(255) NOT NULL,
+    email              VARCHAR(255) NOT NULL,
+    profile_picture_id UUID,
+    security_id        UUID         NOT NULL,
+    settings_id        UUID,
     CONSTRAINT pk_users PRIMARY KEY (id)
 );
 
@@ -108,6 +120,9 @@ ALTER TABLE users
     ADD CONSTRAINT uc_users_email UNIQUE (email);
 
 ALTER TABLE users
+    ADD CONSTRAINT uc_users_profile_picture UNIQUE (profile_picture_id);
+
+ALTER TABLE users
     ADD CONSTRAINT uc_users_security UNIQUE (security_id);
 
 ALTER TABLE users
@@ -115,6 +130,9 @@ ALTER TABLE users
 
 ALTER TABLE energy_entries
     ADD CONSTRAINT FK_ENERGY_ENTRIES_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
+
+ALTER TABLE file_upload
+    ADD CONSTRAINT FK_FILE_UPLOAD_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE journal_entries
     ADD CONSTRAINT FK_JOURNAL_ENTRIES_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
@@ -127,6 +145,9 @@ ALTER TABLE passkey_challenges
 
 ALTER TABLE settings
     ADD CONSTRAINT FK_SETTINGS_ON_NOTIFICATION_SETTINGS FOREIGN KEY (notification_settings_id) REFERENCES notification_settings (id);
+
+ALTER TABLE users
+    ADD CONSTRAINT FK_USERS_ON_PROFILE_PICTURE FOREIGN KEY (profile_picture_id) REFERENCES file_upload (id);
 
 ALTER TABLE users
     ADD CONSTRAINT FK_USERS_ON_SECURITY FOREIGN KEY (security_id) REFERENCES security_users (id);

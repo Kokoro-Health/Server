@@ -52,9 +52,9 @@ class SignUp(
             email = command.email,
             security = security,
             settings = settings,
-            profilePictureUrl = null,
             createdAt = Instant.now(),
-            updatedAt = Instant.now()
+            updatedAt = Instant.now(),
+            profilePicture =null
         )
 
         user = userRepository.save(user)

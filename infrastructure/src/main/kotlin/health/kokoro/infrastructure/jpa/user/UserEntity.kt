@@ -3,6 +3,7 @@ package health.kokoro.infrastructure.jpa.user
 import health.kokoro.domain.model.security.EncryptedData
 import health.kokoro.infrastructure.converter.EncryptedDataConverter
 import health.kokoro.infrastructure.jpa.BaseEntity
+import health.kokoro.infrastructure.jpa.file.FileUploadEntity
 import health.kokoro.infrastructure.jpa.user.security.UserSecurityEntity
 import health.kokoro.infrastructure.jpa.user.settings.SettingsEntity
 import jakarta.persistence.*
@@ -20,7 +21,7 @@ class UserEntity(
         nullable = false
     ) @Convert(converter = EncryptedDataConverter::class) var lastName: EncryptedData,
     @Column(name = "email", nullable = false, unique = true) var email: String,
-    @Column(name = "profile_picture_url") var profilePictureUrl: String?,
+    @JoinColumn(name = "profile_picture_id") @OneToOne var profilePicture: FileUploadEntity?,
     @JoinColumn(
         "security_id",
         nullable = false

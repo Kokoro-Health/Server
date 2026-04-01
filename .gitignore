@@ -50,3 +50,6 @@ local.env
 
 ### Encryption Keys ###
 /keys/
+
+### Files ###
+/files/
