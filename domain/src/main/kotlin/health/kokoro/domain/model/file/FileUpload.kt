@@ -1,7 +1,7 @@
 package health.kokoro.domain.model.file
 
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 data class FileUpload(
     val id: UUID,

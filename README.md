@@ -1,6 +1,7 @@
 # Kokoro Server
 
-A modular Spring Boot application built with Kotlin, following clean architecture principles to ensure maintainability and separation of concerns.
+A modular Spring Boot application built with Kotlin, following clean architecture principles to ensure maintainability
+and separation of concerns.
 
 ## Architecture Overview
 
@@ -51,24 +52,28 @@ mindmap
 ```
 
 **Domain** - The heart of the application
+
 - Contains business entities and core domain models
 - Defines port interfaces (repository contracts)
 - No external dependencies, purely domain logic
 - Framework-agnostic and highly testable
 
 **Application** - Business orchestration
+
 - Implements use cases and application services
 - Coordinates domain objects to fulfill business requirements
 - Acts as the bridge between API and Domain layers
 - Handles transaction boundaries and workflow logic
 
 **Infrastructure** - Technical implementation
+
 - Provides concrete implementations of domain ports
 - Contains JPA entities, database mappers, and adapters
 - Manages persistence, external APIs, and technical concerns
 - Implements the dependency inversion principle
 
 **API** - External interface
+
 - Exposes REST endpoints for client communication
 - Handles request response DTOs and validation
 - Maps between API contracts and application commands
@@ -110,6 +115,7 @@ Each module follows standard MavengGradle conventions with source code located i
 `src/main/kotlin/health/kokoro/<module>/`
 
 The project is organized into these main modules:
+
 - `domain` - Core business logic
 - `application` - Use cases and services
 - `infrastructure` - Technical implementations

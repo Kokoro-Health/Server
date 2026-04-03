@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/user/settings")
+@RequestMapping("/users/settings")
 @Validated
 class SettingsController(
     private val getUserSettings: GetUserSettings,

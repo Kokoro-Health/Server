@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
-@RequestMapping("/journal")
+@RequestMapping("/journals")
 class JournalController(
     private val getCurrentJournal: GetCurrentJournal,
     private val updateCurrentJournal: UpdateCurrentJournal,

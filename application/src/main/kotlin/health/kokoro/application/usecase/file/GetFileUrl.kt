@@ -3,7 +3,7 @@ package health.kokoro.application.usecase.file
 import health.kokoro.domain.model.file.FileType
 import health.kokoro.domain.model.file.FileUpload
 import org.springframework.stereotype.Service
-import java.util.Base64
+import java.util.*
 
 @Service
 class GetFileUrl {

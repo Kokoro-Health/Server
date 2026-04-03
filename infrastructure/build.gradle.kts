@@ -29,7 +29,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     runtimeOnly("org.postgresql:postgresql")
-implementation("org.apache.tika:tika-core:3.3.0")
+    implementation("org.apache.tika:tika-core:3.3.0")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
 

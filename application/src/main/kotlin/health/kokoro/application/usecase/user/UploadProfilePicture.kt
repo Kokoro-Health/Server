@@ -17,13 +17,15 @@ class UploadProfilePicture(
             throw IllegalArgumentException("Cannot upload empty file")
         }
 
-       val file = fileUploadService.upload(
+        val file = fileUploadService.upload(
             inputStream = file.inputStream,
             filename = file.originalFilename ?: "profile-picture",
             expected = FileType.IMAGE,
             user = user
         )
+        val oldPfp = user.profilePicture;
         user.profilePicture = file
         userRepository.save(user)
+        oldPfp?.let { fileUploadService.delete(it.id) }
     }
 }

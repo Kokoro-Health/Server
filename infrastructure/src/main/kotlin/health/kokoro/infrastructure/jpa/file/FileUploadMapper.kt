@@ -24,11 +24,11 @@ class FileUploadMapper(
 
     fun toEntity(domain: FileUpload): FileUploadEntity {
         val user = userJpa.findById(domain.uploadedByUserId).orElseThrow()
-    return FileUploadEntity(
-        name = domain.name,
-        type = domain.type,
-        uploadedBy =user,
-        uri = domain.pathName
-    )
+        return FileUploadEntity(
+            name = domain.name,
+            type = domain.type,
+            uploadedBy = user,
+            uri = domain.pathName
+        )
     }
 }

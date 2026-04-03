@@ -54,7 +54,7 @@ class SignUp(
             settings = settings,
             createdAt = Instant.now(),
             updatedAt = Instant.now(),
-            profilePicture =null
+            profilePicture = null
         )
 
         user = userRepository.save(user)

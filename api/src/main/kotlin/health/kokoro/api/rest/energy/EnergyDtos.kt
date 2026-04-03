@@ -9,7 +9,7 @@ import java.time.Instant
 data class EnergyInfoDateDto(
     val date: Instant,
     val amount: Int,
-    val reason: String?
+    @field:Schema(nullable = true) val reason: String?
 )
 
 data class EnergyInfoDto(

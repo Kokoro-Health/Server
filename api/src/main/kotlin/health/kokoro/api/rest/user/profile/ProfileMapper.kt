@@ -1,6 +1,7 @@
 package health.kokoro.api.rest.user.profile
 
 import health.kokoro.application.usecase.user.GetProfile
+import health.kokoro.application.usecase.user.UpdateProfile
 import org.springframework.stereotype.Component
 
 @Component
@@ -19,4 +20,13 @@ class ProfileMapper {
         dateFormat = response.dateFormat,
         verified = response.verified
     )
+
+    fun toCommand(request: ProfileRequestDto): UpdateProfile.Command {
+        return UpdateProfile.Command(
+            firstName = request.firstName,
+            middleName = request.middleName,
+            lastName = request.lastName,
+            email = request.email
+        )
+    }
 }

@@ -3,7 +3,6 @@ package health.kokoro.infrastructure.util.file
 import health.kokoro.domain.model.file.FileType
 import org.apache.tika.Tika
 import org.apache.tika.mime.MimeTypeException
-import org.apache.tika.mime.MimeTypes
 import org.springframework.stereotype.Component
 import java.io.File
 import java.io.IOException
