@@ -1,17 +1,17 @@
 <component name="ProjectRunConfigurationManager">
-    <configuration default="false" name="KokoroRunner" type="SpringBootApplicationConfigurationType"
-                   factoryName="Spring Boot" nameIsGenerated="true">
-        <option name="envFilePaths">
-            <option value="$PROJECT_DIR$/local.env"/>
-        </option>
-        <module name="server.api.main"/>
-        <selectedOptions>
-            <option name="environmentVariables"/>
-        </selectedOptions>
-        <option name="SPRING_BOOT_MAIN_CLASS" value="health.kokoro.api.KokoroRunner"/>
-        <option name="VM_PARAMETERS" value="-Djava.net.preferIPv4Stack=true "/>
-        <method v="2">
-            <option name="Make" enabled="true"/>
-        </method>
-    </configuration>
+  <configuration default="false" name="KokoroRunner" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="ACTIVE_PROFILES" value="dev" />
+    <option name="envFilePaths">
+      <option value="$PROJECT_DIR$/local.env" />
+    </option>
+    <module name="server.api.main" />
+    <selectedOptions>
+      <option name="environmentVariables" />
+    </selectedOptions>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="health.kokoro.api.KokoroRunner" />
+    <option name="VM_PARAMETERS" value="-Djava.net.preferIPv4Stack=true " />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
 </component>
