@@ -51,7 +51,7 @@ class SecurityBeans(
                 }
             }
             .authorizeHttpRequests {
-                it.requestMatchers("/auth/signin", "/auth/signup", "/auth/reset-password*/**", "/docs*/**", "/actuator/health").permitAll()
+                it.requestMatchers("/auth/signin", "/auth/signup", "/auth/reset-password*/**", "/docs*/**", "/actuator*/**").permitAll()
                     .anyRequest().authenticated()
             }
             .userDetailsService(userDetailsService)

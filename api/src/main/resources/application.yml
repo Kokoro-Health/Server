@@ -30,7 +30,7 @@ spring:
 management:
   endpoints:
     web:
-      base-path: /actuator/health
+      base-path: /actuator
       exposure:
         include: health,info
   endpoint:
