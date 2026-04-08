@@ -8,6 +8,7 @@ kokoro:
       - localhost:5173
       - kokoro.health
       - api.kokoro.health
+      - 10.0.1.10
       - ${FRONTEND_URL}
 #springdoc:
 #  api-docs:
