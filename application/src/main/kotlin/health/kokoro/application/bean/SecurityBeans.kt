@@ -6,6 +6,8 @@ import com.yubico.webauthn.data.RelyingPartyIdentity
 import health.kokoro.application.config.CorsConfig
 import health.kokoro.application.security.JwtFilter
 import health.kokoro.application.security.UserDetailsServiceImpl
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -24,14 +26,18 @@ import org.springframework.web.cors.CorsConfiguration
 class SecurityBeans(
     private val jwtFilter: JwtFilter,
     private val userDetailsService: UserDetailsServiceImpl,
-    private val config: CorsConfig
+    private val config: CorsConfig,
 ) {
+    companion object {
+        val logger: Logger = LoggerFactory.getLogger(this::class.qualifiedName)
+    }
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http.csrf { it.disable() }
             .httpBasic { it.disable() }
             .cors { cors ->
                 cors.configurationSource { request ->
+                    logger.info("Received Request: $request")
                     val corsConfig = CorsConfiguration()
                     corsConfig.allowedOrigins = config.allowOrigin
                     corsConfig.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
