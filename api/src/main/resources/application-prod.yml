@@ -6,6 +6,11 @@ kokoro:
   cors:
     allow-origin:
       - ${FRONTEND_URL}
+#springdoc:
+#  api-docs:
+#    enabled: false
 springdoc:
   api-docs:
-    enabled: false
+    path: /docs
+  swagger-ui:
+    path: /docs/swagger
