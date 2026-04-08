@@ -1,5 +1,7 @@
 package health.kokoro.api
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition
+import io.swagger.v3.oas.annotations.servers.Server
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -15,6 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableJpaRepositories(basePackages = ["health.kokoro.infrastructure.jpa"])
 @EntityScan(basePackages = ["health.kokoro.infrastructure.jpa"])
 @EnableJpaAuditing
+@OpenAPIDefinition(servers = [Server(url  ="/", description = "")])
 @EnableScheduling
 class KokoroRunner
 
