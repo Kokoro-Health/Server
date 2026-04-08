@@ -18,7 +18,4 @@ ENV SERVER_PORT=8080
 
 EXPOSE 8080
 
-HEALTHCHECK --interval=30s --timeout=3s \
-  CMD wget --quiet --tries=1 --spider http://localhost:8080/actuator/health || exit 1
-
 ENTRYPOINT ["java", "-XX:+UseParallelGC", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
