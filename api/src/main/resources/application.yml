@@ -27,6 +27,16 @@ spring:
           writetimeout: 5000
           starttls:
             enable: ${MAIL_STARTTLS_ENABLE}
+management:
+  endpoints:
+    web:
+      base-path: /actuator/health
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when_authorized
+      show-components: when_authorized
 server:
   address: 0.0.0.0
   port: 8080
@@ -39,4 +49,3 @@ kokoro:
     secret: ${JWT_SECRET}
     expiration: 604800000 # 7 days
     issuer: kokoro
-
