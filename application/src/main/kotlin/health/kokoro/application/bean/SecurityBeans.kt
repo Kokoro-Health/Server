@@ -6,6 +6,7 @@ import com.yubico.webauthn.data.RelyingPartyIdentity
 import health.kokoro.application.config.CorsConfig
 import health.kokoro.application.security.JwtFilter
 import health.kokoro.application.security.UserDetailsServiceImpl
+import health.kokoro.domain.port.spring.ProfileHelper
 import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
