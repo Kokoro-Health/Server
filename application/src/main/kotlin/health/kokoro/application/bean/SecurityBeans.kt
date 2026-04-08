@@ -42,7 +42,7 @@ class SecurityBeans(
                     val corsConfig = CorsConfiguration()
                     corsConfig.allowedOrigins = config.allowOrigin
                     corsConfig.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                    corsConfig.allowedHeaders = listOf("*")
+                    corsConfig.allowedHeaders = listOf("*", "Referer", "Origin")
                     corsConfig.allowCredentials = true
                     corsConfig.maxAge = 3600L
                     corsConfig
