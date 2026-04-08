@@ -20,8 +20,9 @@ class AuthDtoMapper {
         return ResponseCookie.from("access_token", token)
             .path("/")
             .httpOnly(true)
-            .secure(false)
+            .secure(true)
             .sameSite("Lax")
+            .secure(true)
             .maxAge(age)
             .build()
     }
