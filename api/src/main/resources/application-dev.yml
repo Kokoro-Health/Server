@@ -4,6 +4,8 @@ spring:
       enabled: true
       lifecycle-management: start_and_stop
       file: compose.yaml
+      profiles:
+        active: dev
   mail:
     properties:
       mail:

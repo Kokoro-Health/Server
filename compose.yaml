@@ -1,24 +1,60 @@
 version: '3.9'
 
 services:
+# Infrastructure Services
+  vault:
+    image: hashicorp/vault:latest
+    container_name: kokoro_vault
+    ports:
+      - "8200:8200"
+
+# Production Services
+  api-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./files:/app/files
+      - ./keys:/app/keys
+    profiles: [ "prod" ]
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_PORT=${MAIL_PORT}
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - MAIL_STARTTLS_ENABLE=${MAIL_STARTTLS_ENABLE}
+      - STORAGE_PATH=${STORAGE_PATH}
+      - ENCRYPTION_KEY_STORE_PATH=${ENCRYPTION_KEY_STORE_PATH}
+      - JWT_SECRET=${JWT_SECRET}
+      - FRONTEND_URL=${FRONTEND_URL}
+
+# Development Services
   postgres:
     image: postgres:latest
     container_name: kokoro_db
-    env_file: local.env
     environment:
-      - POSTGRES_DB=kokoro_db
-      - POSTGRES_USER=kokoro
-      - POSTGRES_PASSWORD=kokoroSuperSecurePassword
+      - POSTGRES_DB=${DB_NAME:-kokoro}
+      - POSTGRES_USER=${DB_USERNAME:-kokoro-usr}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-C7roasy5rFKh9vbheLOe}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U kokoro" ]
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
       interval: 5s
       retries: 5
     labels:
       - "org.springframework.boot.service-connection=false"
+    profiles: [ "dev" ]
 
   maildev:
     image: maildev/maildev:latest
@@ -26,12 +62,8 @@ services:
     ports:
       - "1080:1080"
       - "1025:1025"
+    profiles: [ "dev" ]
 
-  vault:
-    image: hashicorp/vault:latest
-    container_name: kokoro_vault
-    ports:
-      - "8200:8200"
 
 volumes:
   postgres_data:
