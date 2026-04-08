@@ -5,10 +5,9 @@ spring:
 kokoro:
   cors:
     allow-origin:
-      - localhost:5173
-      - kokoro.health
-      - api.kokoro.health
-      - 10.0.1.10
+      - http://localhost:5173
+      - https://kokoro.health
+      - https://api.kokoro.health
       - ${FRONTEND_URL}
 #springdoc:
 #  api-docs:
