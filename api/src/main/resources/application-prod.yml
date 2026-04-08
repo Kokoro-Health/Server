@@ -9,14 +9,9 @@ kokoro:
       - https://kokoro.health
       - https://api.kokoro.health
       - ${FRONTEND_URL}
-#springdoc:
-#  api-docs:
-#    enabled: false
+springdoc:
+  api-docs:
+    enabled: false
 server:
   forward-headers-strategy: framework
   port: 8080
-springdoc:
-  api-docs:
-    path: /docs
-  swagger-ui:
-    path: /docs/swagger
