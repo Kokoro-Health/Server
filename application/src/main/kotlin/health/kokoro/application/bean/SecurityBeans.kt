@@ -45,6 +45,10 @@ class SecurityBeans(
                     corsConfig.allowedHeaders = listOf("*", "Referer", "Origin")
                     corsConfig.allowCredentials = true
                     corsConfig.maxAge = 3600L
+
+                    if (request.getHeader("Origin") == null || request.getHeader("Origin") == request.getHeader("Host")) {
+                        corsConfig.allowedOrigins = listOf(request.getHeader("Origin") ?: "*")
+                    }
                     corsConfig
                 }
             }
