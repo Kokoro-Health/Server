@@ -13,6 +13,9 @@ kokoro:
 #springdoc:
 #  api-docs:
 #    enabled: false
+server:
+  forward-headers-strategy: framework
+  port: 8080
 springdoc:
   api-docs:
     path: /docs
