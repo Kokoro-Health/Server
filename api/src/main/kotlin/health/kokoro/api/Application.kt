@@ -17,7 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableJpaRepositories(basePackages = ["health.kokoro.infrastructure.jpa"])
 @EntityScan(basePackages = ["health.kokoro.infrastructure.jpa"])
 @EnableJpaAuditing
-@OpenAPIDefinition(servers = [Server(url  ="/", description = "Request from the current instance.")])
+@OpenAPIDefinition(servers = [Server(url = "/", description = "Request from the current instance.")])
 @EnableScheduling
 class KokoroRunner
 

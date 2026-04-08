@@ -7,13 +7,13 @@ import org.springframework.stereotype.Repository
 @Repository
 class ProfileHelperImpl(
     private val env: Environment
-): ProfileHelper {
+) : ProfileHelper {
     override fun isDev(): Boolean {
-       return env.activeProfiles.contains(DEV_NAME)
+        return env.activeProfiles.contains(DEV_NAME)
     }
 
     override fun isProd(): Boolean {
-       return env.activeProfiles.contains(PROD_NAME)
+        return env.activeProfiles.contains(PROD_NAME)
     }
 
     companion object {

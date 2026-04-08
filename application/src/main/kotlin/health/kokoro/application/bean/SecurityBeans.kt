@@ -6,8 +6,6 @@ import com.yubico.webauthn.data.RelyingPartyIdentity
 import health.kokoro.application.config.CorsConfig
 import health.kokoro.application.security.JwtFilter
 import health.kokoro.application.security.UserDetailsServiceImpl
-import health.kokoro.domain.port.spring.ProfileHelper
-import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
@@ -33,6 +31,7 @@ class SecurityBeans(
     companion object {
         val logger: Logger = LoggerFactory.getLogger(this::class.qualifiedName)
     }
+
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http.csrf { it.disable() }
@@ -51,7 +50,13 @@ class SecurityBeans(
                 }
             }
             .authorizeHttpRequests {
-                it.requestMatchers("/auth/signin", "/auth/signup", "/auth/reset-password*/**", "/docs*/**", "/actuator*/**").permitAll()
+                it.requestMatchers(
+                    "/auth/signin",
+                    "/auth/signup",
+                    "/auth/reset-password*/**",
+                    "/docs*/**",
+                    "/actuator*/**"
+                ).permitAll()
                     .anyRequest().authenticated()
             }
             .userDetailsService(userDetailsService)

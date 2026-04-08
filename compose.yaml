@@ -1,14 +1,14 @@
 version: '3.9'
 
 services:
-# Infrastructure Services
+  # Infrastructure Services
   vault:
     image: hashicorp/vault:latest
     container_name: kokoro_vault
     ports:
       - "8200:8200"
 
-# Production Services
+  # Production Services
   api-prod:
     build:
       context: .
@@ -36,7 +36,7 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - FRONTEND_URL=${FRONTEND_URL}
 
-# Development Services
+  # Development Services
   postgres:
     image: postgres:latest
     container_name: kokoro_db
