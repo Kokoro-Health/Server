@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/UpdateProfile.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyDtos.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyDtos.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/journal/JournalController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/journal/JournalController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/streak/StreakController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/streak/StreakController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileDtos.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileDtos.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/UploadProfilePicture.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/UploadProfilePicture.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +220,10 @@
       <workItem from="1775060510840" duration="6321000" />
       <workItem from="1775118294275" duration="621000" />
       <workItem from="1775156077014" duration="3691000" />
-      <workItem from="1775221897083" duration="1804000" />
+      <workItem from="1775221897083" duration="2773000" />
+      <workItem from="1775230881057" duration="1997000" />
+      <workItem from="1775566249124" duration="915000" />
+      <workItem from="1775630920679" duration="302000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />

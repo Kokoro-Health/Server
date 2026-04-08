@@ -27,32 +27,16 @@ spring:
           writetimeout: 5000
           starttls:
             enable: ${MAIL_STARTTLS_ENABLE}
-        debug: true
-  docker:
-    compose:
-      enabled: true
-      lifecycle-management: start_and_stop
-      file: compose.yaml
-springdoc:
-  api-docs:
-    path: /docs
-  swagger-ui:
-    path: /docs/swagger
-
 server:
   address: 0.0.0.0
   port: 8080
 kokoro:
   storage:
-    path: "./files"
+    path: ${STORAGE_PATH}
   encryption:
-    keyStorePath: ${ENCRYPTION_KEY_STORE_PATH:./keys}
+    keyStorePath: ${ENCRYPTION_KEY_STORE_PATH}
   jwt:
     secret: ${JWT_SECRET}
     expiration: 604800000 # 7 days
     issuer: kokoro
-  cors:
-    allow-origin:
-      - "capacitor://localhost"
-      - "http://localhost:5173"
-      - ${FRONTEND_URL}
+

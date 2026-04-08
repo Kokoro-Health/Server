@@ -1,0 +1,11 @@
+spring:
+  docker:
+    compose:
+      enabled: false
+kokoro:
+  cors:
+    allow-origin:
+      - ${FRONTEND_URL}
+springdoc:
+  api-docs:
+    enabled: false

@@ -1,0 +1,21 @@
+spring:
+  docker:
+    compose:
+      enabled: true
+      lifecycle-management: start_and_stop
+      file: compose.yaml
+  mail:
+    properties:
+      mail:
+        debug: true
+kokoro:
+  cors:
+    allow-origin:
+      - "capacitor://localhost"
+      - "http://localhost:5173"
+      - ${FRONTEND_URL}
+springdoc:
+  api-docs:
+    path: /docs
+  swagger-ui:
+    path: /docs/swagger
