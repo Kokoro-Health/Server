@@ -5,6 +5,8 @@ spring:
 kokoro:
   cors:
     allow-origin:
+      - *
+      - localhost:5173
       - ${FRONTEND_URL}
 #springdoc:
 #  api-docs:
