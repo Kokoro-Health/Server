@@ -6,7 +6,7 @@ import health.kokoro.application.usecase.journal.UpdateCurrentJournal
 import health.kokoro.domain.model.user.User
 import io.swagger.v3.oas.annotations.media.Schema
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -18,8 +18,7 @@ class JournalController(
     private val getJournals: GetJournals
 ) {
     @GetMapping
-    fun getCurrentJournal(): ResponseEntity<JournalEntryResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun getCurrentJournal(@AuthenticationPrincipal user: User): ResponseEntity<JournalEntryResponseDto> {
         val journal = getCurrentJournal.execute(
             user
         )
@@ -31,9 +30,9 @@ class JournalController(
     @PutMapping("/{id}")
     fun updateCurrentJournal(
         @RequestBody content: JournalRequestDto,
-        @PathVariable @Schema(nullable = true) id: UUID?
+        @PathVariable @Schema(nullable = true) id: UUID?,
+        @AuthenticationPrincipal user: User
     ): ResponseEntity<JournalEntryResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
         val contentSaved = updateCurrentJournal.execute(user, id, content.content)
         return ResponseEntity.ok(
             JournalEntryResponseDto(id = contentSaved.id, content.content, contentSaved.availableUntil)
@@ -43,8 +42,8 @@ class JournalController(
     @PutMapping
     fun updateCurrentJournal(
         @RequestBody content: JournalRequestDto,
+        @AuthenticationPrincipal user: User
     ): ResponseEntity<JournalEntryResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
         val contentSaved = updateCurrentJournal.execute(user, null, content.content)
         return ResponseEntity.ok(
             JournalEntryResponseDto(id = contentSaved.id, content.content, contentSaved.availableUntil)
@@ -53,9 +52,9 @@ class JournalController(
 
     @GetMapping("/{id}")
     fun getJournalById(
-        @PathVariable id: UUID
+        @PathVariable id: UUID,
+        @AuthenticationPrincipal user: User
     ): ResponseEntity<JournalEntryResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
         val journal = getJournals.getById(id, user.id!!)
         return ResponseEntity.ok(
             JournalEntryResponseDto(
@@ -67,8 +66,7 @@ class JournalController(
     }
 
     @GetMapping("/recent")
-    fun getRecentJournalsShort(): ResponseEntity<List<ShortJournalResponseDto>> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun getRecentJournalsShort(@AuthenticationPrincipal user: User): ResponseEntity<List<ShortJournalResponseDto>> {
         val recents = getJournals.getAll(user.id!!)
 
         return ResponseEntity.ok(recents.map {

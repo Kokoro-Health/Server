@@ -7,7 +7,7 @@ import health.kokoro.application.usecase.energy.GetReasons
 import health.kokoro.domain.model.user.User
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import java.time.Instant
@@ -23,9 +23,9 @@ class EnergyController(
 ) {
     @GetMapping("/{date}")
     fun getEnergyEntriesForDay(
-        @PathVariable date: Instant
+        @PathVariable date: Instant,
+        @AuthenticationPrincipal user: User
     ): ResponseEntity<EnergyDetailsResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
         val details = getEnergyEntries.getDetails(user, date)
         return ResponseEntity.ok(
             EnergyDetailsResponseDto(
@@ -44,8 +44,7 @@ class EnergyController(
     }
 
     @GetMapping
-    fun getEnergyInfoToday(): ResponseEntity<EnergyInfoResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun getEnergyInfoToday(@AuthenticationPrincipal user: User): ResponseEntity<EnergyInfoResponseDto> {
         return ResponseEntity.ok(
             EnergyInfoResponseDto(
                 getEnergyEntries.getAverageToday(user),
@@ -58,24 +57,24 @@ class EnergyController(
     @GetMapping("/recent")
     fun getEnergyForDateRange(
         @RequestParam("from") from: Instant,
-        @RequestParam("to") to: Instant,
+        @RequestParam("to") to: Instant, @AuthenticationPrincipal user: User
     ): ResponseEntity<List<EnergyInfoDateResponseDto>> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
         val entries = getEnergyEntries.getForDateRange(user, from, to)
             .map { EnergyInfoDateResponseDto(amount = it.amount, date = it.date, reason = it.reason) }
         return ResponseEntity.ok(entries)
     }
 
     @PostMapping
-    fun addEnergyEntry(@RequestBody @Valid body: EnergyRequestDto): ResponseEntity<Any> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun addEnergyEntry(
+        @RequestBody @Valid body: EnergyRequestDto,
+        @AuthenticationPrincipal user: User
+    ): ResponseEntity<Any> {
         addEnergyEntry.execute(body.amount, body.reason, user)
         return ResponseEntity.ok().build()
     }
 
     @GetMapping("/reasons")
-    fun getEnergyReasons(): ResponseEntity<ReasonsResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun getEnergyReasons(@AuthenticationPrincipal user: User): ResponseEntity<ReasonsResponseDto> {
         return ResponseEntity.ok(ReasonsResponseDto(getReasons.execute(user)))
     }
 }

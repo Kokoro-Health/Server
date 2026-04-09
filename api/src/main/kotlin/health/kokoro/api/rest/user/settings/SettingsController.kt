@@ -5,7 +5,7 @@ import health.kokoro.application.usecase.user.settings.UpdateUserSettings
 import health.kokoro.domain.model.user.User
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -18,17 +18,18 @@ class SettingsController(
     private val mapper: SettingsDtoMapper
 ) {
     @GetMapping
-    fun getSettings(): ResponseEntity<SettingsResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun getSettings(
+        @AuthenticationPrincipal user: User
+    ): ResponseEntity<SettingsResponseDto> {
         val settings = getUserSettings.execute(user)
         return ResponseEntity.ok(mapper.toDto(settings))
     }
 
     @PutMapping
     fun updateSettings(
+        @AuthenticationPrincipal user: User,
         @RequestBody @Valid body: SettingsRequestDto
     ): ResponseEntity<Unit> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
         updateUserSettings.execute(user, mapper.toDomain(body))
         return ResponseEntity.noContent().build()
     }

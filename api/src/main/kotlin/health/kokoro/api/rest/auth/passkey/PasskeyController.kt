@@ -1,6 +1,9 @@
 package health.kokoro.api.rest.auth.passkey
 
-import health.kokoro.application.usecase.auth.passkey.*
+import health.kokoro.application.usecase.auth.passkey.DeletePasskey
+import health.kokoro.application.usecase.auth.passkey.ListPasskeys
+import health.kokoro.application.usecase.auth.passkey.RegisterPasskeyFinish
+import health.kokoro.application.usecase.auth.passkey.RegisterPasskeyStart
 import health.kokoro.domain.model.user.User
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -36,7 +39,6 @@ class PasskeyController(
         val passkey = registerPasskeyFinish.execute(user, request.credential, request.deviceName)
         return ResponseEntity.ok(passkeyDtoMapper.toRegisterFinishResponse(passkey))
     }
-
 
 
     @GetMapping

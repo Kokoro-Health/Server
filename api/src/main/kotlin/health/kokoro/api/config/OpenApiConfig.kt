@@ -87,8 +87,10 @@ class OpenApiConfig {
 
                 val lcName = name.lowercase()
                 if (!lcName.contains("request") && !lcName.contains("response")) {
-                    throw IllegalStateException("DTO name '$name' does not match naming convention. " +
-                            "It should contain 'Request' or 'Response'.")
+                    throw IllegalStateException(
+                        "DTO name '$name' does not match naming convention. " +
+                                "It should contain 'Request' or 'Response'."
+                    )
                 }
 
                 if (!name.endsWith("Dto")) {

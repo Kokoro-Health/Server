@@ -15,8 +15,7 @@ data class SettingsRequestDto(
     val dateFormat: String
 )
 
-@Suppress("unused")
-class SettingsResponseDto(
+data class SettingsResponseDto(
     val theme: ThemeSetting,
     val language: LanguageSetting,
     val marketingEmails: Boolean,

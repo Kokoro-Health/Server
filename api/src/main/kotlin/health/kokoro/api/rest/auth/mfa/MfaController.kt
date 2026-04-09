@@ -7,7 +7,7 @@ import health.kokoro.application.usecase.auth.totp.VerifyMfaTotp
 import health.kokoro.domain.model.user.User
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -22,30 +22,32 @@ class MfaController(
     private val mfaMapper: MfaMapper
 ) {
     @GetMapping
-    fun getMfaSettings(): ResponseEntity<MfaSettingsResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun getMfaSettings(@AuthenticationPrincipal user: User): ResponseEntity<MfaSettingsResponseDto> {
         return ResponseEntity.ok(
             mfaMapper.toResponse(getMfaEnabled.execute(user))
         )
     }
 
     @PostMapping("/setup")
-    fun setupMfa(): ResponseEntity<SetupMfaResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun setupMfa(@AuthenticationPrincipal user: User): ResponseEntity<SetupMfaResponseDto> {
         val response = setupMfaTotp.execute(user)
         return ResponseEntity.ok(SetupMfaResponseDto(response.secret, response.qrCodeBase64))
     }
 
     @PostMapping("/verify")
-    fun verifyMfaCodeAndEnable(@RequestBody @Valid request: VerifyMfaRequestDto): ResponseEntity<Unit> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun verifyMfaCodeAndEnable(
+        @RequestBody @Valid request: VerifyMfaRequestDto,
+        @AuthenticationPrincipal user: User
+    ): ResponseEntity<Unit> {
         verifyMfaTotp.executeAndEnable(user, request.code)
         return ResponseEntity.noContent().build()
     }
 
     @DeleteMapping
-    fun disableMfa(@RequestBody @Valid request: DisableMfaRequestDto): ResponseEntity<Unit> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun disableMfa(
+        @RequestBody @Valid request: DisableMfaRequestDto,
+        @AuthenticationPrincipal user: User
+    ): ResponseEntity<Unit> {
         disableMfaTotp.execute(user, request.password)
         return ResponseEntity.noContent().build()
     }

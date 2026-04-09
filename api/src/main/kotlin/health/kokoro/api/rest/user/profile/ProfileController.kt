@@ -10,7 +10,6 @@ import jakarta.validation.Valid
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
@@ -27,8 +26,7 @@ class ProfileController(
     private val updateProfile: UpdateProfile
 ) {
     @GetMapping
-    fun getMyProfile(): ResponseEntity<ProfileResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun getMyProfile(@AuthenticationPrincipal user: User): ResponseEntity<ProfileResponseDto> {
         val profile = getProfile.execute(user.id!!)
         return ResponseEntity.ok(
             mapper.toDto(profile)
@@ -45,8 +43,7 @@ class ProfileController(
     }
 
     @PostMapping("/verify/request")
-    fun requestVerificationCode(): ResponseEntity<VerificationRequestResponseDto> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun requestVerificationCode(@AuthenticationPrincipal user: User): ResponseEntity<VerificationRequestResponseDto> {
         val response = requestVerificationCode.execute(user)
         return ResponseEntity.ok(
             VerificationRequestResponseDto(response.nextAllowedAt)
@@ -63,8 +60,7 @@ class ProfileController(
     }
 
     @PostMapping("/verify")
-    fun verifyCode(@RequestParam code: String): ResponseEntity<Any> {
-        val user = SecurityContextHolder.getContext().authentication.principal as User
+    fun verifyCode(@RequestParam code: String, @AuthenticationPrincipal user: User): ResponseEntity<Any> {
         verifyCode.execute(user, code)
         return ResponseEntity.ok().build()
     }
