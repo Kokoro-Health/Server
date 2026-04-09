@@ -5,16 +5,16 @@ import org.springframework.stereotype.Component
 
 @Component
 class PasskeyDtoMapper {
-    fun toPasskeyResponse(passkey: Passkey): PasskeyResponse =
-        PasskeyResponse(
+    fun toPasskeyResponse(passkey: Passkey): PasskeyResponseDto =
+        PasskeyResponseDto(
             id = passkey.id,
             deviceName = passkey.deviceName,
             createdAt = passkey.createdAt,
             lastUsedAt = passkey.lastUsedAt
         )
 
-    fun toRegisterFinishResponse(passkey: Passkey): RegisterPasskeyFinishResponse =
-        RegisterPasskeyFinishResponse(
+    fun toRegisterFinishResponse(passkey: Passkey): RegisterPasskeyFinishResponseDto =
+        RegisterPasskeyFinishResponseDto(
             id = passkey.id,
             deviceName = passkey.deviceName,
             createdAt = passkey.createdAt

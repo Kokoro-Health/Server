@@ -6,34 +6,34 @@ import jakarta.validation.constraints.Size
 import java.time.Instant
 import java.util.*
 
-data class RegisterPasskeyStartResponse(
+data class RegisterPasskeyStartResponseDto(
     val options: String
 )
 
-data class RegisterPasskeyFinishRequest(
+data class RegisterPasskeyFinishRequestDto(
     @field:NotBlank
     val credential: String,
     @field:Size(max = 100)
     val deviceName: String
 )
 
-data class RegisterPasskeyFinishResponse(
+data class RegisterPasskeyFinishResponseDto(
     val id: UUID,
     val deviceName: String?,
     val createdAt: Instant
 )
 
-data class AuthPasskeyStartRequest(
+data class AuthPasskeyStartRequestDto(
     @field:NotBlank
     @field:Email
     val email: String
 )
 
-data class AuthPasskeyStartResponse(
+data class AuthPasskeyStartResponseDto(
     val options: String
 )
 
-data class AuthPasskeyFinishRequest(
+data class AuthPasskeyFinishRequestDto(
     @field:NotBlank
     @field:Email
     val email: String,
@@ -42,11 +42,11 @@ data class AuthPasskeyFinishRequest(
     val credential: String
 )
 
-data class AuthPasskeyFinishResponse(
+data class AuthPasskeyFinishResponseDto(
     val token: String
 )
 
-data class PasskeyResponse(
+data class PasskeyResponseDto(
     val id: UUID,
     val deviceName: String?,
     val createdAt: Instant,

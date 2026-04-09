@@ -9,26 +9,26 @@ import org.springframework.web.servlet.resource.NoResourceFoundException
 @ControllerAdvice
 class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun handleValidationExceptions(ex: MethodArgumentNotValidException): ResponseEntity<ErrorResponse> {
+    fun handleValidationExceptions(ex: MethodArgumentNotValidException): ResponseEntity<ErrorResponseDto> {
         val fieldErrors = ex.bindingResult.fieldErrors
         if (fieldErrors.isNotEmpty()) {
-            return ResponseEntity.badRequest().body(ErrorResponse(fieldErrors[0].defaultMessage!!))
+            return ResponseEntity.badRequest().body(ErrorResponseDto(fieldErrors[0].defaultMessage!!))
         }
-        return ResponseEntity.badRequest().body(ErrorResponse(ex.body.title.toString()))
+        return ResponseEntity.badRequest().body(ErrorResponseDto(ex.body.title.toString()))
     }
 
     @ExceptionHandler(NoResourceFoundException::class)
-    fun handleResourceNotFoundException(): ResponseEntity<ErrorResponse> {
+    fun handleResourceNotFoundException(): ResponseEntity<ErrorResponseDto> {
         return ResponseEntity.notFound().build()
     }
 
     @ExceptionHandler(IllegalArgumentException::class)
-    fun handleIllegalArgumentException(e: IllegalArgumentException): ResponseEntity<ErrorResponse> {
-        return ResponseEntity.badRequest().body(ErrorResponse(e.message ?: "Bad request"))
+    fun handleIllegalArgumentException(e: IllegalArgumentException): ResponseEntity<ErrorResponseDto> {
+        return ResponseEntity.badRequest().body(ErrorResponseDto(e.message ?: "Bad request"))
     }
 
     @ExceptionHandler(Exception::class)
-    fun handleException(e: Exception): ResponseEntity<ErrorResponse> {
-        return ResponseEntity.badRequest().body(ErrorResponse(e.message ?: "Internal server error"))
+    fun handleException(e: Exception): ResponseEntity<ErrorResponseDto> {
+        return ResponseEntity.badRequest().body(ErrorResponseDto(e.message ?: "Internal server error"))
     }
 }

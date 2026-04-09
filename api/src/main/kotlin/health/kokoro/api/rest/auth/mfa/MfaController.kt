@@ -22,7 +22,7 @@ class MfaController(
     private val mfaMapper: MfaMapper
 ) {
     @GetMapping
-    fun getMfaSettings(): ResponseEntity<MfaSettings> {
+    fun getMfaSettings(): ResponseEntity<MfaSettingsResponseDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         return ResponseEntity.ok(
             mfaMapper.toResponse(getMfaEnabled.execute(user))
@@ -30,21 +30,21 @@ class MfaController(
     }
 
     @PostMapping("/setup")
-    fun setupMfa(): ResponseEntity<SetupMfaResponse> {
+    fun setupMfa(): ResponseEntity<SetupMfaResponseDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         val response = setupMfaTotp.execute(user)
-        return ResponseEntity.ok(SetupMfaResponse(response.secret, response.qrCodeBase64))
+        return ResponseEntity.ok(SetupMfaResponseDto(response.secret, response.qrCodeBase64))
     }
 
     @PostMapping("/verify")
-    fun verifyMfaCodeAndEnable(@RequestBody @Valid request: VerifyMfaRequest): ResponseEntity<Unit> {
+    fun verifyMfaCodeAndEnable(@RequestBody @Valid request: VerifyMfaRequestDto): ResponseEntity<Unit> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         verifyMfaTotp.executeAndEnable(user, request.code)
         return ResponseEntity.noContent().build()
     }
 
     @DeleteMapping
-    fun disableMfa(@RequestBody @Valid request: DisableMfaRequest): ResponseEntity<Unit> {
+    fun disableMfa(@RequestBody @Valid request: DisableMfaRequestDto): ResponseEntity<Unit> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         disableMfaTotp.execute(user, request.password)
         return ResponseEntity.noContent().build()

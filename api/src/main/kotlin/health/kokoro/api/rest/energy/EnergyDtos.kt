@@ -6,13 +6,13 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Size
 import java.time.Instant
 
-data class EnergyInfoDateDto(
+data class EnergyInfoDateResponseDto(
     val date: Instant,
     val amount: Int,
     @field:Schema(nullable = true) val reason: String?
 )
 
-data class EnergyInfoDto(
+data class EnergyInfoResponseDto(
     val energy: Int,
     val reason: String?,
     val nextEntryAllowed: Instant
@@ -23,15 +23,15 @@ data class EnergyRequestDto(
     @field:Size(max = 220) @field:Schema(nullable = true) val reason: String? = null
 )
 
-data class EnergyDetailsDto(
-    val influentialPositive: ReasonAmount,
-    val influentialNegative: ReasonAmount,
+data class EnergyDetailsResponseDto(
+    val influentialPositive: ReasonAmountResponseDto,
+    val influentialNegative: ReasonAmountResponseDto,
     val average: Int,
-    val entries: List<EnergyInfoDateDto>
+    val entries: List<EnergyInfoDateResponseDto>
 
 )
 
-data class ReasonAmount(
+data class ReasonAmountResponseDto(
     val reason: String,
     val level: Int
 )

@@ -22,44 +22,44 @@ class PasskeyController(
     @PostMapping("/register/start")
     fun passkeyRegisterStart(
         @AuthenticationPrincipal user: User
-    ): ResponseEntity<RegisterPasskeyStartResponse> {
+    ): ResponseEntity<RegisterPasskeyStartResponseDto> {
         val options = registerPasskeyStart.executeToJson(user)
         return ResponseEntity.ok(
-            RegisterPasskeyStartResponse(options = options)
+            RegisterPasskeyStartResponseDto(options = options)
         )
     }
 
     @PostMapping("/register/finish")
     fun passkeyRegisterFinish(
         @AuthenticationPrincipal user: User,
-        @RequestBody request: RegisterPasskeyFinishRequest
-    ): ResponseEntity<RegisterPasskeyFinishResponse> {
+        @RequestBody request: RegisterPasskeyFinishRequestDto
+    ): ResponseEntity<RegisterPasskeyFinishResponseDto> {
         val passkey = registerPasskeyFinish.execute(user, request.credential, request.deviceName)
         return ResponseEntity.ok(passkeyDtoMapper.toRegisterFinishResponse(passkey))
     }
 
     @PostMapping("/auth/start")
     fun passkeyAuthStart(
-        @RequestBody request: AuthPasskeyStartRequest
-    ): ResponseEntity<AuthPasskeyStartResponse> {
+        @RequestBody request: AuthPasskeyStartRequestDto
+    ): ResponseEntity<AuthPasskeyStartResponseDto> {
         val options = authPasskeyStart.executeToJson(request.email)
         return ResponseEntity.ok(
-            AuthPasskeyStartResponse(options = options)
+            AuthPasskeyStartResponseDto(options = options)
         )
     }
 
     @PostMapping("/auth/finish")
     fun passkeyAuthFinish(
-        @RequestBody request: AuthPasskeyFinishRequest
-    ): ResponseEntity<AuthPasskeyFinishResponse> {
+        @RequestBody request: AuthPasskeyFinishRequestDto
+    ): ResponseEntity<AuthPasskeyFinishResponseDto> {
         val token = authPasskeyFinish.execute(request.email, request.credential)
-        return ResponseEntity.ok(AuthPasskeyFinishResponse(token = token))
+        return ResponseEntity.ok(AuthPasskeyFinishResponseDto(token = token))
     }
 
     @GetMapping
     fun passkeyList(
         @AuthenticationPrincipal user: User
-    ): ResponseEntity<List<PasskeyResponse>> {
+    ): ResponseEntity<List<PasskeyResponseDto>> {
         val passkeys = listPasskeys.execute(user.id!!)
         return ResponseEntity.ok(passkeys.map { passkeyDtoMapper.toPasskeyResponse(it) })
     }

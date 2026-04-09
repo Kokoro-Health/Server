@@ -1,6 +1,6 @@
 package health.kokoro.api.config
 
-import health.kokoro.api.error.ErrorResponse
+import health.kokoro.api.error.ErrorResponseDto
 import io.swagger.v3.core.converter.ModelConverters
 import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.OpenAPI
@@ -22,11 +22,11 @@ class OpenApiConfig {
     @Bean
     fun customOpenAPI(): OpenAPI {
         val errorSchema = ModelConverters.getInstance()
-            .readAllAsResolvedSchema(ErrorResponse::class.java).schema
+            .readAllAsResolvedSchema(ErrorResponseDto::class.java).schema
 
         return OpenAPI()
             .components(
-                Components().addSchemas("ErrorResponse", errorSchema)
+                Components().addSchemas("ErrorResponseDto", errorSchema)
             )
     }
 
@@ -37,7 +37,7 @@ class OpenApiConfig {
 
             if (!apiResponses.containsKey("400")) {
                 val schema = Schema<Any>().apply {
-                    `$ref` = "#/components/schemas/ErrorResponse"
+                    `$ref` = "#/components/schemas/ErrorResponseDto"
                 }
 
                 apiResponses.addApiResponse(
@@ -70,6 +70,29 @@ class OpenApiConfig {
                     if (!isNullable && !isAlreadyRequired) {
                         schema.addRequiredItem(propName)
                     }
+                }
+            }
+        }
+    }
+
+    @Bean
+    fun dtoNamingConventionValidator(): OpenApiCustomizer {
+        return OpenApiCustomizer { openApi ->
+            val schemas = openApi.components?.schemas ?: return@OpenApiCustomizer
+
+            schemas.forEach { (name, _) ->
+                if (name == "Unit") {
+                    return@forEach
+                }
+
+                val lcName = name.lowercase()
+                if (!lcName.contains("request") && !lcName.contains("response")) {
+                    throw IllegalStateException("DTO name '$name' does not match naming convention. " +
+                            "It should contain 'Request' or 'Response'.")
+                }
+
+                if (!name.endsWith("Dto")) {
+                    throw IllegalStateException("DTO name '$name' must end with 'Dto'.")
                 }
             }
         }

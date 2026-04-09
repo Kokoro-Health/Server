@@ -24,30 +24,30 @@ class EnergyController(
     @GetMapping("/{date}")
     fun getEnergyEntriesForDay(
         @PathVariable date: Instant
-    ): ResponseEntity<EnergyDetailsDto> {
+    ): ResponseEntity<EnergyDetailsResponseDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         val details = getEnergyEntries.getDetails(user, date)
         return ResponseEntity.ok(
-            EnergyDetailsDto(
+            EnergyDetailsResponseDto(
                 entries = details.entries.map {
-                    EnergyInfoDateDto(
+                    EnergyInfoDateResponseDto(
                         date = it.date,
                         amount = it.amount,
                         reason = it.reason
                     )
                 },
-                influentialNegative = details.influentialNegative.let { ReasonAmount(it.reason, it.level) },
-                influentialPositive = details.influentialPositive.let { ReasonAmount(it.reason, it.level) },
+                influentialNegative = details.influentialNegative.let { ReasonAmountResponseDto(it.reason, it.level) },
+                influentialPositive = details.influentialPositive.let { ReasonAmountResponseDto(it.reason, it.level) },
                 average = details.average
             )
         )
     }
 
     @GetMapping
-    fun getEnergyInfoToday(): ResponseEntity<EnergyInfoDto> {
+    fun getEnergyInfoToday(): ResponseEntity<EnergyInfoResponseDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         return ResponseEntity.ok(
-            EnergyInfoDto(
+            EnergyInfoResponseDto(
                 getEnergyEntries.getAverageToday(user),
                 reason = null,
                 nextEntryAllowedDate.execute(user.id!!).nextEntryAllowedAt
@@ -59,10 +59,10 @@ class EnergyController(
     fun getEnergyForDateRange(
         @RequestParam("from") from: Instant,
         @RequestParam("to") to: Instant,
-    ): ResponseEntity<List<EnergyInfoDateDto>> {
+    ): ResponseEntity<List<EnergyInfoDateResponseDto>> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         val entries = getEnergyEntries.getForDateRange(user, from, to)
-            .map { EnergyInfoDateDto(amount = it.amount, date = it.date, reason = it.reason) }
+            .map { EnergyInfoDateResponseDto(amount = it.amount, date = it.date, reason = it.reason) }
         return ResponseEntity.ok(entries)
     }
 

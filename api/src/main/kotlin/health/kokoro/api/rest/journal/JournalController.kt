@@ -18,13 +18,13 @@ class JournalController(
     private val getJournals: GetJournals
 ) {
     @GetMapping
-    fun getCurrentJournal(): ResponseEntity<JournalEntryDto> {
+    fun getCurrentJournal(): ResponseEntity<JournalEntryResponseDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         val journal = getCurrentJournal.execute(
             user
         )
         return ResponseEntity.ok(
-            JournalEntryDto(content = journal.content, availableUntil = journal.availableUntil, id = journal.id)
+            JournalEntryResponseDto(content = journal.content, availableUntil = journal.availableUntil, id = journal.id)
         )
     }
 
@@ -32,33 +32,33 @@ class JournalController(
     fun updateCurrentJournal(
         @RequestBody content: JournalRequestDto,
         @PathVariable @Schema(nullable = true) id: UUID?
-    ): ResponseEntity<JournalEntryDto> {
+    ): ResponseEntity<JournalEntryResponseDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         val contentSaved = updateCurrentJournal.execute(user, id, content.content)
         return ResponseEntity.ok(
-            JournalEntryDto(id = contentSaved.id, content.content, contentSaved.availableUntil)
+            JournalEntryResponseDto(id = contentSaved.id, content.content, contentSaved.availableUntil)
         )
     }
 
     @PostMapping
     fun updateCurrentJournal(
         @RequestBody content: JournalRequestDto,
-    ): ResponseEntity<JournalEntryDto> {
+    ): ResponseEntity<JournalEntryResponseDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         val contentSaved = updateCurrentJournal.execute(user, null, content.content)
         return ResponseEntity.ok(
-            JournalEntryDto(id = contentSaved.id, content.content, contentSaved.availableUntil)
+            JournalEntryResponseDto(id = contentSaved.id, content.content, contentSaved.availableUntil)
         )
     }
 
     @GetMapping("/{id}")
     fun getJournalById(
         @PathVariable id: UUID
-    ): ResponseEntity<JournalEntryDto> {
+    ): ResponseEntity<JournalEntryResponseDto> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         val journal = getJournals.getById(id, user.id!!)
         return ResponseEntity.ok(
-            JournalEntryDto(
+            JournalEntryResponseDto(
                 id = journal.id,
                 content = journal.content,
                 availableUntil = journal.lockedAt

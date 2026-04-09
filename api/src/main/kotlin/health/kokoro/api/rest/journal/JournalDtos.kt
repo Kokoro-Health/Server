@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import java.time.Instant
 import java.util.*
 
-data class JournalEntryDto(
+data class JournalEntryResponseDto(
     @field:Schema(nullable = true) val id: UUID?,
     val content: String,
     @field:Schema(nullable = true) val availableUntil: Instant?

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class MfaMapper {
-    fun toResponse(enabled: Boolean): MfaSettings {
-        return MfaSettings(enabled)
+    fun toResponse(enabled: Boolean): MfaSettingsResponseDto {
+        return MfaSettingsResponseDto(enabled)
     }
 }
