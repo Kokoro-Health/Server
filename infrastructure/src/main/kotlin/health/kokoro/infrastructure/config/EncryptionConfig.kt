@@ -10,4 +10,5 @@ class EncryptionConfig {
     var vaultUrl: String = "http://localhost:8200"
     var vaultToken: String = ""
     var vaultPath: String = "secret/kokoro"
+    var devKey: String = ""
 }

@@ -38,7 +38,12 @@ class SecurityBeans(
             .httpBasic { it.disable() }
             .cors { cors ->
                 cors.configurationSource { request ->
-                    logger.info("Received Request: Address ${request.remoteAddr}, Host ${request.remoteHost}, Port ${request.remotePort}, User ${request.remoteUser}")
+                    logger.info(
+                        "{} - {}, Client: {}",
+                        request.method,
+                        request.requestURL,
+                        request.remoteAddr,
+                    )
                     val corsConfig = CorsConfiguration()
                     corsConfig.allowedOrigins = config.allowOrigin
                     corsConfig.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")

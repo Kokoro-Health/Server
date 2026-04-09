@@ -11,6 +11,8 @@ spring:
       mail:
         debug: true
 kokoro:
+  encryption:
+    dev_key: ${ENCRYPTION_KEY}
   cors:
     allow-origin:
       - "capacitor://localhost"

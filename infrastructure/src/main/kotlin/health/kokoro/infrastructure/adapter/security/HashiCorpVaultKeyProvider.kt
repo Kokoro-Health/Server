@@ -1,6 +1,7 @@
 package health.kokoro.infrastructure.adapter.security
 
 import health.kokoro.domain.port.security.KeyProvider
+import health.kokoro.domain.port.spring.ProfileHelper
 import health.kokoro.infrastructure.config.EncryptionConfig
 import io.github.jopenlibs.vault.Vault
 import io.github.jopenlibs.vault.VaultConfig
@@ -12,7 +13,8 @@ import javax.crypto.spec.SecretKeySpec
 
 @Service
 class HashiCorpVaultKeyProvider(
-    private val config: EncryptionConfig
+    private val config: EncryptionConfig,
+    private val profileHelper: ProfileHelper
 ) : KeyProvider {
 
     private val vault: Vault by lazy {
@@ -23,9 +25,18 @@ class HashiCorpVaultKeyProvider(
         Vault.create(vaultConfig)
     }
 
-    override fun getCurrentKeyId(): String = "key-v1"
+    override fun getCurrentKeyId(): String  {
+       if (profileHelper.isDev()) {
+           return "dev"
+       }
+        return "key-v1"
+    }
 
     override fun getKey(id: String): SecretKey {
+        if (profileHelper.isDev()) {
+            val keyBites  = Base64.getDecoder().decode(config.devKey)
+             return SecretKeySpec(keyBites, "AES")
+        }
         val path = "${config.vaultPath}/$id"
         
         return try {

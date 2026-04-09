@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70a4f4ed-21a7-48b8-a2a4-5392b0fdbe3a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/70a4f4ed-21a7-48b8-a2a4-5392b0fdbe3a.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70a4f4ed-21a7-48b8-a2a4-5392b0fdbe3a/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/70a4f4ed-21a7-48b8-a2a4-5392b0fdbe3a/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/96cd9141-9d6f-44a3-b221-c3625cf07383.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/db-forest-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/db-forest-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/bean/SecurityBeans.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/bean/SecurityBeans.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/security/HashiCorpVaultKeyProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/security/HashiCorpVaultKeyProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/config/EncryptionConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/config/EncryptionConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vault-init.sh" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +24,7 @@
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="207" />
+    <option name="cachedIndexableFilesCount" value="208" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExternalProjectsData">
@@ -235,7 +236,7 @@
       <workItem from="1775566249124" duration="915000" />
       <workItem from="1775630920679" duration="19735000" />
       <workItem from="1775661288022" duration="4706000" />
-      <workItem from="1775716952129" duration="6452000" />
+      <workItem from="1775716952129" duration="8556000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />
