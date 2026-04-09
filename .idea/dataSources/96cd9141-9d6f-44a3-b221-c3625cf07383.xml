@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="kokoro_db@localhost">
+<dataSource name="kokoro@localhost">
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.54">
     <root id="1">
       <DateStyle>mdy</DateStyle>
@@ -750,23 +750,23 @@ true posixrules
     <role id="14" parent="1" name="pg_read_server_files">
       <ObjectId>4569</ObjectId>
     </role>
-    <role id="15" parent="1" name="pg_signal_autovacuum_worker">
-      <ObjectId>6392</ObjectId>
-    </role>
-    <role id="16" parent="1" name="pg_signal_backend">
+    <role id="15" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
     </role>
-    <role id="17" parent="1" name="pg_stat_scan_tables">
+    <role id="16" parent="1" name="pg_stat_scan_tables">
       <ObjectId>3377</ObjectId>
     </role>
-    <role id="18" parent="1" name="pg_use_reserved_connections">
+    <role id="17" parent="1" name="pg_use_reserved_connections">
       <ObjectId>4550</ObjectId>
     </role>
-    <role id="19" parent="1" name="pg_write_all_data">
+    <role id="18" parent="1" name="pg_write_all_data">
       <ObjectId>6182</ObjectId>
     </role>
-    <role id="20" parent="1" name="pg_write_server_files">
+    <role id="19" parent="1" name="pg_write_server_files">
       <ObjectId>4570</ObjectId>
+    </role>
+    <role id="20" parent="1" name="pg_signal_autovacuum_worker">
+      <ObjectId>6392</ObjectId>
     </role>
     <tablespace id="21" parent="1" name="pg_default">
       <ObjectId>1663</ObjectId>

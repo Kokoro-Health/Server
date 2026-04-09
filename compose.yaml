@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   # Production Services
   api-prod:
@@ -25,7 +23,6 @@ services:
       - MAIL_PASSWORD=${MAIL_PASSWORD}
       - MAIL_STARTTLS_ENABLE=${MAIL_STARTTLS_ENABLE}
       - STORAGE_PATH=${STORAGE_PATH}
-      - ENCRYPTION_KEY_STORE_PATH=${ENCRYPTION_KEY_STORE_PATH}
       - JWT_SECRET=${JWT_SECRET}
       - FRONTEND_URL=${FRONTEND_URL}
       - VAULT_ADDR=${VAULT_ADDR}
@@ -38,9 +35,9 @@ services:
     image: postgres:latest
     container_name: kokoro_db
     environment:
-      - POSTGRES_DB=${DB_NAME:-kokoro}
-      - POSTGRES_USER=${DB_USERNAME:-kokoro-usr}
-      - POSTGRES_PASSWORD=${DB_PASSWORD:-C7roasy5rFKh9vbheLOe}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -58,11 +55,30 @@ services:
     ports:
       - "8200:8200"
     environment:
-      - VAULT_DEV_ROOT_TOKEN_ID=kokoro-root-token
-      - VAULT_ADDR=http://0.0.0.0:8200
+      - VAULT_DEV_ROOT_TOKEN_ID=${VAULT_TOKEN}
+      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
     cap_add:
       - IPC_LOCK
+    volumes:
+      - ./vault-init.sh:/vault-init.sh:ro
     profiles: [ "dev" ]
+
+  vault-setup:
+    image: hashicorp/vault:latest
+    depends_on:
+      - vault
+    environment:
+      - VAULT_ADDR=http://vault:8200
+      - VAULT_TOKEN=${VAULT_TOKEN}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+    entrypoint: /bin/sh
+    command: -c "/vault-init.sh"
+    volumes:
+      - ./vault-init.sh:/vault-init.sh:ro
+    profiles: [ "dev" ]
+    restart: "no"
+    labels:
+      - "org.springframework.boot.ignore=true"
   maildev:
     image: maildev/maildev:latest
     container_name: maildev
@@ -71,6 +87,7 @@ services:
       - "1025:1025"
     profiles: [ "dev" ]
 
-
 volumes:
   postgres_data:
+  vault_volume:
+  vault_logs:
