@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
-@RequestMapping("/auth/passkeys")
+@RequestMapping("/passkeys")
 class PasskeyController(
     private val registerPasskeyStart: RegisterPasskeyStart,
     private val registerPasskeyFinish: RegisterPasskeyFinish,
-    private val authPasskeyStart: AuthPasskeyStart,
-    private val authPasskeyFinish: AuthPasskeyFinish,
+
     private val deletePasskey: DeletePasskey,
     private val listPasskeys: ListPasskeys,
     private val passkeyDtoMapper: PasskeyDtoMapper,
@@ -38,23 +37,7 @@ class PasskeyController(
         return ResponseEntity.ok(passkeyDtoMapper.toRegisterFinishResponse(passkey))
     }
 
-    @PostMapping("/auth/start")
-    fun passkeyAuthStart(
-        @RequestBody request: AuthPasskeyStartRequestDto
-    ): ResponseEntity<AuthPasskeyStartResponseDto> {
-        val options = authPasskeyStart.executeToJson(request.email)
-        return ResponseEntity.ok(
-            AuthPasskeyStartResponseDto(options = options)
-        )
-    }
 
-    @PostMapping("/auth/finish")
-    fun passkeyAuthFinish(
-        @RequestBody request: AuthPasskeyFinishRequestDto
-    ): ResponseEntity<AuthPasskeyFinishResponseDto> {
-        val token = authPasskeyFinish.execute(request.email, request.credential)
-        return ResponseEntity.ok(AuthPasskeyFinishResponseDto(token = token))
-    }
 
     @GetMapping
     fun passkeyList(

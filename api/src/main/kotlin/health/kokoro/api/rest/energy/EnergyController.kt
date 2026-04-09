@@ -66,7 +66,7 @@ class EnergyController(
         return ResponseEntity.ok(entries)
     }
 
-    @PostMapping("/add")
+    @PostMapping
     fun addEnergyEntry(@RequestBody @Valid body: EnergyRequestDto): ResponseEntity<Any> {
         val user = SecurityContextHolder.getContext().authentication.principal as User
         addEnergyEntry.execute(body.amount, body.reason, user)

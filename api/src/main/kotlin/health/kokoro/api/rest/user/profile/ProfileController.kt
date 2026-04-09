@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 
 @RestController
-@RequestMapping("/users/profiles")
+@RequestMapping("/users/profile")
 @Validated
 class ProfileController(
     private val mapper: ProfileMapper,

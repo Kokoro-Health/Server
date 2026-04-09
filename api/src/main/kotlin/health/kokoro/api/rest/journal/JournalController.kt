@@ -28,7 +28,7 @@ class JournalController(
         )
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     fun updateCurrentJournal(
         @RequestBody content: JournalRequestDto,
         @PathVariable @Schema(nullable = true) id: UUID?
@@ -40,7 +40,7 @@ class JournalController(
         )
     }
 
-    @PostMapping
+    @PutMapping
     fun updateCurrentJournal(
         @RequestBody content: JournalRequestDto,
     ): ResponseEntity<JournalEntryResponseDto> {
