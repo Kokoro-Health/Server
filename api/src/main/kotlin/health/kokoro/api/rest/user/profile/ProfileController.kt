@@ -39,7 +39,7 @@ class ProfileController(
         @AuthenticationPrincipal user: User
     ): ResponseEntity<Unit> {
         updateProfile.execute(mapper.toCommand(profile), user)
-        return ResponseEntity.ok().build()
+        return ResponseEntity.noContent().build()
     }
 
     @PostMapping("/verify/request")

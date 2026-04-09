@@ -6,6 +6,7 @@ import health.kokoro.application.usecase.auth.SignUp
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Email
 import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
@@ -24,7 +25,7 @@ class AuthController(
         val result = signUp.execute(mapper.toCommand(req))
         val cookie = mapper.toCookie(AuthTokenResponseDto(result.token, result.expiresIn), false)
 
-        return ResponseEntity.ok()
+        return ResponseEntity.status(HttpStatus.CREATED)
             .header(HttpHeaders.SET_COOKIE, cookie.toString())
             .build()
     }

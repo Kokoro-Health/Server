@@ -11,12 +11,12 @@ class GetCurrentStreak(
     private val entryRepo: EnergyEntryRepository
 ) {
     fun execute(user: User): Response {
-        val allJournals = entryRepo.findAllByUser(user.id!!)
-        if (allJournals.isEmpty()) {
+        val allEntries = entryRepo.findAllByUser(user.id!!)
+        if (allEntries.isEmpty()) {
             return Response(0, false)
         }
 
-        val journalDates = allJournals
+        val journalDates = allEntries
             .map { it.createdAt.atZone(user.settings.timeZone).toLocalDate() }
             .distinct()
             .sortedDescending()
