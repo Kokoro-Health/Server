@@ -21,3 +21,8 @@ springdoc:
     path: /docs
   swagger-ui:
     path: /docs/swagger
+management:
+  endpoint:
+    health:
+      show-details: always
+      show-components: always

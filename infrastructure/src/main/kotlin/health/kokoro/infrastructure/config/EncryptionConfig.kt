@@ -6,5 +6,8 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 @ConfigurationProperties(prefix = "kokoro.encryption")
 class EncryptionConfig {
-    var keyStorePath: String = "./keys"
+    var provider: String = "local"
+    var vaultUrl: String = "http://localhost:8200"
+    var vaultToken: String = ""
+    var vaultPath: String = "secret/kokoro"
 }

@@ -1,13 +1,6 @@
 version: '3.9'
 
 services:
-  # Infrastructure Services
-  vault:
-    image: hashicorp/vault:latest
-    container_name: kokoro_vault
-    ports:
-      - "8200:8200"
-
   # Production Services
   api-prod:
     build:
@@ -35,6 +28,10 @@ services:
       - ENCRYPTION_KEY_STORE_PATH=${ENCRYPTION_KEY_STORE_PATH}
       - JWT_SECRET=${JWT_SECRET}
       - FRONTEND_URL=${FRONTEND_URL}
+      - VAULT_ADDR=${VAULT_ADDR}
+      - VAULT_TOKEN=${VAULT_TOKEN}
+      - VAULT_PATH=${VAULT_PATH}
+      - ENCRYPTION_PROVIDER=${ENCRYPTION_PROVIDER}
 
   # Development Services
   postgres:
@@ -55,7 +52,17 @@ services:
     labels:
       - "org.springframework.boot.service-connection=false"
     profiles: [ "dev" ]
-
+  vault:
+    image: hashicorp/vault:latest
+    container_name: kokoro_vault
+    ports:
+      - "8200:8200"
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=kokoro-root-token
+      - VAULT_ADDR=http://0.0.0.0:8200
+    cap_add:
+      - IPC_LOCK
+    profiles: [ "dev" ]
   maildev:
     image: maildev/maildev:latest
     container_name: maildev

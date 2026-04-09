@@ -33,10 +33,7 @@ management:
       base-path: /actuator
       exposure:
         include: health,info
-  endpoint:
-    health:
-      show-details: when_authorized
-      show-components: when_authorized
+
 server:
   address: 0.0.0.0
   port: 8080
@@ -44,7 +41,10 @@ kokoro:
   storage:
     path: ${STORAGE_PATH}
   encryption:
-    keyStorePath: ${ENCRYPTION_KEY_STORE_PATH}
+    provider: ${ENCRYPTION_PROVIDER}
+    vaultUrl: ${VAULT_ADDR}
+    vaultToken: ${VAULT_TOKEN}
+    vaultPath: ${VAULT_PATH}
   jwt:
     secret: ${JWT_SECRET}
     expiration: 604800000 # 7 days
