@@ -5,4 +5,4 @@ import java.time.Instant
 
 
 @Schema(name = "ErrorResponseDto", description = "Standard error structure")
-data class ErrorResponseDto(val message: String, val timeStamp: Instant)
+data class ErrorResponseDto(val message: String, val timeStamp: Instant = Instant.now())

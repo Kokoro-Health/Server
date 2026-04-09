@@ -52,7 +52,7 @@ class AuthController(
     fun logout(): ResponseEntity<Any> {
         val cookie = mapper.toDeletionCookie()
 
-        return ResponseEntity.ok()
+        return ResponseEntity.noContent()
             .header(HttpHeaders.SET_COOKIE, cookie.toString())
             .build()
     }
@@ -61,7 +61,7 @@ class AuthController(
     @PostMapping("/reset-password")
     fun requestPasswordReset(@RequestParam @Email @Valid email: String): ResponseEntity<Any> {
         resetPassword.execute(email)
-        return ResponseEntity.ok().build()
+        return ResponseEntity.accepted().build()
     }
 
     @PostMapping("/reset-password/confirm")
@@ -69,7 +69,7 @@ class AuthController(
         @RequestBody @Valid req: PasswordResetRequestDto,
     ): ResponseEntity<Any> {
         resetPassword.execute(req.code, req.password)
-        return ResponseEntity.ok().build()
+        return ResponseEntity.accepted().build()
     }
 
 

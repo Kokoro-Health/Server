@@ -1,5 +1,8 @@
 package health.kokoro.api.error
 
+import health.kokoro.domain.error.FeatureNotEnabledException
+import health.kokoro.domain.error.InvalidCredentialsException
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -40,5 +43,33 @@ class GlobalExceptionHandler {
         e.printStackTrace()
         return ResponseEntity.internalServerError()
             .body(ErrorResponseDto(e.message ?: "Internal server error", Instant.now()))
+    }
+
+    @ExceptionHandler(InvalidCredentialsException::class)
+    fun handleInvalidCredentialsException(e: InvalidCredentialsException): ResponseEntity<ErrorResponseDto> {
+        return ResponseEntity.badRequest().body(ErrorResponseDto("Invalid Credentials", Instant.now()))
+    }
+
+    @ExceptionHandler(FeatureNotEnabledException::class)
+    fun handleFeatureNotEnabledException(e: FeatureNotEnabledException): ResponseEntity<ErrorResponseDto> {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ErrorResponseDto("You haven't enabled this feature."))
+    }
+
+    @ExceptionHandler(NoSuchElementException::class)
+    fun handleNoSuchElement(e: NoSuchElementException): ResponseEntity<ErrorResponseDto> {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body(ErrorResponseDto(e.message ?: "Resource not found", Instant.now()))
+    }
+
+    @ExceptionHandler(AccessDeniedException::class)
+    fun handleAccessDenied(e: AccessDeniedException): ResponseEntity<ErrorResponseDto> {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+            .body(ErrorResponseDto(e.message ?: "Access denied", Instant.now()))
+    }
+
+    @ExceptionHandler(SecurityException::class)
+    fun handleSecurityException(e: SecurityException): ResponseEntity<ErrorResponseDto> {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+            .body(ErrorResponseDto(e.message ?: "Security violation", Instant.now()))
     }
 }
