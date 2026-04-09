@@ -3,6 +3,7 @@ package health.kokoro.application.usecase.auth.totp
 import dev.samstevens.totp.qr.QrDataFactory
 import dev.samstevens.totp.qr.QrGenerator
 import dev.samstevens.totp.secret.SecretGenerator
+import health.kokoro.domain.error.MfaAlreadyEnabledException
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.stereotype.Service
@@ -17,7 +18,7 @@ class SetupMfaTotp(
 ) {
     fun execute(user: User): Response {
         if (user.security.mfaEnabled) {
-            throw IllegalStateException("MFA is already enabled")
+            throw MfaAlreadyEnabledException()
         }
 
         val secret = secretGen.generate()

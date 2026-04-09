@@ -2,7 +2,8 @@ package health.kokoro.application.usecase.auth
 
 import health.kokoro.application.security.JwtUtil
 import health.kokoro.application.usecase.auth.totp.VerifyMfaTotp
-import health.kokoro.domain.error.InvalidCredentialsException
+import health.kokoro.domain.error.InvalidMfaCodeException
+import health.kokoro.domain.error.UserNotFoundException
 import health.kokoro.domain.port.user.UserRepository
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -17,7 +18,7 @@ class SignIn(
 ) {
     fun execute(command: Command): Response {
         val user = userRepository.findByEmail(command.email)
-            ?: throw InvalidCredentialsException()
+            ?: throw UserNotFoundException()
 
         val auth = UsernamePasswordAuthenticationToken(command.email, command.password)
         authenticationManager.authenticate(auth)
@@ -28,7 +29,7 @@ class SignIn(
             }
 
             if (!verifyMfaTotp.execute(user, command.mfaCode)) {
-                throw InvalidCredentialsException()
+                throw InvalidMfaCodeException()
             }
         }
 

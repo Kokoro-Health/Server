@@ -69,13 +69,13 @@ class AuthController(
         @RequestBody @Valid req: PasswordResetRequestDto,
     ): ResponseEntity<Any> {
         resetPassword.execute(req.code, req.password)
-        return ResponseEntity.accepted().build()
+        return ResponseEntity.noContent().build()
     }
 
 
     @GetMapping("/validate-code")
     fun validatePasswordResetCode(@RequestParam code: String): ResponseEntity<Any> {
         resetPassword.validateCode(code)
-        return ResponseEntity.ok().build()
+        return ResponseEntity.noContent().build()
     }
 }

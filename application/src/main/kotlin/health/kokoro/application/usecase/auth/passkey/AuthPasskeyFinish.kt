@@ -5,6 +5,9 @@ import com.yubico.webauthn.FinishAssertionOptions
 import com.yubico.webauthn.RelyingParty
 import com.yubico.webauthn.data.PublicKeyCredential
 import health.kokoro.application.security.JwtUtil
+import health.kokoro.domain.error.ChallengeExpiredException
+import health.kokoro.domain.error.ChallengeNotFoundException
+import health.kokoro.domain.error.CredentialNotFoundException
 import health.kokoro.domain.model.user.security.passkey.ChallengeType
 import health.kokoro.domain.port.user.passkey.PasskeyChallengeRepository
 import health.kokoro.domain.port.user.passkey.PasskeyRepository
@@ -20,11 +23,11 @@ class AuthPasskeyFinish(
 ) {
     fun execute(email: String, credential: String): String {
         val challenge = challengeRepository.findByEmailAndType(email, ChallengeType.AUTHENTICATION)
-            ?: throw IllegalStateException("No active authentication challenge for this email")
+            ?: throw ChallengeNotFoundException("authentication")
 
         if (challenge.expiresAt.isBefore(Instant.now())) {
             challengeRepository.delete(challenge)
-            throw IllegalStateException("Challenge expired")
+            throw ChallengeExpiredException()
         }
 
         val pkc = PublicKeyCredential.parseAssertionResponseJson(credential)
@@ -42,7 +45,7 @@ class AuthPasskeyFinish(
         challengeRepository.delete(challenge)
 
         val passkey = passkeyRepository.findByCredentialId(result.credential.credentialId.base64Url)
-            ?: throw IllegalStateException("Credential not found")
+            ?: throw CredentialNotFoundException()
 
         passkeyRepository.save(
             passkey.copy(

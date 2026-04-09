@@ -1,6 +1,7 @@
 package health.kokoro.application.usecase.auth
 
 import health.kokoro.application.security.JwtUtil
+import health.kokoro.domain.error.EmailAlreadyExistsException
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.model.user.security.UserSecurity
 import health.kokoro.domain.model.user.settings.LanguageSetting
@@ -21,7 +22,7 @@ class SignUp(
 ) {
     fun execute(command: Command): Response {
         if (!command.tosAccepted) throw IllegalArgumentException("You must accept the Terms of Service.")
-        if (userRepository.existsByEmail(command.email)) throw IllegalArgumentException("This email is already in use.")
+        if (userRepository.existsByEmail(command.email)) throw EmailAlreadyExistsException(command.email)
         val hashedPassword = passwordEncoder.encode(command.password)
 
         val security = UserSecurity(

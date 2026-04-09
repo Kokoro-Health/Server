@@ -1,7 +1,8 @@
 package health.kokoro.application.usecase.auth.passkey
 
+import health.kokoro.domain.error.PasskeyNotFoundException
+import health.kokoro.domain.error.PasskeyOwnershipException
 import health.kokoro.domain.port.user.passkey.PasskeyRepository
-import org.springframework.security.access.AccessDeniedException
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -11,10 +12,10 @@ class DeletePasskey(
 ) {
     fun execute(passkeyId: UUID, requestingUserId: UUID) {
         val passkey = passkeyRepository.findById(passkeyId)
-            ?: throw IllegalStateException("Passkey not found")
+            ?: throw PasskeyNotFoundException(passkeyId)
 
         if (passkey.userId != requestingUserId) {
-            throw AccessDeniedException("You do not own this passkey")
+            throw PasskeyOwnershipException()
         }
 
         passkeyRepository.delete(passkey)

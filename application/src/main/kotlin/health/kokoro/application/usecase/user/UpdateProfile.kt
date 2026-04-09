@@ -1,5 +1,6 @@
 package health.kokoro.application.usecase.user
 
+import health.kokoro.domain.error.EmailAlreadyTakenException
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.user.UserRepository
 import org.springframework.stereotype.Service
@@ -14,7 +15,7 @@ class UpdateProfile(
         if (emailChanged) {
             val userWithMail = userRepository.findByEmail(data.email)
             if (userWithMail != null) {
-                throw IllegalStateException("E-Mail is already taken.")
+                throw EmailAlreadyTakenException()
             }
         }
 

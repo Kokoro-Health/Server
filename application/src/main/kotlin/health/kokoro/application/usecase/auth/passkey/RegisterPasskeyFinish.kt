@@ -4,6 +4,8 @@ import com.yubico.webauthn.FinishRegistrationOptions
 import com.yubico.webauthn.RelyingParty
 import com.yubico.webauthn.data.PublicKeyCredential
 import com.yubico.webauthn.data.PublicKeyCredentialCreationOptions
+import health.kokoro.domain.error.ChallengeExpiredException
+import health.kokoro.domain.error.ChallengeNotFoundException
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.model.user.security.passkey.ChallengeType
 import health.kokoro.domain.model.user.security.passkey.Passkey
@@ -21,11 +23,11 @@ class RegisterPasskeyFinish(
 ) {
     fun execute(user: User, credential: String, deviceName: String): Passkey {
         val challenge = challengeRepository.findByUserIdAndType(user.id!!, ChallengeType.REGISTRATION)
-            ?: throw IllegalStateException("No active registration challenge for user")
+            ?: throw ChallengeNotFoundException("registration")
 
         if (challenge.expiresAt.isBefore(Instant.now())) {
             challengeRepository.delete(challenge)
-            throw IllegalStateException("Challenge expired")
+            throw ChallengeExpiredException()
         }
 
         val pkc = PublicKeyCredential.parseRegistrationResponseJson(credential)

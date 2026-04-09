@@ -1,5 +1,6 @@
 package health.kokoro.application.usecase.auth
 
+import health.kokoro.domain.error.*
 import health.kokoro.domain.port.mail.MailSenderRepository
 import health.kokoro.domain.port.user.UserRepository
 import health.kokoro.domain.port.user.UserSecurityRepository
@@ -18,7 +19,7 @@ class ResetPassword(
     private val mailSender: MailSenderRepository
 ) {
     fun execute(email: String) {
-        val user = userRepository.findByEmail(email) ?: throw IllegalArgumentException("User not found")
+        val user = userRepository.findByEmail(email) ?: throw UserNotFoundException()
         val security = user.security
 
         val code = generateCode()
@@ -41,18 +42,18 @@ class ResetPassword(
 
     fun execute(code: String, password: String) {
         val security = userSecurityRepository.findByPasswordResetCode(code)
-            ?: throw IllegalArgumentException("Invalid code")
+            ?: throw ChallengeNotFoundException("Password Reset")
 
         val now = Instant.now()
         val requestedAt = security.passwordResetCodeRequestedAt
-            ?: throw IllegalArgumentException("Code expired or invalid")
+            ?: throw ChallengeNotFoundException("Password Reset")
 
         if (Duration.between(requestedAt, now).toMinutes() > EXPIRATION_MINUTES) {
-            throw IllegalArgumentException("Code expired")
+            throw CodeExpiredException()
         }
 
         if (passwordEncoder.matches(password, security.passwordHash)) {
-            throw IllegalArgumentException("New password cannot be the same as the old one")
+            throw SamePasswordException()
         }
 
 
@@ -65,7 +66,7 @@ class ResetPassword(
     }
 
     fun validateCode(code: String) {
-        userSecurityRepository.findByPasswordResetCode(code) ?: throw IllegalArgumentException("Invalid code")
+        userSecurityRepository.findByPasswordResetCode(code) ?: throw InvalidVerificationCodeException()
     }
 
     private fun generateCode(): String {

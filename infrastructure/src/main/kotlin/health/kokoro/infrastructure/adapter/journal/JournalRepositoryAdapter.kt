@@ -1,5 +1,6 @@
 package health.kokoro.infrastructure.adapter.journal
 
+import health.kokoro.domain.error.JournalEntryLockedException
 import health.kokoro.domain.model.journal.JournalEntry
 import health.kokoro.domain.port.journal.JournalRepository
 import health.kokoro.domain.port.security.EncryptionPort
@@ -56,7 +57,7 @@ class JournalRepositoryAdapter(
         }
 
         if (id != null) {
-            throw IllegalArgumentException("This journal entry has been locked.")
+            throw JournalEntryLockedException()
         }
 
         val user = userJpaRepository.findById(userId).orElseThrow()

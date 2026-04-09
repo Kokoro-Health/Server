@@ -1,8 +1,8 @@
 package health.kokoro.application.usecase.journal
 
+import health.kokoro.domain.error.PasskeyOwnershipException
 import health.kokoro.domain.model.journal.JournalEntry
 import health.kokoro.domain.port.journal.JournalRepository
-import org.springframework.security.access.AccessDeniedException
 import org.springframework.stereotype.Service
 import java.time.Instant
 import java.util.*
@@ -13,7 +13,7 @@ class GetJournals(
 ) {
     fun getById(id: UUID, userId: UUID): Response {
         validateOwner(id, userId)
-        val entry = repo.getById(id) ?: throw IllegalStateException("")
+        val entry = repo.getById(id) ?: throw NoSuchElementException("Journal entry not found with id: $id")
         return toResponse(entry)
     }
 
@@ -24,7 +24,7 @@ class GetJournals(
     private fun validateOwner(id: UUID, userID: UUID) {
         val entry = repo.getById(id)
         if (entry?.userId != userID) {
-            throw AccessDeniedException("This entry belongs to a different user.")
+            throw PasskeyOwnershipException()
         }
     }
 

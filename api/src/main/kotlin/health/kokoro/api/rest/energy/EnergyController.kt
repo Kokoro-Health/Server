@@ -70,7 +70,7 @@ class EnergyController(
         @AuthenticationPrincipal user: User
     ): ResponseEntity<Any> {
         addEnergyEntry.execute(body.amount, body.reason, user)
-        return ResponseEntity.ok().build()
+        return ResponseEntity.status(org.springframework.http.HttpStatus.CREATED).build()
     }
 
     @GetMapping("/reasons")

@@ -1,5 +1,7 @@
 package health.kokoro.application.usecase.auth.totp
 
+import health.kokoro.domain.error.InvalidPasswordException
+import health.kokoro.domain.error.MfaNotEnabledException
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -12,11 +14,11 @@ class DisableMfaTotp(
 ) {
     fun execute(user: User, password: String) {
         if (!user.security.mfaEnabled) {
-            throw IllegalStateException("MFA is not enabled")
+            throw MfaNotEnabledException()
         }
 
         if (!passwordEncoder.matches(password, user.security.passwordHash)) {
-            throw IllegalArgumentException("Invalid password")
+            throw InvalidPasswordException()
         }
 
         securityRepository.disableMfa(user)

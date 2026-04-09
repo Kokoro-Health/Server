@@ -1,5 +1,7 @@
 package health.kokoro.application.usecase.user.verification
 
+import health.kokoro.domain.error.CodeExpiredException
+import health.kokoro.domain.error.InvalidVerificationCodeException
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.stereotype.Service
@@ -14,16 +16,16 @@ class VerifyEmailCode(
         val userSecurity = user.security
 
         val requestedAt = userSecurity.verificationCodeRequestedAt
-            ?: throw IllegalStateException("Verification code not requested")
+            ?: throw InvalidVerificationCodeException()
 
         val expirationTime = requestedAt.plusSeconds(EXPIRATION_DURATION_SECONDS)
 
         if (now.isAfter(expirationTime)) {
-            throw IllegalStateException("Verification code expired")
+            throw CodeExpiredException()
         }
 
         if (userSecurity.verificationCode != code) {
-            throw IllegalArgumentException("Invalid verification code")
+            throw InvalidVerificationCodeException()
         }
 
         val updatedSecurity = userSecurity.copy(

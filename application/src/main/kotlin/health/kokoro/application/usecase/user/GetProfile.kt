@@ -1,6 +1,7 @@
 package health.kokoro.application.usecase.user
 
 import health.kokoro.application.usecase.file.GetFileUrl
+import health.kokoro.domain.error.UserNotFoundException
 import health.kokoro.domain.model.user.settings.ThemeSetting
 import health.kokoro.domain.port.user.UserRepository
 import org.springframework.stereotype.Service
@@ -13,7 +14,7 @@ class GetProfile(
     private val getFileUrl: GetFileUrl
 ) {
     fun execute(id: UUID): Response {
-        val user = userRepository.findById(id) ?: throw IllegalArgumentException("User with id $id not found")
+        val user = userRepository.findById(id) ?: throw UserNotFoundException()
         return Response(
             id = user.id!!,
             firstName = user.firstName,
