@@ -25,20 +25,20 @@ class HashiCorpVaultKeyProvider(
         Vault.create(vaultConfig)
     }
 
-    override fun getCurrentKeyId(): String  {
-       if (profileHelper.isDev()) {
-           return "dev"
-       }
+    override fun getCurrentKeyId(): String {
+        if (profileHelper.isDev()) {
+            return "dev"
+        }
         return "key-v1"
     }
 
     override fun getKey(id: String): SecretKey {
         if (profileHelper.isDev()) {
-            val keyBites  = Base64.getDecoder().decode(config.devKey)
-             return SecretKeySpec(keyBites, "AES")
+            val keyBites = Base64.getDecoder().decode(config.devKey)
+            return SecretKeySpec(keyBites, "AES")
         }
         val path = "${config.vaultPath}/$id"
-        
+
         return try {
             val response = vault.logical().read(path)
             if (response.restResponse.status == 404 || (response.restResponse.status == 200 && response.data["key"] == null)) {
@@ -50,7 +50,15 @@ class HashiCorpVaultKeyProvider(
                 val keyBytes = Base64.getDecoder().decode(encodedKey)
                 SecretKeySpec(keyBytes, "AES")
             } else {
-                throw RuntimeException("Error reading key from Vault at $path: status ${response.restResponse.status}, ${response.restResponse.body?.let { String(it) }}")
+                throw RuntimeException(
+                    "Error reading key from Vault at $path: status ${response.restResponse.status}, ${
+                        response.restResponse.body?.let {
+                            String(
+                                it
+                            )
+                        }
+                    }"
+                )
             }
         } catch (e: Exception) {
             if (e is RuntimeException && e.message?.contains("Error reading key") == true) {
@@ -70,7 +78,7 @@ class HashiCorpVaultKeyProvider(
         val path = "${config.vaultPath}/$id"
         val encodedKey = Base64.getEncoder().encodeToString(key.encoded)
         val data = mapOf("key" to encodedKey)
-        
+
         val response = vault.logical().write(path, data)
         if (response.restResponse.status !in 200..204) {
             throw RuntimeException("Failed to store key in Vault at $path: ${response.restResponse.body?.let { String(it) }}")
