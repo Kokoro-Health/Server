@@ -14,7 +14,7 @@ import java.time.Instant
 
 @RestController
 @Validated
-@RequestMapping("/energyEntries")
+@RequestMapping("/energy")
 class EnergyController(
     private val getEnergyEntries: GetEnergyEntries,
     private val addEnergyEntry: AddEnergyEntry,
