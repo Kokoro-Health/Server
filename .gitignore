@@ -53,3 +53,7 @@ local.env
 
 ### Files ###
 /files/
+
+### Misc ###
+improvements.md
+todo.md

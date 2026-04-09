@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/config/OpenApiConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/config/OpenApiConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/ErrorResponseDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/ErrorResponseDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/mfa/MfaController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/mfa/MfaController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/passkey/PasskeyController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/passkey/PasskeyController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/energy/EnergyController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/journal/JournalController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/journal/JournalController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsDtos.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/settings/SettingsDtos.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/energy/AddEnergyEntry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/energy/AddEnergyEntry.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/improvements.md" beforeDir="false" afterPath="$PROJECT_DIR$/improvements.md" afterDir="false" />
-    </list>
+    <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -244,7 +231,7 @@
       <workItem from="1775630920679" duration="19735000" />
       <workItem from="1775661288022" duration="4706000" />
       <workItem from="1775716952129" duration="9286000" />
-      <workItem from="1775733830033" duration="5908000" />
+      <workItem from="1775733830033" duration="6437000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />
