@@ -23,9 +23,8 @@ class AuthDtoMapper(
         return ResponseCookie.from("access_token", token)
             .path("/")
             .httpOnly(true)
-            .secure(true)
-            .sameSite("Lax")
             .secure(profileHelper.isProd())
+            .sameSite("Lax")
             .maxAge(age)
             .build()
     }

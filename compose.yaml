@@ -49,20 +49,6 @@ services:
     labels:
       - "org.springframework.boot.service-connection=false"
     profiles: [ "dev" ]
-  vault:
-    image: hashicorp/vault:latest
-    container_name: kokoro_vault
-    ports:
-      - "8200:8200"
-    environment:
-      - VAULT_DEV_ROOT_TOKEN_ID=${VAULT_TOKEN}
-      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
-    cap_add:
-      - IPC_LOCK
-    profiles: [ "dev" ]
-    volumes:
-      - vault_logs:/var/lib/vault/logs
-      - vault_volume:/var/lib/vault/data
   maildev:
     image: maildev/maildev:latest
     container_name: maildev

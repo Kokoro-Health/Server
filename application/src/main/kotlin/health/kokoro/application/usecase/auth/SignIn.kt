@@ -12,6 +12,7 @@ import health.kokoro.domain.port.audit.AuditEventRepository
 import health.kokoro.domain.port.user.UserRepository
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.security.authentication.AuthenticationManager
+import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.stereotype.Service
 import java.time.Instant
@@ -34,7 +35,8 @@ class SignIn(
         try {
             authenticationManager.authenticate(auth)
         } catch (_: Exception) {
-            addAuditLog(user, false, request)
+            addAuditLog(user, false, request, "Invalid Credentials")
+            throw BadCredentialsException("Invalid Credentials")
         }
 
         if (user.security.mfaEnabled) {
@@ -43,14 +45,14 @@ class SignIn(
             }
 
             if (!verifyMfaTotp.execute(user, command.mfaCode)) {
-                addAuditLog(user, false, request)
+                addAuditLog(user, false, request, "Invalid MFA Code")
                 throw InvalidMfaCodeException()
             }
         }
 
         val token = jwtUtil.generateToken(command.email)
         val expiresIn = jwtUtil.getExpiration(token)
-        addAuditLog(user, true, request)
+        addAuditLog(user, true, request, "Success")
         return Response(
             mfaRequired = false,
             token = token,
@@ -58,16 +60,17 @@ class SignIn(
         )
     }
 
-    fun addAuditLog(user: User, success: Boolean, request: HttpServletRequest) {
+    fun addAuditLog(user: User, success: Boolean, request: HttpServletRequest, reason: String?) {
         val action: AuditAction = if (success) {
             AuditAction.LOGIN_SUCCESS
         } else {
             AuditAction.LOGIN_FAILED
         }
         val details = RequestDetails(request)
-        val meta = mapOf(
-            "auth_method" to "credentials"
+        val meta = mutableMapOf(
+            "auth_method" to "credentials",
         )
+        reason?.let { meta["reason"] = it }
         val event = AuditEvent(
             id = UUID.randomUUID(),
             userId = user.id!!,

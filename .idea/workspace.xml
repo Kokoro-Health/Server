@@ -5,41 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/util/RequestDetails.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/audit/AuditAction.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/audit/AuditEvent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/audit/AuditEventRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/audit/AuditEventRepositoryAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/converter/MapConverter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/audit/AuditEventEntity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/audit/AuditEventJpaRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/audit/AuditEventMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/mfa/MfaController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/mfa/MfaController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/passkey/PasskeyAuthController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/passkey/PasskeyAuthController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/UserDetailsServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/security/UserDetailsServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/ResetPassword.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/ResetPassword.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignIn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignIn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/passkey/AuthPasskeyFinish.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/passkey/AuthPasskeyFinish.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/totp/DisableMfaTotp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/totp/DisableMfaTotp.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/totp/VerifyMfaTotp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/totp/VerifyMfaTotp.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/deletion/ConfirmDataDeletion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/deletion/ConfirmDataDeletion.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/deletion/RequestDataDeletion.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/deletion/RequestDataDeletion.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/data/DataDeletionRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/data/DataDeletionRequest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/data/DataDeletionRequestRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/data/DataDeletionRequestRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.env" beforeDir="false" afterPath="$PROJECT_DIR$/example.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/data/DataDeletionRequestRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/data/DataDeletionRequestRepositoryAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/data/DataDeletionRequestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/data/DataDeletionRequestEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/data/DataDeletionRequestJpaRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/data/DataDeletionRequestJpaRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/file/FileUploadEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/file/FileUploadEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/UserMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +246,7 @@
       <workItem from="1775716952129" duration="9286000" />
       <workItem from="1775733830033" duration="9618000" />
       <workItem from="1775743496667" duration="2000" />
-      <workItem from="1775804711869" duration="11244000" />
+      <workItem from="1775804711869" duration="13814000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />
@@ -311,11 +283,6 @@
           <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignIn.kt</url>
-          <line>36</line>
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>jar://C:/Program Files/Eclipse Adoptium/jdk-21.0.8.9-hotspot/lib/src.zip!/java.base/java/lang/NumberFormatException.java</url>
