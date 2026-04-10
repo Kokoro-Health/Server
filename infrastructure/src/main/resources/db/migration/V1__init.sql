@@ -1,3 +1,16 @@
+CREATE TABLE audit_events
+(
+    id         UUID NOT NULL,
+    updated_at TIMESTAMP WITHOUT TIME ZONE,
+    created_at TIMESTAMP WITHOUT TIME ZONE,
+    user_id    UUID,
+    action     VARCHAR(255),
+    ip_address VARCHAR(255),
+    user_agent VARCHAR(255),
+    metadata   VARCHAR(1028),
+    CONSTRAINT pk_audit_events PRIMARY KEY (id)
+);
+
 CREATE TABLE data_deletion_requests
 (
     id                UUID NOT NULL,
@@ -21,7 +34,7 @@ CREATE TABLE energy_entries
     CONSTRAINT pk_energy_entries PRIMARY KEY (id)
 );
 
-CREATE TABLE file_upload
+CREATE TABLE file_uploads
 (
     id         UUID NOT NULL,
     updated_at TIMESTAMP WITHOUT TIME ZONE,
@@ -30,7 +43,7 @@ CREATE TABLE file_upload
     type       VARCHAR(255),
     user_id    UUID,
     uri        VARCHAR(255),
-    CONSTRAINT pk_file_upload PRIMARY KEY (id)
+    CONSTRAINT pk_file_uploads PRIMARY KEY (id)
 );
 
 CREATE TABLE journal_entries
@@ -145,14 +158,17 @@ ALTER TABLE users
 ALTER TABLE users
     ADD CONSTRAINT uc_users_settings UNIQUE (settings_id);
 
+ALTER TABLE audit_events
+    ADD CONSTRAINT FK_AUDIT_EVENTS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
+
 ALTER TABLE data_deletion_requests
     ADD CONSTRAINT FK_DATA_DELETION_REQUESTS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE energy_entries
     ADD CONSTRAINT FK_ENERGY_ENTRIES_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
 
-ALTER TABLE file_upload
-    ADD CONSTRAINT FK_FILE_UPLOAD_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
+ALTER TABLE file_uploads
+    ADD CONSTRAINT FK_FILE_UPLOADS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE journal_entries
     ADD CONSTRAINT FK_JOURNAL_ENTRIES_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
@@ -167,7 +183,7 @@ ALTER TABLE settings
     ADD CONSTRAINT FK_SETTINGS_ON_NOTIFICATION_SETTINGS FOREIGN KEY (notification_settings_id) REFERENCES notification_settings (id);
 
 ALTER TABLE users
-    ADD CONSTRAINT FK_USERS_ON_PROFILE_PICTURE FOREIGN KEY (profile_picture_id) REFERENCES file_upload (id);
+    ADD CONSTRAINT FK_USERS_ON_PROFILE_PICTURE FOREIGN KEY (profile_picture_id) REFERENCES file_uploads (id);
 
 ALTER TABLE users
     ADD CONSTRAINT FK_USERS_ON_SECURITY FOREIGN KEY (security_id) REFERENCES security_users (id);

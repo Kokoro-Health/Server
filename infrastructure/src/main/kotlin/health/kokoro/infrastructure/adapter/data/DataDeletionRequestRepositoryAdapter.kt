@@ -8,14 +8,14 @@ import health.kokoro.infrastructure.jpa.data.DataDeletionRequestMapper
 import health.kokoro.infrastructure.jpa.user.UserJpaRepository
 import org.springframework.stereotype.Repository
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 @Repository
 class DataDeletionRequestRepositoryAdapter(
     private val jpa: DataDeletionRequestJpaRepository,
     private val mapper: DataDeletionRequestMapper,
     private val userJpaRepository: UserJpaRepository
-): DataDeletionRequestRepository {
+) : DataDeletionRequestRepository {
     override fun request(userId: UUID, confirmationCode: String): DataDeletionRequest {
         val user = userJpaRepository.findById(userId).orElseThrow { IllegalArgumentException("User not found") }
         val now = Instant.now()

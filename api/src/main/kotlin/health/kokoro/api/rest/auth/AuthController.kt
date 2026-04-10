@@ -3,11 +3,14 @@ package health.kokoro.api.rest.auth
 import health.kokoro.application.usecase.auth.ResetPassword
 import health.kokoro.application.usecase.auth.SignIn
 import health.kokoro.application.usecase.auth.SignUp
+import health.kokoro.domain.model.user.User
+import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.Valid
 import jakarta.validation.constraints.Email
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -31,8 +34,11 @@ class AuthController(
     }
 
     @PostMapping("/signin")
-    fun signIn(@RequestBody @Valid req: SignInRequestDto): ResponseEntity<SignInResponseDto> {
-        val result = signIn.execute(mapper.toCommand(req))
+    fun signIn(
+        @RequestBody @Valid req: SignInRequestDto,
+        request: HttpServletRequest
+    ): ResponseEntity<SignInResponseDto> {
+        val result = signIn.execute(mapper.toCommand(req), request)
 
         if (result.mfaRequired) {
             return ResponseEntity.ok(SignInResponseDto(mfaRequired = true))
@@ -67,8 +73,10 @@ class AuthController(
     @PostMapping("/reset-password/confirm")
     fun resetPassword(
         @RequestBody @Valid req: PasswordResetRequestDto,
+        @AuthenticationPrincipal user: User,
+        request: HttpServletRequest
     ): ResponseEntity<Any> {
-        resetPassword.execute(req.code, req.password)
+        resetPassword.execute(user, req.code, req.password, request)
         return ResponseEntity.noContent().build()
     }
 

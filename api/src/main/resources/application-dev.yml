@@ -17,6 +17,7 @@ kokoro:
     allow-origin:
       - "capacitor://localhost"
       - "http://localhost:5173"
+      - ${FRONTEND_URL}
 springdoc:
   api-docs:
     path: /docs

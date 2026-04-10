@@ -2,6 +2,7 @@ package health.kokoro.api.rest.auth.passkey
 
 import health.kokoro.application.usecase.auth.passkey.AuthPasskeyFinish
 import health.kokoro.application.usecase.auth.passkey.AuthPasskeyStart
+import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -26,9 +27,10 @@ class PasskeyAuthController(
 
     @PostMapping("/finish")
     fun passkeyAuthFinish(
-        @RequestBody request: AuthPasskeyFinishRequestDto
+        @RequestBody request: AuthPasskeyFinishRequestDto,
+        req: HttpServletRequest
     ): ResponseEntity<AuthPasskeyFinishResponseDto> {
-        val token = authPasskeyFinish.execute(request.email, request.credential)
+        val token = authPasskeyFinish.execute(request.email, request.credential, req)
         return ResponseEntity.ok(AuthPasskeyFinishResponseDto(token = token))
     }
 }

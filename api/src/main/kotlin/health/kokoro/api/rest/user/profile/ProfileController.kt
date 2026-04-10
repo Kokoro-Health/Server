@@ -1,14 +1,15 @@
 package health.kokoro.api.rest.user.profile
 
 import health.kokoro.application.usecase.user.GetProfile
-import health.kokoro.application.usecase.user.UploadProfilePicture
 import health.kokoro.application.usecase.user.UpdateProfile
+import health.kokoro.application.usecase.user.UploadProfilePicture
 import health.kokoro.application.usecase.user.deletion.AbortDataDeletion
 import health.kokoro.application.usecase.user.deletion.ConfirmDataDeletion
 import health.kokoro.application.usecase.user.deletion.RequestDataDeletion
 import health.kokoro.application.usecase.user.verification.RequestVerificationCode
 import health.kokoro.application.usecase.user.verification.VerifyEmailCode
 import health.kokoro.domain.model.user.User
+import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.Valid
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -72,17 +73,18 @@ class ProfileController(
     }
 
     @PostMapping("/data-deletion")
-    fun requestDataDeletion(@AuthenticationPrincipal user: User): ResponseEntity<Unit> {
-        requestDataDeletion.execute(user.id!!)
+    fun requestDataDeletion(@AuthenticationPrincipal user: User, req: HttpServletRequest): ResponseEntity<Unit> {
+        requestDataDeletion.execute(user, req)
         return ResponseEntity.accepted().build()
     }
 
     @PostMapping("/data-deletion/confirm")
     fun confirmDataDeletion(
         @Valid @RequestBody req: DataDeletionConfirmRequestDto,
-        @AuthenticationPrincipal user: User
+        @AuthenticationPrincipal user: User,
+        request: HttpServletRequest
     ): ResponseEntity<Unit> {
-        confirmDataDeletion.execute(user.id!!, req.code)
+        confirmDataDeletion.execute(user, req.code, request)
         return ResponseEntity.ok().build()
     }
 

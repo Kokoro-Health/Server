@@ -2,7 +2,7 @@ package health.kokoro.domain.port.data
 
 import health.kokoro.domain.model.data.DataDeletionRequest
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 interface DataDeletionRequestRepository {
     fun request(userId: UUID, confirmationCode: String): DataDeletionRequest

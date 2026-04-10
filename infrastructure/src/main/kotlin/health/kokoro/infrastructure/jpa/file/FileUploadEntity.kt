@@ -6,7 +6,7 @@ import health.kokoro.infrastructure.jpa.user.UserEntity
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "file_upload")
+@Table(name = "file_uploads")
 class FileUploadEntity(
     @Column(name = "name") val name: String,
     @Column(name = "type") @Enumerated(EnumType.STRING) val type: FileType,

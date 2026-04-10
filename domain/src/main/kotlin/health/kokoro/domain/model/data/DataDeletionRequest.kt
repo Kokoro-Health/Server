@@ -1,7 +1,7 @@
 package health.kokoro.domain.model.data
 
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 data class DataDeletionRequest(
     val id: UUID,

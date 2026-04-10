@@ -1,6 +1,5 @@
 package health.kokoro.application.security
 
-import health.kokoro.domain.model.user.Role
 import health.kokoro.domain.port.user.UserRepository
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User

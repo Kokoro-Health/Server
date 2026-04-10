@@ -1,7 +1,6 @@
 package health.kokoro.infrastructure.jpa.user
 
 import health.kokoro.domain.model.user.User
-import health.kokoro.domain.model.user.Role
 import health.kokoro.domain.port.security.EncryptionPort
 import health.kokoro.infrastructure.jpa.file.FileUploadJpaRepository
 import health.kokoro.infrastructure.jpa.file.FileUploadMapper

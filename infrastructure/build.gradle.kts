@@ -32,7 +32,7 @@ dependencies {
     implementation("org.apache.tika:tika-core:3.3.0")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
-
+    implementation("com.google.code.gson:gson:2.13.2")
     implementation("io.github.jopenlibs:vault-java-driver:6.2.1")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
