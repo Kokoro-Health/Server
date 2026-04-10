@@ -2,6 +2,7 @@ package health.kokoro.application.usecase.auth
 
 import health.kokoro.application.security.JwtUtil
 import health.kokoro.domain.error.EmailAlreadyExistsException
+import health.kokoro.domain.model.user.Role
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.model.user.security.UserSecurity
 import health.kokoro.domain.model.user.settings.LanguageSetting
@@ -55,7 +56,9 @@ class SignUp(
             settings = settings,
             createdAt = Instant.now(),
             updatedAt = Instant.now(),
-            profilePicture = null
+            profilePicture = null,
+            role = Role.USER,
+            enabled = true
         )
 
         user = userRepository.save(user)

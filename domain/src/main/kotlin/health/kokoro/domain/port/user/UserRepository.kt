@@ -8,4 +8,5 @@ interface UserRepository {
     fun findById(id: UUID): User?
     fun existsByEmail(email: String): Boolean
     fun save(user: User): User
+    fun deleteById(id: UUID)
 }

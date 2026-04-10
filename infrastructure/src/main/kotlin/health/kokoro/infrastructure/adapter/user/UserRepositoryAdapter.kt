@@ -27,4 +27,8 @@ class UserRepositoryAdapter(
     override fun save(user: User): User {
         return mapper.toDomain(jpa.save(mapper.toEntity(user)))
     }
+
+    override fun deleteById(id: UUID) {
+        jpa.deleteById(id)
+    }
 }

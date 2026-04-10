@@ -1,6 +1,7 @@
 package health.kokoro.infrastructure.jpa.user
 
 import health.kokoro.domain.model.user.User
+import health.kokoro.domain.model.user.Role
 import health.kokoro.domain.port.security.EncryptionPort
 import health.kokoro.infrastructure.jpa.file.FileUploadJpaRepository
 import health.kokoro.infrastructure.jpa.file.FileUploadMapper
@@ -27,7 +28,9 @@ class UserMapper(
             settings = settingsMapper.toDomain(user.settings),
             createdAt = user.createdAt,
             updatedAt = user.updatedAt,
-            profilePicture = user.profilePicture?.let { fileMapper.toDomain(it) }
+            profilePicture = user.profilePicture?.let { fileMapper.toDomain(it) },
+            enabled = user.enabled,
+            role = user.role
         )
     }
 
@@ -39,7 +42,9 @@ class UserMapper(
             email = user.email,
             security = securityMapper.toEntity(user.security),
             settings = settingsMapper.toEntity(user.settings),
-            profilePicture = user.profilePicture?.let { fileUploadJpaRepository.findById(it.id).get() }
+            profilePicture = user.profilePicture?.let { fileUploadJpaRepository.findById(it.id).get() },
+            enabled = user.enabled,
+            role = user.role
         )
         userEntity.id = user.id
         userEntity.createdAt = user.createdAt

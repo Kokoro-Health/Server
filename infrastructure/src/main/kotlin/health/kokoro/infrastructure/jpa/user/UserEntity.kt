@@ -1,6 +1,7 @@
 package health.kokoro.infrastructure.jpa.user
 
 import health.kokoro.domain.model.security.EncryptedData
+import health.kokoro.domain.model.user.Role
 import health.kokoro.infrastructure.converter.EncryptedDataConverter
 import health.kokoro.infrastructure.jpa.BaseEntity
 import health.kokoro.infrastructure.jpa.file.FileUploadEntity
@@ -26,5 +27,7 @@ class UserEntity(
         "security_id",
         nullable = false
     ) @OneToOne(cascade = [CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE]) var security: UserSecurityEntity,
-    @JoinColumn("settings_id") @OneToOne(cascade = [CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE]) var settings: SettingsEntity
+    @JoinColumn("settings_id") @OneToOne(cascade = [CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE]) var settings: SettingsEntity,
+    @Column var enabled: Boolean,
+    @Enumerated(EnumType.STRING) @Column var role: Role
 ) : BaseEntity()

@@ -1,12 +1,12 @@
 package health.kokoro.application.usecase.auth
 
+import health.kokoro.application.usecase.util.CodeGenerator
 import health.kokoro.domain.error.*
 import health.kokoro.domain.port.mail.MailSenderRepository
 import health.kokoro.domain.port.user.UserRepository
 import health.kokoro.domain.port.user.UserSecurityRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import java.security.SecureRandom
 import java.time.Duration
 import java.time.Instant
 
@@ -14,7 +14,7 @@ import java.time.Instant
 class ResetPassword(
     private val userSecurityRepository: UserSecurityRepository,
     private val userRepository: UserRepository,
-    private val secureRandom: SecureRandom,
+    private val codeGenerator: CodeGenerator,
     private val passwordEncoder: PasswordEncoder,
     private val mailSender: MailSenderRepository
 ) {
@@ -22,7 +22,7 @@ class ResetPassword(
         val user = userRepository.findByEmail(email) ?: throw UserNotFoundException()
         val security = user.security
 
-        val code = generateCode()
+        val code = codeGenerator.generate6Digit()
 
         mailSender.sendTemplate(
             to = user.email,
@@ -67,11 +67,6 @@ class ResetPassword(
 
     fun validateCode(code: String) {
         userSecurityRepository.findByPasswordResetCode(code) ?: throw InvalidVerificationCodeException()
-    }
-
-    private fun generateCode(): String {
-        val number = secureRandom.nextInt(1_000_000)
-        return "%06d".format(number)
     }
 
     companion object {

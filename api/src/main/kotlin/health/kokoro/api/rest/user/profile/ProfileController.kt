@@ -1,8 +1,11 @@
 package health.kokoro.api.rest.user.profile
 
 import health.kokoro.application.usecase.user.GetProfile
-import health.kokoro.application.usecase.user.UpdateProfile
 import health.kokoro.application.usecase.user.UploadProfilePicture
+import health.kokoro.application.usecase.user.UpdateProfile
+import health.kokoro.application.usecase.user.deletion.AbortDataDeletion
+import health.kokoro.application.usecase.user.deletion.ConfirmDataDeletion
+import health.kokoro.application.usecase.user.deletion.RequestDataDeletion
 import health.kokoro.application.usecase.user.verification.RequestVerificationCode
 import health.kokoro.application.usecase.user.verification.VerifyEmailCode
 import health.kokoro.domain.model.user.User
@@ -23,7 +26,10 @@ class ProfileController(
     private val requestVerificationCode: RequestVerificationCode,
     private val verifyCode: VerifyEmailCode,
     private val uploadProfilePicture: UploadProfilePicture,
-    private val updateProfile: UpdateProfile
+    private val updateProfile: UpdateProfile,
+    private val requestDataDeletion: RequestDataDeletion,
+    private val confirmDataDeletion: ConfirmDataDeletion,
+    private val abortDataDeletion: AbortDataDeletion
 ) {
     @GetMapping
     fun getMyProfile(@AuthenticationPrincipal user: User): ResponseEntity<ProfileResponseDto> {
@@ -63,5 +69,26 @@ class ProfileController(
     fun verifyCode(@RequestParam code: String, @AuthenticationPrincipal user: User): ResponseEntity<Any> {
         verifyCode.execute(user, code)
         return ResponseEntity.ok().build()
+    }
+
+    @PostMapping("/data-deletion")
+    fun requestDataDeletion(@AuthenticationPrincipal user: User): ResponseEntity<Unit> {
+        requestDataDeletion.execute(user.id!!)
+        return ResponseEntity.accepted().build()
+    }
+
+    @PostMapping("/data-deletion/confirm")
+    fun confirmDataDeletion(
+        @Valid @RequestBody req: DataDeletionConfirmRequestDto,
+        @AuthenticationPrincipal user: User
+    ): ResponseEntity<Unit> {
+        confirmDataDeletion.execute(user.id!!, req.code)
+        return ResponseEntity.ok().build()
+    }
+
+    @DeleteMapping("/data-deletion")
+    fun abortDataDeletion(@AuthenticationPrincipal user: User): ResponseEntity<Unit> {
+        abortDataDeletion.execute(user.id!!)
+        return ResponseEntity.noContent().build()
     }
 }

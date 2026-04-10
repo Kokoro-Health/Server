@@ -16,5 +16,7 @@ data class User(
     val security: UserSecurity,
     val settings: Settings,
     val createdAt: Instant,
-    val updatedAt: Instant
+    val updatedAt: Instant,
+    val enabled: Boolean,
+    val role: Role
 )

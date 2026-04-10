@@ -1,6 +1,8 @@
 package health.kokoro.application.security
 
+import health.kokoro.domain.model.user.Role
 import health.kokoro.domain.port.user.UserRepository
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -13,9 +15,12 @@ class UserDetailsServiceImpl(private val userRepository: UserRepository) : UserD
         if (!userRepository.existsByEmail(email)) throw UsernameNotFoundException("User not found")
         val user = userRepository.findByEmail(email)!!
 
+        val authorities = listOf(SimpleGrantedAuthority("ROLE_${user.role.name}"))
+
         return User(
             user.email, user.security.passwordHash,
-            emptyList()
+            user.enabled, true, true, true,
+            authorities
         )
     }
 

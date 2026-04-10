@@ -1,3 +1,15 @@
+CREATE TABLE data_deletion_requests
+(
+    id                UUID NOT NULL,
+    updated_at        TIMESTAMP WITHOUT TIME ZONE,
+    created_at        TIMESTAMP WITHOUT TIME ZONE,
+    user_id           UUID,
+    confirmed_at      TIMESTAMP WITHOUT TIME ZONE,
+    confirmation_code VARCHAR(255),
+    code_requested_at TIMESTAMP WITHOUT TIME ZONE,
+    CONSTRAINT pk_data_deletion_requests PRIMARY KEY (id)
+);
+
 CREATE TABLE energy_entries
 (
     id         UUID NOT NULL,
@@ -110,8 +122,13 @@ CREATE TABLE users
     profile_picture_id UUID,
     security_id        UUID         NOT NULL,
     settings_id        UUID,
+    enabled            BOOLEAN,
+    role               VARCHAR(255),
     CONSTRAINT pk_users PRIMARY KEY (id)
 );
+
+ALTER TABLE data_deletion_requests
+    ADD CONSTRAINT uc_data_deletion_requests_user UNIQUE (user_id);
 
 ALTER TABLE settings
     ADD CONSTRAINT uc_settings_notification_settings UNIQUE (notification_settings_id);
@@ -127,6 +144,9 @@ ALTER TABLE users
 
 ALTER TABLE users
     ADD CONSTRAINT uc_users_settings UNIQUE (settings_id);
+
+ALTER TABLE data_deletion_requests
+    ADD CONSTRAINT FK_DATA_DELETION_REQUESTS_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE energy_entries
     ADD CONSTRAINT FK_ENERGY_ENTRIES_ON_USER FOREIGN KEY (user_id) REFERENCES users (id);

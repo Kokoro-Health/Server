@@ -28,3 +28,7 @@ data class ProfileRequestDto(
 data class VerificationRequestResponseDto(
     val nextCodeAllowedAt: Instant
 )
+
+data class DataDeletionConfirmRequestDto(
+    val code: String
+)
