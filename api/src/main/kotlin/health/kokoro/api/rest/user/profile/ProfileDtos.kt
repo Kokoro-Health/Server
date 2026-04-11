@@ -22,7 +22,7 @@ data class ProfileRequestDto(
     val firstName: String,
     val middleName: String?,
     val lastName: String,
-    @Email val email: String
+    @field:Email val email: String
 )
 
 data class VerificationRequestResponseDto(

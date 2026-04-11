@@ -8,8 +8,8 @@ import java.time.Instant
 @Entity
 @Table(name = "data_deletion_requests")
 data class DataDeletionRequestEntity(
-    @JoinColumn("user_id") @OneToOne val user: UserEntity,
-    @Column("confirmed_at") val confirmedAt: Instant?,
-    @Column("confirmation_code") val confirmationCode: String?,
-    @Column("code_requested_at") val codeRequestedAt: Instant
+    @JoinColumn("user_id") @OneToOne var user: UserEntity,
+    @Column("confirmed_at") var confirmedAt: Instant?,
+    @Column("confirmation_code") var confirmationCode: String?,
+    @Column("code_requested_at") var codeRequestedAt: Instant
 ) : BaseEntity()

@@ -19,20 +19,27 @@ class DataDeletionRequestRepositoryAdapter(
     override fun request(userId: UUID, confirmationCode: String): DataDeletionRequest {
         val user = userJpaRepository.findById(userId).orElseThrow { IllegalArgumentException("User not found") }
         val now = Instant.now()
-        val entity = DataDeletionRequestEntity(
+        
+        val entity = jpa.findByUserId(userId)?.copy(
+            confirmationCode = confirmationCode,
+            codeRequestedAt = now,
+            confirmedAt = null
+        ) ?: DataDeletionRequestEntity(
             user = user,
             confirmedAt = null,
             confirmationCode = confirmationCode,
             codeRequestedAt = now
         )
+        
         return mapper.toDomain(jpa.save(entity))
     }
 
     override fun confirm(userId: UUID, code: String): Boolean {
         val entity = jpa.findByUserId(userId) ?: return false
         if (entity.confirmationCode != code) return false
-        val updated = entity.copy(confirmedAt = Instant.now())
-        jpa.save(updated)
+        entity.confirmedAt = Instant.now()
+        entity.updatedAt = Instant.now()
+        jpa.saveAndFlush(entity)
         return true
     }
 

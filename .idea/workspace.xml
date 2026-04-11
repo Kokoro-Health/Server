@@ -5,26 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/privacy/PrivacyController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/privacy/PrivacyDtos.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/privacy/ExportUserData.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/error/DataExportRateLimitedException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/user/privacy/DataExportRecord.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/user/privacy/DataExportRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/user/privacy/DataExportRepositoryAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/privacy/DataExportRecordEntity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/privacy/DataExportRecordJpaRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/privacy/DataExportRecordMapper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/Application.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/Application.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/application/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/util/RequestDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/util/RequestDetails.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/mail/MailSenderRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/mail/MailSenderRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/mail/MailSenderRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/mail/MailSenderRepositoryAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileDtos.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/profile/ProfileDtos.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/data/DataDeletionRequestRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/data/DataDeletionRequestRepositoryAdapter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +256,7 @@
       <workItem from="1775733830033" duration="9618000" />
       <workItem from="1775743496667" duration="2000" />
       <workItem from="1775804711869" duration="18009000" />
-      <workItem from="1775944795961" duration="2589000" />
+      <workItem from="1775944795961" duration="3669000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />
@@ -322,11 +307,6 @@
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/6.2.2/6f28cf11b7889cc8d884e419e1329b392182b071/spring-tx-6.2.2-sources.jar!/org/springframework/dao/DataIntegrityViolationException.java</url>
           <line>42</line>
           <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/6.2.2/6f28cf11b7889cc8d884e419e1329b392182b071/spring-tx-6.2.2-sources.jar!/org/springframework/dao/DataIntegrityViolationException.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://C:/Program Files/Eclipse Adoptium/jdk-21.0.8.9-hotspot/lib/src.zip!/java.base/java/util/NoSuchElementException.java</url>
