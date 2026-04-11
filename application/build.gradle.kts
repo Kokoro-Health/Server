@@ -32,6 +32,7 @@ dependencies {
 
     runtimeOnly("tools.jackson.module:jackson-module-kotlin:3.1.0")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.13.0")
+    implementation("com.google.code.gson:gson:2.11.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.springframework.security:spring-security-test")

@@ -23,6 +23,18 @@ CREATE TABLE data_deletion_requests
     CONSTRAINT pk_data_deletion_requests PRIMARY KEY (id)
 );
 
+CREATE TABLE data_export_records
+(
+    id           UUID                        NOT NULL,
+    user_id      UUID                        NOT NULL,
+    requested_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    completed_at TIMESTAMP WITHOUT TIME ZONE,
+    status       VARCHAR(255)                NOT NULL,
+    ip_address   VARCHAR(255),
+    user_agent   VARCHAR(255),
+    CONSTRAINT pk_data_export_records PRIMARY KEY (id)
+);
+
 CREATE TABLE energy_entries
 (
     id         UUID NOT NULL,

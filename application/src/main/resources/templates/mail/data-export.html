@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Data Export</title>
+</head>
+<body style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+<div style="background-color: #f5f5f5; padding: 30px; border-radius: 8px;">
+    <h1 style="color: #333;">Your Data Export</h1>
+    <p style="color: #666;">Hello,</p>
+    <p style="color: #666;">Your data export request has been processed. The complete export is attached to this email as a JSON file.</p>
+    <div style="background-color: #fff; padding: 20px; border-radius: 4px; margin: 20px 0;">
+        <p style="color: #333; margin: 0;"><strong>What's included:</strong></p>
+        <ul style="color: #666;">
+            <li>Profile information</li>
+            <li>Journal entries</li>
+            <li>Energy tracking data</li>
+            <li>Notification settings</li>
+            <li>Security settings</li>
+        </ul>
+    </div>
+    <p style="color: #666; font-size: 14px;">
+        This export was generated in compliance with your rights under the Swiss Federal Act on Data Protection (DSG/nDSG).
+    </p>
+    <p style="color: #666; font-size: 14px;">
+        If you have any questions about your data, please contact our support team.
+    </p>
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
+    <p style="color: #999; font-size: 12px;">© <span th:text="${year}">2026</span> Kokoro. All rights reserved.</p>
+</div>
+</body>
+</html>

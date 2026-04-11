@@ -5,10 +5,14 @@ import org.springframework.http.HttpHeaders
 
 class RequestDetails(private val request: HttpServletRequest) {
     fun getUserAgent(): String {
-        return request.getHeader(HttpHeaders.USER_AGENT)
+        return request.getHeader(HttpHeaders.USER_AGENT) ?: ""
     }
 
     fun getIpAddress(): String {
-        return request.remoteAddr
+        val forwardedFor = request.getHeader("X-Forwarded-For")
+        if (!forwardedFor.isNullOrBlank()) {
+            return forwardedFor.split(",")[0].trim()
+        }
+        return request.remoteAddr ?: "unknown"
     }
 }

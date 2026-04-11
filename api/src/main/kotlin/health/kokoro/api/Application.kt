@@ -9,6 +9,7 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
 
 @SpringBootApplication
@@ -19,6 +20,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableJpaAuditing
 @OpenAPIDefinition(servers = [Server(url = "/api/v1", description = "Request from the current instance.")])
 @EnableScheduling
+@EnableAsync
 class KokoroRunner
 
 fun main(args: Array<String>) {

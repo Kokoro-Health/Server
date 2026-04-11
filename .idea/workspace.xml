@@ -5,13 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91089bea-6db1-448f-9075-7156201715cf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/privacy/PrivacyController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/user/privacy/PrivacyDtos.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/user/privacy/ExportUserData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/error/DataExportRateLimitedException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/model/user/privacy/DataExportRecord.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/user/privacy/DataExportRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/user/privacy/DataExportRepositoryAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/privacy/DataExportRecordEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/privacy/DataExportRecordJpaRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/jpa/user/privacy/DataExportRecordMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b0193e0a-f03f-4ba1-a87f-670c7ea46897/storage_v2/_src_/database/kokoro.BQ7lvA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/rest/auth/AuthDtoMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-prod.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignIn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/auth/SignIn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/Application.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/Application.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/health/kokoro/api/error/GlobalExceptionHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/application/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/util/RequestDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/kotlin/health/kokoro/application/usecase/util/RequestDetails.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/mail/MailSenderRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/health/kokoro/domain/port/mail/MailSenderRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/mail/MailSenderRepositoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter/mail/MailSenderRepositoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/resources/db/migration/V1__init.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +35,7 @@
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="223" />
+    <option name="cachedIndexableFilesCount" value="248" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="ExternalProjectsData">
@@ -45,6 +58,17 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="server" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="server" type="f1a62948:ProjectNode" />
+                <item name="application" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="server" type="f1a62948:ProjectNode" />
+                <item name="application" type="2d1252cf:ModuleNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
             </expand>
             <select />
@@ -110,53 +134,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build Server.executor": "Run",
-    "Gradle.Build server.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.Load Gradle Dependencies.executor": "Run",
-    "Gradle.TestDataGenerator.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.KokoroRunner.executor": "Debug",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "database.data.extractors.current.export.id": "SQL Updates",
-    "database.data.extractors.current.id": "SQL Inserts",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "D:/kokoro/server/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter",
-    "last_opened_file_path": "/Users/nils/dev/kokoro/server/application/src/main/resources/templates/mail",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "D:/kokoro/server/src/main/kotlin/Main.kt",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.project.statistic.project.settings",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build Server.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build server.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Load Gradle Dependencies.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestDataGenerator.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.KokoroRunner.executor&quot;: &quot;Debug&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;SQL Updates&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;SQL Inserts&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/kokoro/server/infrastructure/src/main/kotlin/health/kokoro/infrastructure/adapter&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/nils/dev/kokoro/server/application/src/main/resources/templates/mail&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;D:/kokoro/server/src/main/kotlin/Main.kt&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/application/src/main/resources/templates/mail" />
@@ -246,7 +270,8 @@
       <workItem from="1775716952129" duration="9286000" />
       <workItem from="1775733830033" duration="9618000" />
       <workItem from="1775743496667" duration="2000" />
-      <workItem from="1775804711869" duration="13814000" />
+      <workItem from="1775804711869" duration="18009000" />
+      <workItem from="1775944795961" duration="2589000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored a big part of the auth system">
       <option name="closed" value="true" />

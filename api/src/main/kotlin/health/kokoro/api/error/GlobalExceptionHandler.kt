@@ -286,6 +286,18 @@ class GlobalExceptionHandler {
             )
     }
 
+    @ExceptionHandler(DataExportRateLimitedException::class)
+    fun handleDataExportRateLimited(e: DataExportRateLimitedException): ResponseEntity<ErrorResponseDto> {
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+            .body(
+                ErrorResponseDto(
+                    code = "DATA_EXPORT_RATE_LIMITED",
+                    message = e.message ?: "Data export rate limited. Please try again later.",
+                    timestamp = Instant.now()
+                )
+            )
+    }
+
     @ExceptionHandler(SecurityException::class)
     fun handleSecurityException(e: SecurityException): ResponseEntity<ErrorResponseDto> {
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
