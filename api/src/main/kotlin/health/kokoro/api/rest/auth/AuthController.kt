@@ -41,7 +41,7 @@ class AuthController(
         val result = signIn.execute(mapper.toCommand(req), request)
 
         if (result.mfaRequired) {
-            return ResponseEntity.ok(SignInResponseDto(mfaRequired = true))
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(SignInResponseDto(mfaRequired = true))
         }
 
         val cookie = mapper.toCookie(

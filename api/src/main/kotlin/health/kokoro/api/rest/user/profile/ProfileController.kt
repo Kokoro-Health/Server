@@ -59,7 +59,7 @@ class ProfileController(
 
     @PostMapping(path = ["/profilePicture"], consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     fun uploadProfilePicture(
-        @RequestBody file: MultipartFile,
+        @RequestPart file: MultipartFile,
         @AuthenticationPrincipal user: User
     ): ResponseEntity<Unit> {
         uploadProfilePicture.execute(file, user)

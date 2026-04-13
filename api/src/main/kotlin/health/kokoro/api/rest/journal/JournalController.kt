@@ -39,17 +39,6 @@ class JournalController(
         )
     }
 
-    @PutMapping
-    fun updateCurrentJournal(
-        @RequestBody content: JournalRequestDto,
-        @AuthenticationPrincipal user: User
-    ): ResponseEntity<JournalEntryResponseDto> {
-        val contentSaved = updateCurrentJournal.execute(user, null, content.content)
-        return ResponseEntity.ok(
-            JournalEntryResponseDto(id = contentSaved.id, content.content, contentSaved.availableUntil)
-        )
-    }
-
     @GetMapping("/{id}")
     fun getJournalById(
         @PathVariable id: UUID,

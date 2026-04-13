@@ -313,7 +313,6 @@ class GlobalExceptionHandler {
     @ExceptionHandler(Exception::class)
     fun handleException(e: Exception): ResponseEntity<ErrorResponseDto> {
         logger.log(Level.SEVERE, "Internal Server error: " + e.message)
-        e.printStackTrace()
         return ResponseEntity.internalServerError()
             .body(
                 ErrorResponseDto(
