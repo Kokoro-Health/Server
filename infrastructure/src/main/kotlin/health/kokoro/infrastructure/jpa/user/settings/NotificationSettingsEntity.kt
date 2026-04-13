@@ -7,7 +7,7 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "notification_settings")
-data class NotificationSettingsEntity(
+class NotificationSettingsEntity(
     @Column("marketing_emails") var marketingEmails: Boolean,
     @Column("security_alerts") var securityAlerts: Boolean,
     @Column("reminder_emails") var reminderEmails: Boolean

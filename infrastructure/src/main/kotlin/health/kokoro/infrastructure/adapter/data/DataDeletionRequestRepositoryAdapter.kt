@@ -20,16 +20,15 @@ class DataDeletionRequestRepositoryAdapter(
         val user = userJpaRepository.findById(userId).orElseThrow { IllegalArgumentException("User not found") }
         val now = Instant.now()
 
-        val entity = jpa.findByUserId(userId)?.copy(
-            confirmationCode = confirmationCode,
-            codeRequestedAt = now,
-            confirmedAt = null
-        ) ?: DataDeletionRequestEntity(
+        val entity = jpa.findByUserId(userId) ?: DataDeletionRequestEntity(
             user = user,
             confirmedAt = null,
             confirmationCode = confirmationCode,
             codeRequestedAt = now
         )
+        entity.confirmationCode = confirmationCode
+        entity.codeRequestedAt = now
+        entity.user = user
 
         return mapper.toDomain(jpa.save(entity))
     }

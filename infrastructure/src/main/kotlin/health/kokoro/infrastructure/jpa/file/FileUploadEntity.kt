@@ -8,8 +8,8 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "file_uploads")
 class FileUploadEntity(
-    @Column(name = "name") val name: String,
-    @Column(name = "type") @Enumerated(EnumType.STRING) val type: FileType,
-    @JoinColumn(name = "user_id") @ManyToOne val uploadedBy: UserEntity,
-    @Column(name = "uri") val uri: String
+    @Column(name = "name") var name: String,
+    @Column(name = "type") @Enumerated(EnumType.STRING) var type: FileType,
+    @JoinColumn(name = "user_id") @ManyToOne var uploadedBy: UserEntity,
+    @Column(name = "uri") var uri: String
 ) : BaseEntity()

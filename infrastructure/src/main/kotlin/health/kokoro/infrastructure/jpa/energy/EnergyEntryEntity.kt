@@ -8,7 +8,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "energy_entries")
-data class EnergyEntryEntity(
+class EnergyEntryEntity(
     @Column(name = "amount") var amount: Int,
     @JoinColumn(name = "user_id") @ManyToOne var user: UserEntity,
     @Column(name = "reason") @Convert(converter = EncryptedDataConverter::class) var reason: EncryptedData?

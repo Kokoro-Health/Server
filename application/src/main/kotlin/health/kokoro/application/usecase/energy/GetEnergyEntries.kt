@@ -111,10 +111,11 @@ class GetEnergyEntries(
     }
 
     fun getStartOfDay(zone: ZoneId, date: LocalDate): Instant {
-        return date.atStartOfDay().let {it.toInstant(zone.rules.getOffset(it))}
+        return date.atStartOfDay().let { it.toInstant(zone.rules.getOffset(it)) }
     }
+
     fun getEndOfDay(zone: ZoneId, date: LocalDate): Instant {
-        return date.plusDays(1).atStartOfDay().minusNanos(1).let {it.toInstant(zone.rules.getOffset(it))}
+        return date.plusDays(1).atStartOfDay().minusNanos(1).let { it.toInstant(zone.rules.getOffset(it)) }
     }
 
     private fun validateDateRange(from: Instant, to: Instant) {

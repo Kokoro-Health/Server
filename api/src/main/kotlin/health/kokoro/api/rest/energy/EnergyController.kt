@@ -6,7 +6,6 @@ import health.kokoro.application.usecase.energy.GetNextEntryAllowedDate
 import health.kokoro.application.usecase.energy.GetReasons
 import health.kokoro.domain.model.user.User
 import jakarta.validation.Valid
-import jakarta.websocket.server.PathParam
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.validation.annotation.Validated

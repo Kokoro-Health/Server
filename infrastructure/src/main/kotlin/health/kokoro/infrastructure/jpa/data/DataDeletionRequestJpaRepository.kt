@@ -11,6 +11,7 @@ import java.util.*
 interface DataDeletionRequestJpaRepository : JpaRepository<DataDeletionRequestEntity, UUID> {
     fun findByUserId(id: UUID): DataDeletionRequestEntity?
     fun findByConfirmedAtBefore(before: Instant): List<DataDeletionRequestEntity>
+
     @Modifying
     @Query("DELETE FROM DataDeletionRequestEntity d WHERE d.user.id = :userId")
     fun deleteByUserId(userId: UUID)

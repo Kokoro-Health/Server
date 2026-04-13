@@ -8,7 +8,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "audit_events")
-data class AuditEventEntity(
+class AuditEventEntity(
     @JoinColumn("user_id") @ManyToOne val user: UserEntity?,
     @Enumerated(EnumType.STRING) @Column("action") val action: AuditAction,
     @Column("ip_address") val ipAddress: String,

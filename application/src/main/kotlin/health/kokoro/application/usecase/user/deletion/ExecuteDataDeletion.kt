@@ -4,9 +4,9 @@ import health.kokoro.domain.port.audit.AuditEventRepository
 import health.kokoro.domain.port.data.DataDeletionRequestRepository
 import health.kokoro.domain.port.energy.EnergyEntryRepository
 import health.kokoro.domain.port.journal.JournalRepository
+import health.kokoro.domain.port.user.UserRepository
 import health.kokoro.domain.port.user.passkey.PasskeyChallengeRepository
 import health.kokoro.domain.port.user.passkey.PasskeyRepository
-import health.kokoro.domain.port.user.UserRepository
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
