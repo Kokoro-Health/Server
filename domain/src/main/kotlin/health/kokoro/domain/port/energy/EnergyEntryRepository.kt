@@ -12,4 +12,5 @@ interface EnergyEntryRepository {
     fun save(entry: EnergyEntry)
     fun findLatestByUser(uuid: UUID): EnergyEntry?
     fun findReasonsByUserId(uuid: UUID): List<String>
+    fun deleteAllByUserId(userId: UUID)
 }

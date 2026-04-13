@@ -10,4 +10,5 @@ interface PasskeyRepository {
     fun save(dto: Passkey): Passkey
     fun findById(id: UUID): Passkey?
     fun delete(dto: Passkey)
+    fun deleteAllByUserId(userId: UUID)
 }

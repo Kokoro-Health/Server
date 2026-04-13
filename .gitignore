@@ -9,6 +9,10 @@ build/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/dataSources
+.idea/dataSources*
+.idea/db-forest-config.xml
+.idea/diff-generator.xml
 *.iws
 *.iml
 *.ipr

@@ -51,6 +51,10 @@ class EnergyEntryRepositoryAdapter(
             .distinct()
     }
 
+    override fun deleteAllByUserId(userId: UUID) {
+        jpa.deleteAllByUserId(userId)
+    }
+
     private fun validateUserExists(uuid: UUID) {
         if (!userJpa.existsById(uuid)) {
             throw IllegalArgumentException("Could not find user with id $uuid")

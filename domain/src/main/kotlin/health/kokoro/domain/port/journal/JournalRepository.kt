@@ -8,4 +8,5 @@ interface JournalRepository {
     fun save(userId: UUID, id: UUID?, content: String): JournalEntry
     fun getById(uuid: UUID): JournalEntry?
     fun getAllByUserId(userId: UUID): List<JournalEntry>
+    fun deleteAllByUserId(userId: UUID)
 }

@@ -39,4 +39,8 @@ class PasskeyRepositoryAdapter(
     override fun delete(dto: Passkey) {
         jpa.delete(mapper.toEntity(dto))
     }
+
+    override fun deleteAllByUserId(userId: UUID) {
+        jpa.deleteAllByUserId(userId)
+    }
 }

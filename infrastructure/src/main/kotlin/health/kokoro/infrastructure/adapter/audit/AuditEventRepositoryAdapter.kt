@@ -19,4 +19,8 @@ class AuditEventRepositoryAdapter(
     override fun getByUserId(id: UUID): List<AuditEvent> {
         return jpa.getAllByUserId(id).map { mapper.toDomain(it) }
     }
+
+    override fun deleteAllByUserId(userId: UUID) {
+        jpa.deleteAllByUserId(userId)
+    }
 }

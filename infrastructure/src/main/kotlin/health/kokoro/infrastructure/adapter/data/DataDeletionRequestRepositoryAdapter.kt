@@ -61,6 +61,6 @@ class DataDeletionRequestRepositoryAdapter(
     }
 
     override fun deleteByUserId(userId: UUID) {
-        jpa.findByUserId(userId)?.let { jpa.delete(it) }
+        jpa.deleteByUserId(userId)
     }
 }

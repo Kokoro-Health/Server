@@ -32,6 +32,10 @@ class PasskeyChallengeRepositoryAdapter(
         jpa.deleteByUserId(userId)
     }
 
+    override fun deleteAllByUserId(userId: UUID) {
+        jpa.deleteAllByUserId(userId)
+    }
+
     override fun deleteByEmail(email: String) {
         jpa.deleteByEmail(email)
     }

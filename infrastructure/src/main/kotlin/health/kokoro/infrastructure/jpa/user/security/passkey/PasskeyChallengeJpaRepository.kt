@@ -15,4 +15,6 @@ interface PasskeyChallengeJpaRepository : JpaRepository<PasskeyChallengeEntity, 
     fun deleteByEmail(email: String)
     fun deleteAllByExpiresAtBefore(now: Instant)
     fun user(user: UserEntity): MutableList<PasskeyChallengeEntity>
+
+    fun deleteAllByUserId(userId: UUID)
 }

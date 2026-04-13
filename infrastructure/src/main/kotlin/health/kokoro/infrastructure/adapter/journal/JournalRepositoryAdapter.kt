@@ -79,4 +79,8 @@ class JournalRepositoryAdapter(
     override fun getAllByUserId(userId: UUID): List<JournalEntry> {
         return jpa.findAllByUserId(userId).map { mapper.toDomain(it) }
     }
+
+    override fun deleteAllByUserId(userId: UUID) {
+        jpa.deleteAllByUserId(userId)
+    }
 }

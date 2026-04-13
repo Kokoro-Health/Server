@@ -13,6 +13,7 @@ class UserDetailsServiceImpl(private val userRepository: UserRepository) : UserD
     override fun loadUserByUsername(email: String): UserDetails? {
         if (!userRepository.existsByEmail(email)) throw UsernameNotFoundException("User not found")
         val user = userRepository.findByEmail(email)!!
+        if (!user.enabled) throw UsernameNotFoundException("User Disabled")
 
         val authorities = listOf(SimpleGrantedAuthority("ROLE_${user.role.name}"))
 

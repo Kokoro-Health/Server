@@ -8,6 +8,7 @@ interface PasskeyChallengeRepository {
     fun findByUserIdAndType(userId: UUID, type: ChallengeType): PasskeyChallenge?
     fun findByEmailAndType(email: String, type: ChallengeType): PasskeyChallenge?
     fun deleteByUserId(userId: UUID)
+    fun deleteAllByUserId(userId: UUID)
     fun deleteByEmail(email: String)
     fun deleteAllByExpiresAtBeforeNow()
     fun save(dto: PasskeyChallenge): PasskeyChallenge
