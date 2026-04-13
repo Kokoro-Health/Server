@@ -25,7 +25,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="jdbc:postgresql://localhost:5432/kokoro [DEBUG]" group="​KokoroRunner" uuid="4281a056-f311-498a-9888-955a8ac8e1ea">
+    <data-source source="LOCAL" name="jdbc:postgresql://localhost:5432/kokoro [DEBUG]" group="​KokoroRunner" uuid="74e3057e-0420-4b19-8e3d-f3415fe32b90">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

@@ -3,13 +3,15 @@ package health.kokoro.api.rest.user.profile
 import health.kokoro.application.usecase.user.GetProfile
 import health.kokoro.application.usecase.user.UpdateProfile
 import health.kokoro.application.usecase.user.UploadProfilePicture
-import health.kokoro.application.usecase.user.deletion.AbortDataDeletion
-import health.kokoro.application.usecase.user.deletion.ConfirmDataDeletion
-import health.kokoro.application.usecase.user.deletion.RequestDataDeletion
 import health.kokoro.application.usecase.user.verification.RequestVerificationCode
 import health.kokoro.application.usecase.user.verification.VerifyEmailCode
 import health.kokoro.domain.model.user.User
-import jakarta.servlet.http.HttpServletRequest
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.media.Schema
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
+import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -21,26 +23,35 @@ import org.springframework.web.multipart.MultipartFile
 @RestController
 @RequestMapping("/users/profile")
 @Validated
+@Tag(name = "Profile", description = "User profile management")
 class ProfileController(
     private val mapper: ProfileMapper,
     private val getProfile: GetProfile,
     private val requestVerificationCode: RequestVerificationCode,
     private val verifyCode: VerifyEmailCode,
     private val uploadProfilePicture: UploadProfilePicture,
-    private val updateProfile: UpdateProfile,
-    private val requestDataDeletion: RequestDataDeletion,
-    private val confirmDataDeletion: ConfirmDataDeletion,
-    private val abortDataDeletion: AbortDataDeletion
+    private val updateProfile: UpdateProfile
 ) {
     @GetMapping
-    fun getMyProfile(@AuthenticationPrincipal user: User): ResponseEntity<ProfileResponseDto> {
+    @Operation(summary = "Get current user profile")
+    @ApiResponses(
+        ApiResponse(responseCode = "200", description = "Profile retrieved"),
+        ApiResponse(responseCode = "401", description = "Unauthorized")
+    )
+    fun getMyProfile(
+        @AuthenticationPrincipal user: User
+    ): ResponseEntity<ProfileResponseDto> {
         val profile = getProfile.execute(user.id!!)
-        return ResponseEntity.ok(
-            mapper.toDto(profile)
-        )
+        return ResponseEntity.ok(mapper.toDto(profile))
     }
 
-    @PostMapping
+    @PutMapping
+    @Operation(summary = "Update user profile")
+    @ApiResponses(
+        ApiResponse(responseCode = "204", description = "Profile updated"),
+        ApiResponse(responseCode = "400", description = "Validation failed"),
+        ApiResponse(responseCode = "401", description = "Unauthorized")
+    )
     fun updateProfile(
         @Valid @RequestBody profile: ProfileRequestDto,
         @AuthenticationPrincipal user: User
@@ -50,47 +61,47 @@ class ProfileController(
     }
 
     @PostMapping("/verify/request")
-    fun requestVerificationCode(@AuthenticationPrincipal user: User): ResponseEntity<VerificationRequestResponseDto> {
+    @Operation(summary = "Request new verification code", description = "Rate-limited to one request per minute")
+    @ApiResponses(
+        ApiResponse(responseCode = "200", description = "Verification code sent"),
+        ApiResponse(responseCode = "401", description = "Unauthorized")
+    )
+    fun requestVerificationCode(
+        @AuthenticationPrincipal user: User
+    ): ResponseEntity<VerificationRequestResponseDto> {
         val response = requestVerificationCode.execute(user)
         return ResponseEntity.ok(
             VerificationRequestResponseDto(response.nextAllowedAt)
         )
     }
 
-    @PostMapping(path = ["/profilePicture"], consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
-    fun uploadProfilePicture(
-        @RequestPart file: MultipartFile,
+    @PostMapping("/verify")
+    @Operation(summary = "Verify email with code")
+    @ApiResponses(
+        ApiResponse(responseCode = "200", description = "Email verified"),
+        ApiResponse(responseCode = "400", description = "Invalid or expired code")
+    )
+    fun verifyCode(
+        @Parameter(description = "Verification code", example = "123456")
+        @RequestParam code: String,
         @AuthenticationPrincipal user: User
     ): ResponseEntity<Unit> {
-        uploadProfilePicture.execute(file, user)
-        return ResponseEntity.ok().build()
-    }
-
-    @PostMapping("/verify")
-    fun verifyCode(@RequestParam code: String, @AuthenticationPrincipal user: User): ResponseEntity<Any> {
         verifyCode.execute(user, code)
         return ResponseEntity.ok().build()
     }
 
-    @PostMapping("/data-deletion")
-    fun requestDataDeletion(@AuthenticationPrincipal user: User, req: HttpServletRequest): ResponseEntity<Unit> {
-        requestDataDeletion.execute(user, req)
-        return ResponseEntity.accepted().build()
-    }
-
-    @PostMapping("/data-deletion/confirm")
-    fun confirmDataDeletion(
-        @Valid @RequestBody req: DataDeletionConfirmRequestDto,
-        @AuthenticationPrincipal user: User,
-        request: HttpServletRequest
+    @PostMapping(path = ["/profilePicture"], consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
+    @Operation(summary = "Upload profile picture", description = "Accepts image files.")
+    @ApiResponses(
+        ApiResponse(responseCode = "200", description = "Picture uploaded"),
+        ApiResponse(responseCode = "400", description = "Invalid file type or size"),
+        ApiResponse(responseCode = "401", description = "Unauthorized")
+    )
+    fun uploadProfilePicture(
+        @RequestPart @Schema(description = "Profile picture file") file: MultipartFile,
+        @AuthenticationPrincipal user: User
     ): ResponseEntity<Unit> {
-        confirmDataDeletion.execute(user, req.code, request)
+        uploadProfilePicture.execute(file, user)
         return ResponseEntity.ok().build()
-    }
-
-    @DeleteMapping("/data-deletion")
-    fun abortDataDeletion(@AuthenticationPrincipal user: User): ResponseEntity<Unit> {
-        abortDataDeletion.execute(user.id!!)
-        return ResponseEntity.noContent().build()
     }
 }
