@@ -8,6 +8,5 @@ import java.util.*
 @Repository
 interface DataDeletionRequestJpaRepository : JpaRepository<DataDeletionRequestEntity, UUID> {
     fun findByUserId(id: UUID): DataDeletionRequestEntity?
-    fun findByUserIdAndConfirmationCode(userId: UUID, code: String): DataDeletionRequestEntity?
     fun findByConfirmedAtBefore(before: Instant): List<DataDeletionRequestEntity>
 }

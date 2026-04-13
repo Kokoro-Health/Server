@@ -23,7 +23,8 @@ class MailSenderRepositoryAdapter(
         model: Map<String, Any>
     ) {
         val mimeMessage = mailSender.createMimeMessage()
-       val helper = getHelper(template, model, to, subject, mimeMessage)
+
+        getHelper(template, model, to, subject, mimeMessage)
 
         mailSender.send(mimeMessage)
     }
@@ -47,7 +48,13 @@ class MailSenderRepositoryAdapter(
         mailSender.send(mimeMessage)
     }
 
-    fun getHelper(template: String, model: Map<String, Any>, to: String, subject: String, mimeMessage: MimeMessage): MimeMessageHelper {
+    fun getHelper(
+        template: String,
+        model: Map<String, Any>,
+        to: String,
+        subject: String,
+        mimeMessage: MimeMessage
+    ): MimeMessageHelper {
         val context = Context().apply {
             setVariables(model)
         }

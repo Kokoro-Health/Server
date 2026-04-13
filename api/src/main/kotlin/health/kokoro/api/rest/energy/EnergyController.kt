@@ -6,11 +6,12 @@ import health.kokoro.application.usecase.energy.GetNextEntryAllowedDate
 import health.kokoro.application.usecase.energy.GetReasons
 import health.kokoro.domain.model.user.User
 import jakarta.validation.Valid
+import jakarta.websocket.server.PathParam
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
-import java.time.Instant
+import java.time.LocalDate
 
 @RestController
 @Validated
@@ -23,7 +24,7 @@ class EnergyController(
 ) {
     @GetMapping("/{date}")
     fun getEnergyEntriesForDay(
-        @PathVariable date: Instant,
+        @PathVariable date: LocalDate,
         @AuthenticationPrincipal user: User
     ): ResponseEntity<EnergyDetailsResponseDto> {
         val details = getEnergyEntries.getDetails(user, date)
@@ -54,10 +55,10 @@ class EnergyController(
         )
     }
 
-    @GetMapping("/recent")
+    @GetMapping("/range")
     fun getEnergyForDateRange(
-        @RequestParam("from") from: Instant,
-        @RequestParam("to") to: Instant, @AuthenticationPrincipal user: User
+        @RequestParam("from") from: LocalDate,
+        @RequestParam("to") to: LocalDate, @AuthenticationPrincipal user: User
     ): ResponseEntity<List<EnergyInfoDateResponseDto>> {
         val entries = getEnergyEntries.getForDateRange(user, from, to)
             .map { EnergyInfoDateResponseDto(amount = it.amount, date = it.date, reason = it.reason) }

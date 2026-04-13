@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-253.31033.145">
+  <component name="dataSourceStorageLocal" created-in="IU-261.22158.277">
     <data-source name="postgres@45.85.249.219" uuid="70a4f4ed-21a7-48b8-a2a4-5392b0fdbe3a">
       <database-info product="PostgreSQL" version="18.3 (Debian 18.3-1.pgdg13+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.7.3" dbms="POSTGRES" exact-version="18.3" exact-driver-version="42.7">
         <identifier-quote-string>&quot;</identifier-quote-string>
@@ -27,6 +27,20 @@
         <introspection-scope>
           <node kind="database" qname="kokoro">
             <node kind="schema" qname="public" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="jdbc:postgresql://localhost:5432/kokoro [DEBUG]" uuid="8b377103-84d1-47cf-8d3c-6e09c2b26646">
+      <database-info product="PostgreSQL" version="18.3 (Debian 18.3-1.pgdg13+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.7.3" dbms="POSTGRES" exact-version="18.3" exact-driver-version="42.7">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>kokoro</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="database" qname="@">
+            <node kind="schema" qname="@" />
           </node>
         </introspection-scope>
       </schema-mapping>

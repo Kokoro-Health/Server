@@ -23,7 +23,7 @@ class UploadProfilePicture(
             expected = FileType.IMAGE,
             user = user
         )
-        val oldPfp = user.profilePicture;
+        val oldPfp = user.profilePicture
         user.profilePicture = file
         userRepository.save(user)
         oldPfp?.let { fileUploadService.delete(it.id) }

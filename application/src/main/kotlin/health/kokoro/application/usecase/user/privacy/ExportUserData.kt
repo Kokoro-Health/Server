@@ -4,15 +4,20 @@ import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
+import health.kokoro.application.usecase.util.RequestDetails
 import health.kokoro.domain.error.DataExportRateLimitedException
+import health.kokoro.domain.model.audit.AuditAction
+import health.kokoro.domain.model.audit.AuditEvent
 import health.kokoro.domain.model.user.User
 import health.kokoro.domain.model.user.privacy.DataExportRecord
 import health.kokoro.domain.model.user.privacy.DataExportStatus
+import health.kokoro.domain.port.audit.AuditEventRepository
 import health.kokoro.domain.port.energy.EnergyEntryRepository
 import health.kokoro.domain.port.journal.JournalRepository
 import health.kokoro.domain.port.mail.MailSenderRepository
 import health.kokoro.domain.port.user.UserRepository
 import health.kokoro.domain.port.user.privacy.DataExportRepository
+import jakarta.servlet.http.HttpServletRequest
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
@@ -27,7 +32,8 @@ class ExportUserData(
     private val journalRepository: JournalRepository,
     private val energyRepository: EnergyEntryRepository,
     private val dataExportRepository: DataExportRepository,
-    private val mailSender: MailSenderRepository
+    private val mailSender: MailSenderRepository,
+    private val auditLog: AuditEventRepository
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
@@ -43,6 +49,7 @@ class ExportUserData(
                     out.value(formatter.format(value))
                 }
             }
+
             override fun read(`in`: JsonReader): Instant? {
                 return if (`in`.peek() == com.google.gson.stream.JsonToken.NULL) {
                     `in`.nextNull()
@@ -54,9 +61,9 @@ class ExportUserData(
         })
         .create()
 
-    fun requestExport(user: User): DataExportRecord {
+    fun requestExport(user: User, req: HttpServletRequest): DataExportRecord {
         val userId = user.id ?: throw IllegalStateException("User ID is null")
-        
+
         val recentExport = dataExportRepository.findByUserId(userId)
             .filter { it.status == DataExportStatus.COMPLETED }
             .maxByOrNull { it.completedAt ?: Instant.MIN }
@@ -80,7 +87,7 @@ class ExportUserData(
 
         val saved = dataExportRepository.save(record)
         processExportAsync(saved.id!!, userId, user.email)
-
+        addAuditLog(user, req)
         return saved
     }
 
@@ -94,7 +101,6 @@ class ExportUserData(
             val user = userRepository.findById(userId) ?: return
             val export = buildExportData(user)
             val jsonBytes = gson.toJson(export).toByteArray()
-
             mailSender.sendTemplateWithAttachment(
                 to = email,
                 subject = "Your Kokoro Data Export",
@@ -118,7 +124,7 @@ class ExportUserData(
 
     private fun buildExportData(user: User): UserDataExport {
         val userId = user.id ?: throw IllegalStateException("User ID is null")
-        
+
         return UserDataExport(
             metadata = ExportMetadata(
                 exportedAt = Instant.now(),
@@ -169,6 +175,21 @@ class ExportUserData(
 
     private fun setProcessingStatus(record: DataExportRecord) {
         dataExportRepository.update(record.copy(status = DataExportStatus.PROCESSING))
+    }
+
+    fun addAuditLog(user: User, request: HttpServletRequest) {
+        val details = RequestDetails(request)
+
+        val event = AuditEvent(
+            id = UUID.randomUUID(),
+            userId = user.id!!,
+            action = AuditAction.DATA_EXPORT,
+            userAgent = details.getUserAgent(),
+            ipAddress = details.getIpAddress(),
+            metaData = null,
+            timeStamp = Instant.now()
+        )
+        auditLog.add(event)
     }
 
     data class UserDataExport(

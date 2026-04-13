@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="db-forest-configuration">
+    <data version="2">.
+	1:0:effd4e70-7cde-42e0-a5f6-48346bffd5a3:​KokoroRunner
+	----------------------------------------
+	2:1:87104bed-d61c-45e1-b25b-98061277bbc2
+	3:0:70a4f4ed-21a7-48b8-a2a4-5392b0fdbe3a
+	4:0:b0193e0a-f03f-4ba1-a87f-670c7ea46897
+		.</data>
+  </component>
   <component name="db-tree-configuration">
     <option name="data" value="----------------------------------------&#10;1:0:70a4f4ed-21a7-48b8-a2a4-5392b0fdbe3a&#10;2:0:b0193e0a-f03f-4ba1-a87f-670c7ea46897&#10;" />
   </component>

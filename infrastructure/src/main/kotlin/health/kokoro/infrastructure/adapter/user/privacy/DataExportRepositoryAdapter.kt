@@ -1,7 +1,6 @@
 package health.kokoro.infrastructure.adapter.user.privacy
 
 import health.kokoro.domain.model.user.privacy.DataExportRecord
-import health.kokoro.domain.model.user.privacy.DataExportStatus
 import health.kokoro.domain.port.user.privacy.DataExportRepository
 import health.kokoro.infrastructure.jpa.user.privacy.DataExportRecordJpaRepository
 import health.kokoro.infrastructure.jpa.user.privacy.DataExportRecordMapper

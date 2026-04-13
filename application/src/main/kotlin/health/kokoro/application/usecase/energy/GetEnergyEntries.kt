@@ -5,6 +5,7 @@ import health.kokoro.domain.model.user.User
 import health.kokoro.domain.port.energy.EnergyEntryRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import java.time.temporal.ChronoUnit
 import java.util.*
@@ -13,30 +14,20 @@ import java.util.*
 class GetEnergyEntries(
     private val energyRepo: EnergyEntryRepository
 ) {
-    fun getDetails(user: User, date: Instant): DetailResponse {
-        val zone = user.settings.timeZone
-        val startZdt = getStartOfDay(zone, date).atZone(zone)
-        val endZdt = startZdt.plusDays(1).minusNanos(1)
-
-        val start = startZdt.toInstant()
-        val end = endZdt.toInstant()
-
+    fun getDetails(user: User, date: LocalDate): DetailResponse {
+        val start = getStartOfDay(user.settings.timeZone, date)
+        val end = getEndOfDay(user.settings.timeZone, date)
         val entries = energyRepo.findAllByUserInRange(user.id!!, start, end)
-
         val responses = mapToResponses(entries)
-
         val netReasons = calculateNetReasons(entries)
-
         val influentialPositive =
             netReasons.filter { it.value > 50 }.maxByOrNull { it.value }?.let { (reason, amount) ->
                 ReasonAmount(reason, amount.toInt())
             }
-
         val influentialNegative =
             netReasons.filter { it.value <= 50 }.minByOrNull { it.value }?.let { (reason, amount) ->
                 ReasonAmount(reason, amount.toInt())
             }
-
         val average = calculateAverage(entries)
 
         return DetailResponse(
@@ -85,35 +76,27 @@ class GetEnergyEntries(
 
     fun getAverageToday(user: User): Int {
         val zone = user.settings.timeZone
-        val entries = energyRepo.findAllByUserSince(user.id!!, getStartOfDay(zone, Instant.now()))
+        val entries = energyRepo.findAllByUserSince(user.id!!, getStartOfDay(zone, LocalDate.now(zone)))
 
         return calculateAverage(entries)
     }
 
     fun getForDateRange(
         user: User,
-        from: Instant,
-        to: Instant,
+        from: LocalDate,
+        to: LocalDate,
     ): List<Response> {
         val zone = user.settings.timeZone
 
-        val endOfDay = { instant: Instant ->
-            instant.atZone(zone)
-                .toLocalDate()
-                .atStartOfDay(zone)
-                .plusDays(1)
-                .minusNanos(1)
-                .toInstant()
-        }
         val from = getStartOfDay(zone, from)
-        val to = endOfDay(to)
+        val to = getEndOfDay(zone, to)
         validateDateRange(from, to)
 
         val entries = energyRepo.findAllByUserInRange(user.id!!, from, to)
         if (entries.isEmpty()) return emptyList()
 
         return entries
-            .groupBy { getStartOfDay(zone, it.createdAt) }
+            .groupBy { it.createdAt }
             .map { (dayStart, dayEntries) ->
                 val average = calculateAverage(dayEntries)
 
@@ -127,8 +110,11 @@ class GetEnergyEntries(
             .sortedBy { it.date }
     }
 
-    fun getStartOfDay(zone: ZoneId, instant: Instant): Instant {
-        return instant.atZone(zone).toLocalDate().atStartOfDay(zone).toInstant()
+    fun getStartOfDay(zone: ZoneId, date: LocalDate): Instant {
+        return date.atStartOfDay().let {it.toInstant(zone.rules.getOffset(it))}
+    }
+    fun getEndOfDay(zone: ZoneId, date: LocalDate): Instant {
+        return date.plusDays(1).atStartOfDay().minusNanos(1).let {it.toInstant(zone.rules.getOffset(it))}
     }
 
     private fun validateDateRange(from: Instant, to: Instant) {
